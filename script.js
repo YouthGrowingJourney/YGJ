@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Button-Klicks zuordnen
   if (buttons.length >= 2) {
     buttons[0].addEventListener("click", () => {
-      openModal("🚀 Der kostenlose Plan ist bald verfügbar. Stay tuned!");
+      openModal("The free plan will be available soon. Stay tuned!");
     });
 
     buttons[1].addEventListener("click", () => {
-      openModal("💎 Premium-Features kommen bald! Bereit für das nächste Level?");
+      openModal("Premium features will follow!");
     });
   } else {
     console.warn("Nicht genug Buttons auf der Seite gefunden.");
@@ -37,3 +37,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ⚠️ Hier ist Platz für Erweiterungen wie z. B. Warenkorb, Theme-Switcher usw.
 });
+
