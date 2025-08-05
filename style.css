@@ -52,12 +52,12 @@ header h1 {
 }
 
 footer {
-  margin-top: 80px;
+  margin-top: 200px;
   text-align: center;
   font-size: 0.9rem;
   color: #777;
   padding: 20px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #e0c280;
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -86,5 +86,6 @@ footer {
 }
 
 }
+
 
 
