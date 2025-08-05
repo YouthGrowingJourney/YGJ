@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  background: #111;
+  background: #ffffff;
   padding: 20px;
   text-align: center;
   border-bottom: 2px solid gold;
@@ -28,7 +28,7 @@ header h1 {
 
 .intro p {
   font-size: 1.2rem;
-  color: #d9d9d9;
+  color: #e0c280;
 }
 
 .buttons {
@@ -37,7 +37,7 @@ header h1 {
 
 .btn {
   padding: 12px 24px;
-  background: gold;
+  background: #e0c280;
   color: white;
   border: none;
   border-radius: 8px;
@@ -86,4 +86,5 @@ footer {
 }
 
 }
+
 
