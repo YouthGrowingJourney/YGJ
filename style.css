@@ -31,7 +31,6 @@ body {
   margin-bottom: 1rem;
 }
 
-}
  header {
       display: flex;
       align-items: center;
@@ -126,6 +125,7 @@ body {
       padding: 20px;
       background-color: #f5f5f5;
     }
+
 
 
 
