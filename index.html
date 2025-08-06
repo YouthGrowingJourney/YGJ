@@ -36,7 +36,45 @@
       font-size: 24px;
       font-family: 'Playfair Display', serif;
     }
+.menu-btn {
+  background-color: #e0c280;
+  color: white;
+  border: none;
+  font-size: 28px;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #e0c280;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
     .intro {
       padding: 20px;
       text-align: center;
@@ -67,10 +105,19 @@
 </head>
 <body>
   <header>
-    <a href="https://eiermeier.github.io/YGJ/index.html" class="home-btn">
+    <div class="sidebar" id="sidebar">
+  <button>Profil</button>
+  <button>Über uns</button>
+  <button>Kontakt</button>
+  <button>Abmelden</button>
+</div>
+       <a href="https://eiermeier.github.io/YGJ/index.html" class="home-btn">
       <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
-    </a>
+     </a>
     <h1>Youth Growing Journey</h1>
+    <button id="menu-toggle" class="menu-btn">
+    &#9776; 
+  </button>
   </header>
 
   <section class="intro">
@@ -84,7 +131,6 @@
   <footer>
     &copy; Youth Growing Journey - built for a strong generation.
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
