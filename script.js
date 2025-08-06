@@ -35,14 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     console.warn("Nicht genug Buttons auf der Seite gefunden.");
   }
 
- <script>
+
   const menuBtn = document.getElementById('menu-toggle');
   const sidebar = document.getElementById('sidebar');
 
   menuBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
   });
-</script>
+
+
 
 
 
