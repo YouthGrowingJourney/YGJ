@@ -4,26 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YGJ</title>
- <link rel="stylesheet" 
-   href="style.css" />
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    header {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    header a.home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e0c280;
+      border-radius: 8px;
+      padding: 8px;
+      margin-right: 20px;
+      text-decoration: none;
+    }
+
+    header a.home-btn img {
+      width: 40px;
+      height: 40px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .intro {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background-color: #e0c280;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+  </style>
 </head>
 <body>
   <header>
-<a href="index.html" style="
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-size: 18px;
-">
-  🏠 Zur Startseite
-</a>
-
+    <a href="https://eiermeier.github.io/YGJ/index.html" class="home-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home">
+    </a>
     <h1>Youth Growing Journey</h1>
   </header>
+
   <section class="intro">
     <p>Motivation, Planning and Success – everything at one spot. Learn and experience free Growing-Basics and start your journey!</p>
     <div class="buttons">
@@ -31,13 +80,11 @@
       <button class="btn">Premium available soon</button>
     </div>
   </section>
+
   <footer>
     &copy; Youth Growing Journey - built for a strong generation.
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
