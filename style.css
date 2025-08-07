@@ -97,12 +97,6 @@ header h1 {
   transition: transform 0.2s ease;
 }
 
-.close-btn:hover {
-  transform: scale(1.05);
-}
-
-
-
 .sidebar-buttons {
   margin-top: auto;
   display: flex;
@@ -178,6 +172,7 @@ footer {
   background-color: #f5f5f5;
   color: #333;
 }
+
 
 
 
