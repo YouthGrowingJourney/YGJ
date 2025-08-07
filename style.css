@@ -73,16 +73,25 @@ header h1 {
 .sidebar.open {
  transform: translateX(0); 
 }
-
 .close-btn {
-  align-self: flex-start;
+  position: absolute;
+  top: 15px;
+  left: 15px;
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: 32px;
   color: white;
   cursor: pointer;
-  margin-bottom: 20px;
+  z-index: 1100;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.2s ease;
 }
+
+.close-btn:hover {
+  transform: scale(1.1);
+}
+
 
 .sidebar-buttons {
   margin-top: auto;
@@ -159,5 +168,6 @@ footer {
   background-color: #f5f5f5;
   color: #555;
 }
+
 
 
