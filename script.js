@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Buttons abrufen
   const buttons = document.querySelectorAll(".btn");
 
   function openModal(message) {
@@ -26,8 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons[1].addEventListener("click", () => {
       openModal("Premium features will follow!");
     });
-  } else {
-    console.warn("Nicht genug Buttons auf der Seite gefunden.");
   }
 
   const menuBtn = document.getElementById('menu-toggle');
@@ -36,4 +33,4 @@ document.addEventListener("DOMContentLoaded", () => {
   menuBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
   });
-}); 
+});
