@@ -33,4 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
   menuBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
   });
+
+const closeBtn = document.getElementById('close-sidebar');
+
+closeBtn.addEventListener('click', () => {
+  sidebar.classList.remove('open');
 });
+
+  
+});
+
