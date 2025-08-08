@@ -143,6 +143,13 @@ header h1 {
   font-size: 16px;
 }
 
+.growth-image {
+  display: block;
+  margin-top: 20px;
+  margin-left: 0;
+  max-width: 300px; 
+}
+
 /* Modal Design */
 .modal-overlay {
   position: fixed;
@@ -179,3 +186,4 @@ footer {
   color: white;
   border-top: 1px solid #e0c280
 }
+
