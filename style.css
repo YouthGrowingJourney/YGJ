@@ -40,9 +40,13 @@ header h1 {
   flex-grow: 1;
   text-align: center;
   margin: 0;
-  font-size: 22px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   color: #e0c280;
-  font-family:  
+  font-family: 'Cinzel Decorative', cursive;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  
 }
 
 .menu-btn {
@@ -174,6 +178,7 @@ footer {
   color: white;
   border-top: 1px solid #e0c280
 }
+
 
 
 
