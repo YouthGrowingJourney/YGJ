@@ -136,7 +136,7 @@ header h1 {
   padding: 10px 20px;
   margin: 0 10px;
   background-color: #e0c280;
-  color: #333;
+  color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -164,6 +164,7 @@ header h1 {
   text-align: center;
   max-width: 300px;
   box-shadow: 0 0 20px #e0c280;
+  color: #333;
 }
 
 .modal-content p {
@@ -178,13 +179,3 @@ footer {
   color: white;
   border-top: 1px solid #e0c280
 }
-
-
-
-
-
-
-
-
-
-
