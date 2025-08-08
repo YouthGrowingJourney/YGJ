@@ -150,6 +150,13 @@ header h1 {
   max-width: 300px; 
 }
 
+.grades-image {
+  margin-top: -210px;
+  margin-left: -500px;
+  max-width: 200px;
+  margin-bottom: 100px;
+}
+
 /* Modal Design */
 .modal-overlay {
   position: fixed;
@@ -186,4 +193,5 @@ footer {
   color: white;
   border-top: 1px solid #e0c280
 }
+
 
