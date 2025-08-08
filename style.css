@@ -41,7 +41,8 @@ header h1 {
   text-align: center;
   margin: 0;
   font-size: 22px;
-  color: white;
+  color: #e0c280;
+  font-family:  
 }
 
 .menu-btn {
@@ -131,7 +132,7 @@ header h1 {
   padding: 10px 20px;
   margin: 0 10px;
   background-color: #e0c280;
-  color: white;
+  color: #333;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -169,9 +170,11 @@ header h1 {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #333;
+  color: white;
+  border-top: 1px solid #e0c280
 }
+
 
 
 
