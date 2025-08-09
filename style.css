@@ -142,28 +142,6 @@ header h1 {
   cursor: pointer;
   font-size: 16px;
 }
-
-.growth-image {
-  display: block;
-  margin-top: 150px;
-  margin-left: 0;
-  max-width: 300px; 
-}
-
-.grades-image {
-  margin-top: -210px;
-  margin-left: -500px;
-  max-width: 200px;
-  margin-bottom: 100px;
-}
-
-.fitness-image {
-  margin-top: -210px;
-  margin-left: -500px;
-  max-width: 200px;
-  margin-bottom: 100px;
-
-}
   
 /* Modal Design */
 .modal-overlay {
@@ -201,6 +179,7 @@ footer {
   color: white;
   border-top: 1px solid #e0c280
 }
+
 
 
 
