@@ -60,5 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "logout.html";
   });
 
+  const profilePage = document.querySelector('section.intro h2');
+  if (profilePage && profilePage.textContent.includes("Profil")) {
+    const profileButtons = document.querySelectorAll("section.intro button.btn");
+    if (profileButtons.length >= 2) {
+      profileButtons[0].addEventListener("click", () => {
+        openModal("Hier kannst du dein Profil bald bearbeiten – Feature folgt!");
+      });
+      profileButtons[1].addEventListener("click", () => {
+        openModal("Statistiken sind noch in Arbeit – bleib dran!");
+      });
+    }
+  }
+  
 });
+
 
