@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".btn");
 
+  // Startseiten-Buttons (Modal bleibt)
   function openModal(message) {
     const modal = document.createElement("div");
     modal.classList.add("modal-overlay");
@@ -27,19 +28,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Sidebar öffnen/schließen
   const menuBtn = document.getElementById('menu-toggle');
   const sidebar = document.getElementById('sidebar');
+  const closeBtn = document.getElementById('close-sidebar');
 
   menuBtn.addEventListener('click', () => {
     sidebar.classList.toggle('open');
   });
 
-const closeBtn = document.getElementById('close-sidebar');
+  closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+  });
 
-closeBtn.addEventListener('click', () => {
-  sidebar.classList.remove('open');
+  // Sidebar Buttons → Redirect zu Unterseiten
+  const sidebarButtons = document.querySelectorAll(".sidebar-content button");
+
+  sidebarButtons[0].addEventListener("click", () => {
+    window.location.href = "profil.html";
+  });
+
+  sidebarButtons[1].addEventListener("click", () => {
+    window.location.href = "ueber-uns.html";
+  });
+
+  sidebarButtons[2].addEventListener("click", () => {
+    window.location.href = "kontakt.html";
+  });
+
+  sidebarButtons[3].addEventListener("click", () => {
+    window.location.href = "logout.html";
+  });
+
 });
-
-  
-});
-
