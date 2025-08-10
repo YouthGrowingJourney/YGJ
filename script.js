@@ -45,15 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebarButtons = document.querySelectorAll(".sidebar-content button");
 
   sidebarButtons[0].addEventListener("click", () => {
-    window.location.href = "profil.html";
+    window.location.href = "profile.html";
   });
 
   sidebarButtons[1].addEventListener("click", () => {
-    window.location.href = "ueber-uns.html";
+    window.location.href = "about-us.html";
   });
 
   sidebarButtons[2].addEventListener("click", () => {
-    window.location.href = "kontakt.html";
+    window.location.href = "contact.html";
   });
 
   sidebarButtons[3].addEventListener("click", () => {
@@ -61,3 +61,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
