@@ -65,14 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileButtons = document.querySelectorAll("section.intro button.btn");
     if (profileButtons.length >= 2) {
       profileButtons[0].addEventListener("click", () => {
-        openModal("Hier kannst du dein Profil bald bearbeiten – Feature folgt!");
+        openModal("Soon you can edit your profile!");
       });
       profileButtons[1].addEventListener("click", () => {
-        openModal("Statistiken sind noch in Arbeit – bleib dran!");
+        openModal("Statistics are still being build");
       });
     }
   }
   
 });
+
 
 
