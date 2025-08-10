@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".btn");
 
-  // Startseiten-Buttons (Modal bleibt)
+  // Modal öffnen und EventListener sicher binden
   function openModal(message) {
     const modal = document.createElement("div");
     modal.classList.add("modal-overlay");
@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.body.appendChild(modal);
 
-    document.getElementById("close-modal").addEventListener("click", () => {
+    // EventListener direkt im neuen Modal-Element setzen
+    modal.querySelector("#close-modal").addEventListener("click", () => {
       modal.remove();
     });
   }
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.remove('open');
   });
 
-  // Sidebar Buttons → Redirect zu Unterseiten
+  // Sidebar Buttons → Redirect zu Unterseiten (englische Dateinamen)
   const sidebarButtons = document.querySelectorAll(".sidebar-content button");
 
   sidebarButtons[0].addEventListener("click", () => {
@@ -60,20 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "logout.html";
   });
 
-  const profilePage = document.querySelector('section.intro h2');
-  if (profilePage && profilePage.textContent.includes("Profil")) {
-    const profileButtons = document.querySelectorAll("section.intro button.btn");
-    if (profileButtons.length >= 2) {
-      profileButtons[0].addEventListener("click", () => {
-        openModal("Soon you can edit your profile!");
-      });
-      profileButtons[1].addEventListener("click", () => {
-        openModal("Statistics are still being build");
-      });
-    }
-  }
-  
-});
-
-
-
+  // Profilseite Buttons mit eigenen Modals
+  const profilePage = document.querySelector('section.intro
