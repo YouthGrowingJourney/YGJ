@@ -1,20 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(".btn");
 
-  // Modal öffnen und EventListener sicher binden
+  // Startseiten-Buttons (Modal bleibt)
   function openModal(message) {
     const modal = document.createElement("div");
     modal.classList.add("modal-overlay");
-    modal.innerHTML = `
+    modal.innerHTML = 
       <div class="modal-content">
         <p>${message}</p>
         <button id="close-modal" class="btn">OK</button>
       </div>
-    `;
+    ;
     document.body.appendChild(modal);
 
-    // EventListener direkt im neuen Modal-Element setzen
-    modal.querySelector("#close-modal").addEventListener("click", () => {
+    document.getElementById("close-modal").addEventListener("click", () => {
       modal.remove();
     });
   }
@@ -42,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.remove('open');
   });
 
-  // Sidebar Buttons → Redirect zu Unterseiten (englische Dateinamen)
+  // Sidebar Buttons → Redirect zu Unterseiten
   const sidebarButtons = document.querySelectorAll(".sidebar-content button");
 
   sidebarButtons[0].addEventListener("click", () => {
@@ -61,5 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "logout.html";
   });
 
-  // Profilseite Buttons mit eigenen Modals
-  const profilePage = document.querySelector('section.intro
+  const profilePage = document.querySelector('section.intro h2');
+  if (profilePage && profilePage.textContent.includes("Profil")) {
+    const profileButtons = document.querySelectorAll("section.intro button.btn");
+    if (profileButtons.length >= 2) {
+      profileButtons[0].addEventListener("click", () => {
+        openModal("Soon you can edit your profile!");
+      });
+      profileButtons[1].addEventListener("click", () => {
+        openModal("Statistics are still being build");
+      });
+    }
+  }
+  
+});
