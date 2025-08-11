@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function openModal(message) {
     const modal = document.createElement("div");
     modal.classList.add("modal-overlay");
-    modal.innerHTML = 
+    modal.innerHTML = `
       <div class="modal-content">
         <p>${message}</p>
         <button id="close-modal" class="btn">OK</button>
       </div>
-    ;
+    `;
     document.body.appendChild(modal);
 
     document.getElementById("close-modal").addEventListener("click", () => {
@@ -74,3 +74,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
 });
+
