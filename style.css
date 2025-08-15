@@ -49,6 +49,21 @@ header h1 {
   
 }
 
+.login-header-btn {
+  background-color: #e0c280;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-header-btn i {
+  margin-right: 5px;
+}
+
 .menu-btn {
   background-color: #e0c280;
   color: white;
@@ -186,6 +201,7 @@ footer {
   color: white;
   border-top: 1px solid #e0c280
 }
+
 
 
 
