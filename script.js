@@ -1,23 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // --- Modal-Funktion ---
-  function openModal(message) {
-    const modal = document.createElement("div");
-    modal.classList.add("modal-overlay");
-    modal.innerHTML = `
-      <div class="modal-content">
-        <p>${message}</p>
-        <button id="close-modal" class="btn">OK</button>
-      </div>
-    `;
-    document.body.appendChild(modal);
+function openModal(message) {
+  const modal = document.createElement("div");
+  modal.classList.add("modal-overlay");
+  modal.innerHTML = `
+    <div class="modal-content">
+      <p>${message}</p>
+      <button class="close-modal-btn btn">OK</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
 
-    document.getElementById("close-modal").addEventListener("click", () => {
-      modal.remove();
-    });
-  }
+  const closeBtn = modal.querySelector(".close-modal-btn");
+  closeBtn.addEventListener("click", () => {
+    modal.remove();
+  });
+}
 
-  // --- Startseite: Modal für Buttons ---
+ // --- Startseite: Modal für Buttons ---
   const startButtons = document.querySelectorAll("section.intro .btn");
   if (startButtons.length >= 2) {
     startButtons[0].addEventListener("click", () => {
@@ -68,3 +69,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
