@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – YGJ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="home-btn">
+      <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home">
+    </a>
+    <h1>Youth Growing Journey</h1>
+    <button id="menu-toggle" class="menu-btn">&#9776;</button>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button id="close-sidebar" class="close-btn">&times;</button>
+    </div>
+    <div class="sidebar-content">
+      <button onclick="window.location.href='login.html'"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+      <button onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Register</button>
+    </div>
+  </div>
+
+  <section class="intro">
+    <h2>Create Account</h2>
+    <input type="text" id="new-username" placeholder="Username" class="login-input">
+    <input type="password" id="new-password" placeholder="Password" class="login-input">
+    <button class="btn" id="register-submit">Sign Up</button>
+    <p id="register-message"></p>
+  </section>
+
+  <footer>
+    &copy; Youth Growing Journey – built for a strong generation.
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("register-submit").addEventListener("click", () => {
+      const user = document.getElementById("new-username").value.trim();
+      const pass = document.getElementById("new-password").value.trim();
+      const message = document.getElementById("register-message");
+
+      if (!user || !pass) {
+        message.textContent = "Bitte alle Felder ausfüllen!";
+        message.style.color = "#f00";
+        return;
+      }
+
+      // existierende User laden
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      if (users.find(u => u.username === user)) {
+        message.textContent = "Benutzername bereits vergeben!";
+        message.style.color = "#f00";
+        return;
+      }
+
+      // neuen User speichern
+      users.push({ username: user, password: pass });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      message.textContent = "Registrierung erfolgreich!";
+      message.style.color = "#0f0";
+
+      setTimeout(() => window.location.href = "login.html", 1200);
+    });
+  </script>
+</body>
+</html>
