@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profil – YGJ</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile – YGJ</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <header>
-    <a href="index.html" class="home-btn">
-      <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home">
-    </a>
+    <a href="index.html" class="home-btn"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home"></a>
     <h1>Youth Growing Journey</h1>
-    <button class="btn login-header-btn" onclick="window.location.href='login.html'">
-    <i class="fa-solid fa-right-to-bracket"></i> Log In
-   </button>
-    <button id="menu-toggle" class="menu-btn">&#9776;</button>
+    <div class="header-buttons">
+      <button id="menu-toggle" class="menu-btn">&#9776;</button>
+    </div>
   </header>
 
   <!-- Sidebar -->
@@ -26,40 +23,44 @@
     <div class="sidebar-header">
       <button id="close-sidebar" class="close-btn">&times;</button>
     </div>
-   <div class="sidebar-content">
-  <button onclick="window.location.href='profile.html'">
-    <i class="fa-solid fa-user"></i> Profile
-  </button>
-  <button onclick="window.location.href='about-us.html'">
-    <i class="fa-solid fa-info-circle"></i> About Us
-  </button>
-  <button onclick="window.location.href='contact.html'">
-    <i class="fa-solid fa-envelope"></i> Contact Us
-  </button>
-  <button onclick="window.location.href='logout.html'">
-    <i class="fa-solid fa-right-from-bracket"></i> Log Out
-  </button>
-</div>
-  </div>
-  <section class="intro">
-    <h2>Your Profile</h2>
-    <p>Welcome at YGJ! Here you find an overview of your personal data and progress.</p>
-    
-    <div style="margin-top: 30px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
-      <p><strong>Name:</strong> John Doe</p>
-      <p><strong>Member since:</strong> September 2025</p>
-      <p><strong>Status:</strong> Free Membership(Free Plan)</p>
-      <p><strong>Progress:</strong> You've reached 35% of your goals</p>
+    <div class="sidebar-content">
+      <button onclick="window.location.href='index.html'"><i class="fa-solid fa-house"></i> Home</button>
+      <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button>
+      <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact</button>
+      <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
     </div>
-    <div style="margin-top: 20px;">
-      <button class="btn">Edit Profile</button>
-      <button class="btn">View Statistics</button>
+  </div>
+
+  <section class="intro">
+    <h2>Welcome, <span id="username"></span> 👋</h2>
+    <p>Here’s an overview of your journey and progress. Keep going, you’re doing great!</p>
+
+    <div class="profile-stats">
+      <div class="stat">
+        <h3 id="progress-percentage">0%</h3>
+        <p>Goals Completed</p>
+      </div>
+      <div class="stat">
+        <h3 id="tasks-completed">0</h3>
+        <p>Tasks Completed</p>
+      </div>
+      <div class="stat">
+        <h3 id="streak-days">0</h3>
+        <p>Consecutive Days Active</p>
+      </div>
+      <div class="stat">
+        <h3 id="level">1</h3>
+        <p>Level</p>
+      </div>
+    </div>
+
+    <div class="profile-buttons">
+      <button class="btn" id="edit-profile">Edit Profile</button>
+      <button class="btn" id="view-achievements">View Achievements</button>
     </div>
   </section>
-  <footer>
-    &copy; Youth Growing Journey – built for a strong generation.
-  </footer>
- <script src="script.js"></script>
+
+  <footer>&copy; Youth Growing Journey – built for a strong generation.</footer>
+  <script src="script.js"></script>
 </body>
 </html>
-
