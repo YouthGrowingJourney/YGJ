@@ -56,13 +56,15 @@ if (startSection && window.location.pathname.includes("index.html")) {
   }
 }
 
-  // --- Logout ---
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("currentUser");
-      window.location.href = "index.html";
-    });
-  }
+// --- Logout ---
+const logoutBtn = document.getElementById("logout-btn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("currentUser"); // User abmelden
+    alert("You have been logged out.");     // kurze Info (optional)
+    window.location.href = "index.html";    // zurück zur Startseite
+  });
+}
 
   // --- Login ---
   const loginSubmit = document.getElementById("login-submit");
@@ -145,4 +147,5 @@ if (startSection && window.location.pathname.includes("index.html")) {
   }
 
 }); // <-- Nur EINMAL schließen!
+
 
