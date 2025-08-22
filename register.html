@@ -27,8 +27,16 @@
       <button id="close-sidebar" class="close-btn">&times;</button>
     </div>
     <div class="sidebar-content">
-      <button onclick="window.location.href='login.html'"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
-      <button onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Register</button>
+       <button onclick="window.location.href='profile.html'">
+    <i class="fa-solid fa-user"></i> Profile
+  </button>
+  <button onclick="window.location.href='about-us.html'">
+    <i class="fa-solid fa-info-circle"></i> About Us
+  </button>
+  <button onclick="window.location.href='contact.html'">
+    <i class="fa-solid fa-envelope"></i> Contact Us
+  </button>
+  <button>
     </div>
   </div>
 
@@ -52,7 +60,7 @@
       const message = document.getElementById("register-message");
 
       if (!user || !pass) {
-        message.textContent = "Bitte alle Felder ausfüllen!";
+        message.textContent = "Please Fill Out Every Container";
         message.style.color = "#f00";
         return;
       }
@@ -60,7 +68,7 @@
       // existierende User laden
       let users = JSON.parse(localStorage.getItem("users")) || [];
       if (users.find(u => u.username === user)) {
-        message.textContent = "Benutzername bereits vergeben!";
+        message.textContent = "Username Not Available";
         message.style.color = "#f00";
         return;
       }
@@ -69,7 +77,7 @@
       users.push({ username: user, password: pass });
       localStorage.setItem("users", JSON.stringify(users));
 
-      message.textContent = "Registrierung erfolgreich!";
+      message.textContent = "Registration Sucessful!";
       message.style.color = "#0f0";
 
       setTimeout(() => window.location.href = "login.html", 1200);
