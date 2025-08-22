@@ -29,19 +29,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Startseiten-Buttons (nur auf index.html) ---
-  const startSection = document.querySelector("section.intro");
-  if (startSection && window.location.pathname.includes("index.html")) {
-    const startButtons = startSection.querySelectorAll(".btn");
-    if (startButtons.length >= 2) {
-      startButtons[0].addEventListener("click", () => {
+ // --- Startseiten-Buttons (nur auf index.html) ---
+const startSection = document.querySelector("section.intro");
+if (startSection && window.location.pathname.includes("index.html")) {
+  const startButtons = startSection.querySelectorAll(".btn");
+  if (startButtons.length >= 2) {
+    startButtons[0].addEventListener("click", () => {
+      const currentUser = localStorage.getItem("currentUser");
+      if (!currentUser) {
+        // Nicht eingeloggt -> Weiterleitung
+        window.location.href = "login.html";
+      } else {
+        // Eingeloggt -> Modal
         openModal("The free plan will be available soon. Stay tuned!");
-      });
-      startButtons[1].addEventListener("click", () => {
+      }
+    });
+
+    startButtons[1].addEventListener("click", () => {
+      const currentUser = localStorage.getItem("currentUser");
+      if (!currentUser) {
+        window.location.href = "login.html";
+      } else {
         openModal("Premium features will follow!");
-      });
-    }
+      }
+    });
   }
+}
 
   // --- Logout ---
   if (logoutBtn) {
@@ -132,3 +145,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 }); // <-- Nur EINMAL schließen!
+
