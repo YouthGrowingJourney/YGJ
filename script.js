@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.getElementById("sidebar");
   const menuBtn = document.getElementById("menu-toggle");
   const closeBtn = document.getElementById("close-sidebar");
-  const logoutBtn = document.getElementById("logout-btn");
 
   // --- Sidebar öffnen/schließen ---
   if (menuBtn && sidebar && closeBtn) {
@@ -147,5 +146,6 @@ if (logoutBtn) {
   }
 
 }); // <-- Nur EINMAL schließen!
+
 
 
