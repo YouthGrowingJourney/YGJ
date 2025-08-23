@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Plan – YGJ</title>
+  <!-- Reuse your global style + fonts + icons -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- jsPDF for client-side PDF export -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <style>
+    /* Page-specific polish that sits on top of your style.css */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 1rem 1.2rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .card h2 { margin-top: 0; font-size: 1.2rem; }
+    .muted { opacity: .85; }
+    .kpi {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-top: .5rem;
+    }
+    .kpi .chip {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: .75rem; text-align: center;
+    }
+    .tasks-controls { display: flex; gap: .5rem; margin-top: .5rem; }
+    #task-input { flex: 1; padding: .55rem .7rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.15); color: inherit; }
+    #task-list { list-style: none; padding: 0; margin: .75rem 0 0; }
+    #task-list li {
+      display: grid; grid-template-columns: auto 1fr auto auto; align-items: center;
+      gap: .6rem; padding: .55rem .6rem; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04);
+    }
+    #task-list li.done .task-text { text-decoration: line-through; opacity: .6; }
+    .icon-btn { background: none; border: none; color: inherit; cursor: pointer; padding: .3rem .4rem; border-radius: 8px; }
+    .icon-btn:hover { background: rgba(255,255,255,0.08); }
+    .progress-bar-wrap { height: 10px; background: rgba(255,255,255,0.12); border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #58ffa1, #3cc2ff); }
+    .chip.badge { display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .6rem; font-size:.9rem; }
+    .template-btns { display:flex; flex-wrap: wrap; gap:.5rem; margin-top:.5rem; }
+    .template-btns .btn { padding:.35rem .6rem; font-size:.9rem; }
+    .section-actions { display:flex; gap:.6rem; flex-wrap:wrap; }
+    .notice { font-size:.95rem; opacity:.8; }
+    .divider { height:1px; background: rgba(255,255,255,0.1); margin: 1rem 0; }
+    .pdf-note { font-size:.9rem; opacity:.85; margin-top:.35rem; }
+  </style>
+</head>
+<body>
+  <!-- Header (keeps visual consistency with your site) -->
+  <header>
+    <a href="index.html" class="home-btn" title="Home">
+      <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home">
+    </a>
+    <h1>Youth Growing Journey – Free Plan</h1>
+    <button class="btn login-header-btn" onclick="window.location.href='login.html'">
+      <i class="fa-solid fa-right-to-bracket"></i> Log In
+    </button>
+    <button class="btn" onclick="window.location.href='register.html'">
+      <i class="fa-solid fa-user-plus"></i> Sign Up
+    </button>
+    <button id="menu-toggle" class="menu-btn" aria-label="Open menu">&#9776;</button>
+  </header>
+
+  <!-- Sidebar (same structure as elsewhere) -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button id="close-sidebar" class="close-btn" aria-label="Close sidebar">&times;</button>
+    </div>
+    <div class="sidebar-content">
+      <button onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
+      <button onclick="window.location.href='about-us.html'">
+        <i class="fa-solid fa-info-circle"></i> About Us
+      </button>
+      <button onclick="window.location.href='contact.html'">
+        <i class="fa-solid fa-envelope"></i> Contact Us
+      </button>
+      <button id="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero / Value Proposition -->
+    <section class="card" aria-labelledby="hero-title">
+      <h2 id="hero-title">Kickstart your growth – for free</h2>
+      <p class="muted">Daily motivation, simple tracking, and clean progress exports. Build habits, stack wins, and keep moving forward.</p>
+      <div class="kpi">
+        <div class="chip"><strong id="kpi-tasks">0</strong><div class="muted">Tasks</div></div>
+        <div class="chip"><strong id="kpi-done">0</strong><div class="muted">Done</div></div>
+        <div class="chip"><strong id="kpi-streak">0</strong><div class="muted">Day Streak</div></div>
+        <div class="chip"><strong id="kpi-progress">0%</strong><div class="muted">Progress</div></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- Daily Motivation -->
+      <section class="card" aria-labelledby="motivation-title">
+        <h2 id="motivation-title"><i class="fa-solid fa-bolt"></i> Daily Motivation</h2>
+        <p id="daily-quote" class="muted">Loading your quote…</p>
+        <div class="section-actions">
+          <button id="new-quote" class="btn"><i class="fa-solid fa-shuffle"></i> New Quote</button>
+          <button id="check-in" class="btn"><i class="fa-solid fa-fire"></i> Daily Check‑in</button>
+          <span id="checkin-status" class="chip badge"><i class="fa-solid fa-calendar-day"></i> Not checked in</span>
+        </div>
+      </section>
+
+      <!-- Tasks / Habit Tracker -->
+      <section class="card" aria-labelledby="tasks-title">
+        <h2 id="tasks-title"><i class="fa-solid fa-list-check"></i> Your Tasks</h2>
+        <div class="tasks-controls">
+          <input id="task-input" type="text" maxlength="60" placeholder="Enter a task…" />
+          <button id="add-task" class="btn"><i class="fa-solid fa-plus"></i> Add</button>
+        </div>
+        <div class="template-btns">
+          <button class="btn template" data-text="Workout 20 minutes"><i class="fa-solid fa-dumbbell"></i> Workout 20'</button>
+          <button class="btn template" data-text="Read 10 pages"><i class="fa-solid fa-book"></i> Read 10 pages</button>
+          <button class="btn template" data-text="Study 25 minutes"><i class="fa-solid fa-graduation-cap"></i> Study 25'</button>
+          <button class="btn template" data-text="Drink 2L water"><i class="fa-solid fa-droplet"></i> Drink 2L water</button>
+        </div>
+        <ul id="task-list"></ul>
+        <div class="divider"></div>
+        <div class="progress-bar-wrap" aria-label="Progress">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <p class="notice">Progress: <strong id="progress">0%</strong></p>
+      </section>
+
+      <!-- Export / PDF -->
+      <section class="card" aria-labelledby="export-title">
+        <h2 id="export-title"><i class="fa-solid fa-file-export"></i> Export</h2>
+        <p class="muted">Save your current tasks, completion status, and streak as a personal PDF.</p>
+        <div class="section-actions">
+          <button id="export-pdf" class="btn"><i class="fa-solid fa-file-pdf"></i> Export my progress (PDF)</button>
+        </div>
+        <p class="pdf-note">Want a guided starter PDF with instructions and routines? <br>
+          <button id="download-guide" class="btn" style="margin-top:.5rem"><i class="fa-solid fa-download"></i> Download YGJ Free Guide</button>
+        </p>
+        <p class="muted">(If the guide isn’t available yet, you’ll get a polite message. You can add a real <code>assets/ygj_free_guide.pdf</code> later.)</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    &copy; Youth Growing Journey – Free Plan
+  </footer>
+
+  <!-- Reuse your global script for shared behaviors -->
+  <script src="script.js"></script>
+
+  <!-- Page-specific logic kept isolated to avoid conflicts -->
+  <script>
+  (function() {
+    // ---------- Helpers & Storage Namespacing ----------
+    const getCurrentUser = () => localStorage.getItem('currentUser') || 'guest';
+    const ns = (key) => `ygj_free_${getCurrentUser()}_${key}`; // per-user if logged in, else guest
+
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+    const quoteEl = $('#daily-quote');
+    const kpiTasks = $('#kpi-tasks');
+    const kpiDone = $('#kpi-done');
+    const kpiStreak = $('#kpi-streak');
+    const kpiProgress = $('#kpi-progress');
+    const progressLabel = $('#progress');
+    const progressBar = $('#progress-bar');
+    const checkinStatus = $('#checkin-status');
+
+    const quotes = [
+      "Discipline is choosing what you want most over what you want now.",
+      "Consistency beats motivation—show up anyway.",
+      "Small wins daily become massive results.",
+      "Action kills doubt.",
+      "Make it impossible to lose by keeping promises to yourself.",
+      "You don’t need more time, you need fewer excuses.",
+      "Never miss twice.",
+      "Dream big. Start small. Be consistent.",
+      "Your future is built in the next 60 minutes."
+    ];
+
+    function randomQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteEl.textContent = q;
+    }
+
+    // ---------- Tasks State ----------
+    function loadTasks() {
+      try { return JSON.parse(localStorage.getItem(ns('tasks')) || '[]'); }
+      catch { return []; }
+    }
+    function saveTasks(tasks) {
+      localStorage.setItem(ns('tasks'), JSON.stringify(tasks));
+      updateKPIs(tasks);
+    }
+
+    function renderTasks() {
+      const list = $('#task-list');
+      const tasks = loadTasks();
+      list.innerHTML = '';
+      tasks.forEach((t, i) => {
+        const li = document.createElement('li');
+        li.dataset.index = i;
+        if (t.done) li.classList.add('done');
+        li.innerHTML = `
+          <input type="checkbox" ${t.done ? 'checked' : ''} aria-label="Toggle done" />
+          <span class="task-text">${escapeHtml(t.text)}</span>
+          <div>
+            <button class="icon-btn move-up" title="Move up"><i class="fa-solid fa-chevron-up"></i></button>
+            <button class="icon-btn move-down" title="Move down"><i class="fa-solid fa-chevron-down"></i></button>
+          </div>
+          <button class="icon-btn remove" title="Delete"><i class="fa-solid fa-trash"></i></button>
+        `;
+        list.appendChild(li);
+      });
+      attachTaskHandlers();
+      updateKPIs(tasks);
+    }
+
+    function attachTaskHandlers() {
+      $$('#task-list li').forEach(li => {
+        const idx = +li.dataset.index;
+        li.querySelector('input[type="checkbox"]').addEventListener('change', () => toggleDone(idx));
+        li.querySelector('.remove').addEventListener('click', () => removeTask(idx));
+        li.querySelector('.move-up').addEventListener('click', () => moveTask(idx, -1));
+        li.querySelector('.move-down').addEventListener('click', () => moveTask(idx, +1));
+      });
+    }
+
+    function addTask(text) {
+      const tasks = loadTasks();
+      if (!text || text.trim() === '') return;
+      tasks.push({ text: text.trim(), done: false, createdAt: Date.now() });
+      saveTasks(tasks);
+      renderTasks();
+    }
+
+    function toggleDone(index) {
+      const tasks = loadTasks();
+      if (!tasks[index]) return;
+      tasks[index].done = !tasks[index].done;
+      // Auto check-in on first completion of the day (optional)
+      if (tasks[index].done) doCheckIn();
+      saveTasks(tasks);
+      renderTasks();
+    }
+
+    function removeTask(index) {
+      const tasks = loadTasks();
+      tasks.splice(index, 1);
+      saveTasks(tasks);
+      renderTasks();
+    }
+
+    function moveTask(index, dir) {
+      const tasks = loadTasks();
+      const newIndex = index + dir;
+      if (newIndex < 0 || newIndex >= tasks.length) return;
+      const [item] = tasks.splice(index, 1);
+      tasks.splice(newIndex, 0, item);
+      saveTasks(tasks);
+      renderTasks();
+    }
+
+    function updateKPIs(tasks) {
+      const total = tasks.length;
+      const done = tasks.filter(t => t.done).length;
+      const progress = total ? Math.round((done / total) * 100) : 0;
+      kpiTasks.textContent = total;
+      kpiDone.textContent = done;
+      kpiProgress.textContent = progress + '%';
+      progressLabel.textContent = progress + '%';
+      progressBar.style.width = progress + '%';
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"]+/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    }
+
+    // ---------- Streak / Check-in ----------
+    function getStreak() {
+      try { return JSON.parse(localStorage.getItem(ns('streak')) || '{"count":0,"last":""}'); }
+      catch { return { count: 0, last: '' }; }
+    }
+    function saveStreak(obj) { localStorage.setItem(ns('streak'), JSON.stringify(obj)); }
+
+    function formatDate(d) { return d.toISOString().slice(0,10); }
+
+    function doCheckIn() {
+      const today = formatDate(new Date());
+      const s = getStreak();
+      if (s.last === today) return; // already checked in today
+      const yesterday = formatDate(new Date(Date.now() - 86400000));
+      const nextCount = (s.last === yesterday) ? s.count + 1 : 1;
+      const updated = { count: nextCount, last: today };
+      saveStreak(updated);
+      reflectStreak(updated);
+    }
+
+    function reflectStreak(s) {
+      kpiStreak.textContent = s.count;
+      if (s.last === formatDate(new Date())) {
+        checkinStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> Checked in today';
+      } else {
+        checkinStatus.innerHTML = '<i class="fa-solid fa-calendar-day"></i> Not checked in';
+      }
+    }
+
+    // ---------- Export PDF ----------
+    function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const margin = 12;
+      let y = margin;
+
+      const title = 'YGJ – Free Plan Progress';
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text(title, margin, y);
+      y += 8;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      const user = getCurrentUser();
+      const dateStr = new Date().toLocaleString();
+      doc.text(`User: ${user}`, margin, y); y += 6;
+      doc.text(`Exported: ${dateStr}`, margin, y); y += 10;
+
+      // KPIs
+      const tasks = loadTasks();
+      const total = tasks.length;
+      const done = tasks.filter(t => t.done).length;
+      const progress = total ? Math.round((done/total)*100) : 0;
+      const streak = getStreak().count;
+
+      doc.setFont('helvetica','bold');
+      doc.text('Overview', margin, y); y += 7;
+      doc.setFont('helvetica','normal');
+      doc.text(`Tasks: ${total}`, margin, y); y += 6;
+      doc.text(`Done: ${done}`, margin, y); y += 6;
+      doc.text(`Progress: ${progress}%`, margin, y); y += 6;
+      doc.text(`Day Streak: ${streak}`, margin, y); y += 10;
+
+      // Task List
+      doc.setFont('helvetica','bold');
+      doc.text('Your Tasks', margin, y); y += 7;
+      doc.setFont('helvetica','normal');
+      if (tasks.length === 0) {
+        doc.text('No tasks yet. Add some and crush them!', margin, y); y += 6;
+      } else {
+        tasks.forEach((t, i) => {
+          const line = `${i+1}. ${t.text} — ${t.done ? 'Done' : 'Pending'}`;
+          // Wrap text if necessary
+          const lines = doc.splitTextToSize(line, 180);
+          lines.forEach(ln => { doc.text(ln, margin, y); y += 6; });
+          if (y > 280) { doc.addPage(); y = margin; }
+        });
+      }
+
+      // Footer note
+      if (y > 260) { doc.addPage(); y = margin; }
+      y += 6;
+      doc.setFontSize(10);
+      doc.text('Keep showing up. Small steps, daily.', margin, y);
+
+      doc.save('ygj_free_plan_progress.pdf');
+    }
+
+    // ---------- Guide Download (static PDF you will add later) ----------
+    async function downloadGuide() {
+      // Expected path for your own authored PDF; change if you prefer
+      const url = 'assets/ygj_free_guide.pdf';
+      try {
+        const res = await fetch(url, { method: 'HEAD' });
+        if (!res.ok) throw new Error('missing');
+        window.location.href = url; // start download
+      } catch (e) {
+        // Soft fallback if the file isn’t uploaded yet
+        alert('The YGJ Free Guide PDF will be available soon. Add your file at \n"assets/ygj_free_guide.pdf" to enable this button.');
+      }
+    }
+
+    // ---------- Wire up UI ----------
+    function bindUI() {
+      $('#new-quote').addEventListener('click', randomQuote);
+      $('#check-in').addEventListener('click', () => { doCheckIn(); alert('Nice! You checked in for today. Keep the streak alive.'); });
+
+      $('#add-task').addEventListener('click', () => {
+        const val = $('#task-input').value.trim();
+        addTask(val);
+        $('#task-input').value = '';
+        $('#task-input').focus();
+      });
+      $('#task-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); $('#add-task').click(); }
+      });
+
+      $$('.template').forEach(btn => btn.addEventListener('click', () => addTask(btn.dataset.text)));
+
+      $('#export-pdf').addEventListener('click', exportPDF);
+      $('#download-guide').addEventListener('click', downloadGuide);
+    }
+
+    // ---------- Init ----------
+    function init() {
+      // Quote
+      randomQuote();
+      // Tasks & KPIs
+      renderTasks();
+      // Streak
+      reflectStreak(getStreak());
+      // UI
+      bindUI();
+    }
+
+    // Run when DOM is ready (this script is at the end, so DOM is ready). Still safe-guarding.
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else { init(); }
+  })();
+  </script>
+</body>
+</html>
