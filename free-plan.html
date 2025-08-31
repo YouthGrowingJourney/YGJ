@@ -405,7 +405,7 @@
     // ---------- Guide Download (static PDF you will add later) ----------
     async function downloadGuide() {
       // Expected path for your own authored PDF; change if you prefer
-      const url = 'assets/ygj_free_guide.pdf';
+      const url = 'assets/ygj_free_plan.pdf';
       try {
         const res = await fetch(url, { method: 'HEAD' });
         if (!res.ok) throw new Error('missing');
