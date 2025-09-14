@@ -66,26 +66,61 @@ if (logoutBtn) {
 }
 
   // --- Login ---
-  const loginSubmit = document.getElementById("login-submit");
-  if (loginSubmit) {
-    loginSubmit.addEventListener("click", () => {
-      const username = document.getElementById("login-username").value.trim();
-      const password = document.getElementById("login-password").value.trim();
-      const users = JSON.parse(localStorage.getItem("users") || "[]");
-      const user = users.find(u => u.username === username && u.password === password);
-      const msg = document.getElementById("login-message");
+// === Login-Button Funktionalität ===
+const loginSubmit = document.getElementById("login-submit");
+if (loginSubmit) {
+  loginSubmit.addEventListener("click", () => {
+    const username = document.getElementById("login-username").value.trim();
+    const password = document.getElementById("login-password").value.trim();
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find(u => u.username === username && u.password === password);
+    const msg = document.getElementById("login-message");
 
-      if (user) {
-        localStorage.setItem("currentUser", username);
-        msg.textContent = "Log-In Successful!";
-        msg.style.color = "#0f0";
-        setTimeout(() => window.location.href = "profile.html", 1000);
-      } else {
-        msg.textContent = "Wrong Username or Password";
-        msg.style.color = "#f00";
-      }
-    });
+    if (user) {
+      localStorage.setItem("currentUser", username);
+      msg.textContent = "Log-In Successful!";
+      msg.style.color = "#0f0";
+      updateNav(); // Buttons direkt updaten
+      setTimeout(() => window.location.href = "profile.html", 1000);
+    } else {
+      msg.textContent = "Wrong Username or Password";
+      msg.style.color = "#f00";
+    }
+  });
+}
+
+// === Navbar-Buttons ===
+const loginBtn = document.getElementById("login-btn");
+const signupBtn = document.getElementById("signup-btn");
+const logoutBtn = document.getElementById("logout-btn");
+
+// === Funktion zum UI-Update ===
+function updateNav() {
+  const currentUser = localStorage.getItem("currentUser");
+
+  if (currentUser) {
+    // User eingeloggt → nur Logout zeigen
+    if (loginBtn) loginBtn.style.display = "none";
+    if (signupBtn) signupBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+  } else {
+    // Kein User eingeloggt → Login & Signup zeigen
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    if (signupBtn) signupBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
   }
+}
+
+// === Logout-Logik ===
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("currentUser");
+    updateNav();
+  });
+}
+
+// === Bei jedem Seitenaufruf prüfen ===
+updateNav();
 
   // --- Register ---
   const registerSubmit = document.getElementById("register-submit");
@@ -146,6 +181,7 @@ if (logoutBtn) {
   }
 
 }); // <-- Nur EINMAL schließen!
+
 
 
 
