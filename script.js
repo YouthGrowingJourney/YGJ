@@ -90,7 +90,7 @@ const loginSubmit = document.getElementById("login-submit");
   // === Navbar-Buttons ===
   const loginBtn = document.getElementById("login-btn");
   const signupBtn = document.getElementById("signup-btn");
-  const logoutBtn = document.getElementById("logout-btn");
+
 
   // === Funktion zum UI-Update ===
   function updateNav() {
@@ -166,4 +166,5 @@ const loginSubmit = document.getElementById("login-submit");
   }
 
 }); 
+
 
