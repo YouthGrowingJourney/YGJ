@@ -84,7 +84,7 @@ const loginSubmit = document.getElementById("login-submit");
         msg.textContent = "Wrong Username or Password";
         msg.style.color = "#f00";
       }
-    });
+    };
   }
 
   // === Navbar-Buttons ===
@@ -166,5 +166,6 @@ const loginSubmit = document.getElementById("login-submit");
   }
 
 }); 
+
 
 
