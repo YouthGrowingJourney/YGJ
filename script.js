@@ -28,99 +28,83 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- // --- Startseiten-Buttons (nur auf index.html) ---
-const startSection = document.querySelector("section.intro");
-if (startSection && window.location.pathname.includes("index.html")) {
-  const startButtons = startSection.querySelectorAll(".btn");
-  if (startButtons.length >= 2) {
-    startButtons[0].addEventListener("click", () => {
-      const currentUser = localStorage.getItem("currentUser");
-      if (!currentUser) {
-        // Nicht eingeloggt -> Weiterleitung
-        window.location.href = "login.html";
-      } else {
-        // Eingeloggt -> Modal
-        openModal("The free plan will be available soon. Stay tuned!");
-      }
-    });
+  // --- Startseiten-Buttons (nur auf index.html) ---
+  const startSection = document.querySelector("section.intro");
+  if (startSection && window.location.pathname.includes("index.html")) {
+    const startButtons = startSection.querySelectorAll(".btn");
+    if (startButtons.length >= 2) {
+      startButtons[0].addEventListener("click", () => {
+        const currentUser = localStorage.getItem("currentUser");
+        if (!currentUser) {
+          window.location.href = "login.html";
+        } else {
+          openModal("The free plan will be available soon. Stay tuned!");
+        }
+      });
 
-    startButtons[1].addEventListener("click", () => {
-      const currentUser = localStorage.getItem("currentUser");
-      if (!currentUser) {
-        window.location.href = "login.html";
-      } else {
-        openModal("Premium features will follow!");
-      }
+      startButtons[1].addEventListener("click", () => {
+        const currentUser = localStorage.getItem("currentUser");
+        if (!currentUser) {
+          window.location.href = "login.html";
+        } else {
+          openModal("Premium features will follow!");
+        }
+      });
+    }
+  }
+
+  // --- Navbar-Buttons ---
+  const loginBtn = document.getElementById("login-btn");
+  const signupBtn = document.getElementById("signup-btn");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  function updateNav() {
+    const currentUser = localStorage.getItem("currentUser");
+
+    if (currentUser) {
+      if (loginBtn) loginBtn.style.display = "none";
+      if (signupBtn) signupBtn.style.display = "none";
+      if (logoutBtn) logoutBtn.style.display = "inline-block";
+    } else {
+      if (loginBtn) loginBtn.style.display = "inline-block";
+      if (signupBtn) signupBtn.style.display = "inline-block";
+      if (logoutBtn) logoutBtn.style.display = "none";
+    }
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      updateNav();
+      alert("You have been logged out.");     
+      window.location.href = "index.html";    
     });
   }
-}
 
-// --- Logout ---
-const logoutBtn = document.getElementById("logout-btn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("currentUser"); // User abmelden
-    alert("You have been logged out.");     // kurze Info (optional)
-    window.location.href = "index.html";    // zurück zur Startseite
-  });
-}
+  updateNav();
 
   // --- Login ---
-// === Login-Button Funktionalität ===
-const loginSubmit = document.getElementById("login-submit");
-if (loginSubmit) {
-  loginSubmit.addEventListener("click", () => {
-    const username = document.getElementById("login-username").value.trim();
-    const password = document.getElementById("login-password").value.trim();
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find(u => u.username === username && u.password === password);
-    const msg = document.getElementById("login-message");
+  const loginSubmit = document.getElementById("login-submit");
+  if (loginSubmit) {
+    loginSubmit.addEventListener("click", () => {
+      const username = document.getElementById("login-username").value.trim();
+      const password = document.getElementById("login-password").value.trim();
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const user = users.find(u => u.username === username && u.password === password);
+      const msg = document.getElementById("login-message");
 
-    if (user) {
-      localStorage.setItem("currentUser", username);
-      msg.textContent = "Log-In Successful!";
-      msg.style.color = "#0f0";
-      updateNav(); // Buttons direkt updaten
-      setTimeout(() => window.location.href = "profile.html", 1000);
-    } else {
-      msg.textContent = "Wrong Username or Password";
-      msg.style.color = "#f00";
-    }
-  });
-}
-
-// === Navbar-Buttons ===
-const loginBtn = document.getElementById("login-btn");
-const signupBtn = document.getElementById("signup-btn");
-const logoutBtn = document.getElementById("logout-btn");
-
-// === Funktion zum UI-Update ===
-function updateNav() {
-  const currentUser = localStorage.getItem("currentUser");
-
-  if (currentUser) {
-    // User eingeloggt → nur Logout zeigen
-    if (loginBtn) loginBtn.style.display = "none";
-    if (signupBtn) signupBtn.style.display = "none";
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
-  } else {
-    // Kein User eingeloggt → Login & Signup zeigen
-    if (loginBtn) loginBtn.style.display = "inline-block";
-    if (signupBtn) signupBtn.style.display = "inline-block";
-    if (logoutBtn) logoutBtn.style.display = "none";
+      if (user) {
+        localStorage.setItem("currentUser", username);
+        msg.textContent = "Log-In Successful!";
+        msg.style.color = "#0f0";
+        updateNav();
+        setTimeout(() => window.location.href = "profile.html", 1000);
+      } else {
+        msg.textContent = "Wrong Username or Password";
+        msg.style.color = "#f00";
+      }
+    });
   }
-}
-
-// === Logout-Logik ===
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("currentUser");
-    updateNav();
-  });
-}
-
-// === Bei jedem Seitenaufruf prüfen ===
-updateNav();
 
   // --- Register ---
   const registerSubmit = document.getElementById("register-submit");
@@ -129,6 +113,7 @@ updateNav();
       const username = document.getElementById("new-username").value.trim();
       const password = document.getElementById("new-password").value.trim();
       const msg = document.getElementById("register-message");
+
       if (!username || !password) {
         msg.textContent = "Please Fill Out Everything!";
         msg.style.color = "#f00";
@@ -156,11 +141,11 @@ updateNav();
     } else {
       profileUsername.textContent = currentUser;
 
-      // Demo-Statistiken, in Zukunft dynamisch aus Datenbank
-      const progress = Math.floor(Math.random() * 100); // % Goals completed
-      const tasks = Math.floor(Math.random() * 50) + 1;  // Tasks completed
-      const streak = Math.floor(Math.random() * 30);     // Days active
-      const level = Math.floor(progress / 20) + 1;       // Level based on progress
+      // Demo-Statistiken
+      const progress = Math.floor(Math.random() * 100);
+      const tasks = Math.floor(Math.random() * 50) + 1;
+      const streak = Math.floor(Math.random() * 30);
+      const level = Math.floor(progress / 20) + 1;
 
       document.getElementById("progress-percentage").textContent = progress + "%";
       document.getElementById("tasks-completed").textContent = tasks;
@@ -180,8 +165,4 @@ updateNav();
     viewAchievementsBtn.addEventListener("click", () => alert("Achievements page coming soon!"));
   }
 
-}); // <-- Nur EINMAL schließen!
-
-
-
-
+}); 
