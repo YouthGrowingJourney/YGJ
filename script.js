@@ -165,4 +165,36 @@ document.addEventListener("DOMContentLoaded", () => {
     viewAchievementsBtn.addEventListener("click", () => alert("Achievements page coming soon!"));
   }
 
+// Background Slider
+const slides = document.querySelectorAll(".bg-slide");
+const prevBtn = document.getElementById("bg-prev");
+const nextBtn = document.getElementById("bg-next");
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove("active");
+    if (i === index) {
+      slide.classList.add("active");
+    }
+  });
+}
+
+prevBtn.addEventListener("click", () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
 });
+
+nextBtn.addEventListener("click", () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+// Optional: automatischer Wechsel alle 7 Sekunden
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 7000);
+
+});
+
