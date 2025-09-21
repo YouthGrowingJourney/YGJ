@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  background: #333;
-  color: white;
+  background: #fff;
+  color: #e0c280;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #333;
+  background-color: #fff;
   border-bottom: 1px solid #e0c280;
   position: sticky;
   top: 0;
@@ -162,7 +162,7 @@ header h1 {
 }
 
 .stat {
-  background-color: #444;
+  background-color: #fff;
   padding: 20px;
   border-radius: 12px;
   text-align: center;
@@ -180,7 +180,7 @@ header h1 {
 .stat p {
   margin: 0;
   font-size: 14px;
-  color: #fff;
+  color: #e0c280;
 }
 
 .profile-buttons {
@@ -228,7 +228,7 @@ header h1 {
   text-align: center;
   max-width: 300px;
   box-shadow: 0 0 20px #e0c280;
-  color: #333;
+  color: #e0c280;
 }
 
 .modal-content p {
@@ -239,8 +239,8 @@ header h1 {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #333;
-  color: white;
+  background-color: #fff;
+  color: #e0c280;
   border-top: 1px solid #e0c280
 }
 
@@ -290,6 +290,7 @@ footer {
 
 .bg-arrow.left { left: 20px; }
 .bg-arrow.right { right: 20px; }
+
 
 
 
