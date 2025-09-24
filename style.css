@@ -76,11 +76,11 @@ body.dark footer {
 body.dark card {
   background: #333;
   color: #fff; 
-
+}
 body.dark sidebar {
   background: #333;
   color: #fff; 
-
+}
 /* --- Theme Button --- */
 .theme-btn {
   background-color: #e0c280;
@@ -334,6 +334,7 @@ footer {
 
 .bg-arrow.left { left: 20px; }
 .bg-arrow.right { right: 20px; }
+
 
 
 
