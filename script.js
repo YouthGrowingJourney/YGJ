@@ -1,16 +1,115 @@
+// script.js (kompletter Ersatz)
+// YGJ - Global Script (Theme per User + Navbar + Auth + Page-specific behavior)
+// Autor: ChatGPT für dich, Bruder. 💪🔥
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* ============================
+     THEME (Per-User Light/Dark)
+     ============================ */
+
+  // key builder: per user or 'guest'
+  function getCurrentUser() {
+    return localStorage.getItem("currentUser") || "guest";
+  }
+  function themeKeyForUser(user) {
+    return `ygj_theme_${user}`;
+  }
+
+  // Find toggle button (may not exist on every page)
+  const themeToggle = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Migration: falls vorher ein globaler "theme"-key existiert, übernehmen wir ihn
+  (function migrateGlobalTheme() {
+    try {
+      const globalTheme = localStorage.getItem("theme");
+      if (!globalTheme) return;
+      const user = getCurrentUser();
+      const perUserKey = themeKeyForUser(user);
+      if (!localStorage.getItem(perUserKey)) {
+        // set per-user theme from global
+        localStorage.setItem(perUserKey, globalTheme);
+      }
+      // keep global key for backwards compatibility (optional)
+    } catch (e) {
+      // ignore silently
+    }
+  })();
+
+  function readSavedThemeForCurrentUser() {
+    const user = getCurrentUser();
+    const perUserKey = themeKeyForUser(user);
+    return localStorage.getItem(perUserKey); // 'dark' | 'light' | null
+  }
+
+  function saveThemeForCurrentUser(value) {
+    const user = getCurrentUser();
+    const perUserKey = themeKeyForUser(user);
+    localStorage.setItem(perUserKey, value);
+  }
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      body.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
+    }
+    // update toggle icon if present
+    if (themeToggle) {
+      themeToggle.textContent = (theme === "dark") ? "☀️" : "🌙";
+      themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+    }
+  }
+
+  // Initialize theme from per-user storage (or fallback to light)
+  (function initTheme() {
+    const saved = readSavedThemeForCurrentUser();
+    if (saved === "dark" || saved === "light") {
+      applyTheme(saved);
+    } else {
+      // Try to fall back to a global theme key for older setups, or default to light
+      const global = localStorage.getItem("theme");
+      if (global === "dark" || global === "light") {
+        applyTheme(global);
+        // and store per-user to be consistent
+        saveThemeForCurrentUser(global);
+      } else {
+        applyTheme("light");
+        saveThemeForCurrentUser("light");
+      }
+    }
+  })();
+
+  // Theme toggle handler
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const isDark = body.classList.contains("dark");
+      const next = isDark ? "light" : "dark";
+      applyTheme(next);
+      saveThemeForCurrentUser(next);
+      // If you have a slideshow or bg logic that needs reset on theme-change,
+      // you can dispatch a custom event here for other modules to listen to:
+      window.dispatchEvent(new CustomEvent('ygj:themechanged', { detail: { theme: next } }));
+    });
+  }
+
+  /* ============================
+     SIDEBAR (open/close)
+     ============================ */
 
   const sidebar = document.getElementById("sidebar");
   const menuBtn = document.getElementById("menu-toggle");
   const closeBtn = document.getElementById("close-sidebar");
 
-  // --- Sidebar öffnen/schließen ---
   if (menuBtn && sidebar && closeBtn) {
     menuBtn.addEventListener("click", () => sidebar.classList.toggle("open"));
     closeBtn.addEventListener("click", () => sidebar.classList.remove("open"));
   }
 
-  // --- Funktion für Modals ---
+  /* ============================
+     MODAL helper
+     ============================ */
   function openModal(message) {
     const modal = document.createElement("div");
     modal.classList.add("modal-overlay");
@@ -23,19 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(modal);
 
     const closeBtn = modal.querySelector(".close-modal-btn");
-    closeBtn.addEventListener("click", () => {
-      modal.remove();
-    });
+    closeBtn.addEventListener("click", () => modal.remove());
   }
 
-  // --- Startseiten-Buttons (nur auf index.html) ---
+  /* ============================
+     INDEX / START-Sektion Buttons
+     ============================ */
   const startSection = document.querySelector("section.intro");
   if (startSection && window.location.pathname.includes("index.html")) {
     const startButtons = startSection.querySelectorAll(".btn");
     if (startButtons.length >= 2) {
       startButtons[0].addEventListener("click", () => {
         const currentUser = localStorage.getItem("currentUser");
-        if (!currentUser) {
+        if (!currentUser || currentUser === "null") {
           window.location.href = "login.html";
         } else {
           openModal("The free plan will be available soon. Stay tuned!");
@@ -44,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       startButtons[1].addEventListener("click", () => {
         const currentUser = localStorage.getItem("currentUser");
-        if (!currentUser) {
+        if (!currentUser || currentUser === "null") {
           window.location.href = "login.html";
         } else {
           openModal("Premium features will follow!");
@@ -53,15 +152,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // === Navbar-Buttons ===
+  /* ============================
+     NAVBAR LOGIN/SIGNUP/LOGOUT handling
+     ============================ */
   const loginBtn = document.getElementById("login-btn");
   const signupBtn = document.getElementById("signup-btn");
   const logoutBtn = document.getElementById("logout-btn");
 
-  // === Funktion zum UI-Update ===
   function updateNav() {
     const currentUser = localStorage.getItem("currentUser");
-    if (currentUser) {
+    if (currentUser && currentUser !== "null") {
       if (loginBtn) loginBtn.style.display = "none";
       if (signupBtn) signupBtn.style.display = "none";
       if (logoutBtn) logoutBtn.style.display = "inline-block";
@@ -72,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // === Logout-Logik ===
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("currentUser");
@@ -82,10 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === Bei jedem Seitenaufruf prüfen ===
   updateNav();
 
-  // --- Login ---
+  /* ============================
+     LOGIN (page-specific)
+     ============================ */
   const loginSubmit = document.getElementById("login-submit");
   if (loginSubmit) {
     loginSubmit.addEventListener("click", () => {
@@ -97,10 +197,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (user) {
         localStorage.setItem("currentUser", username);
+        // migrate theme preference to the newly logged-in user if global theme existed
+        const globalTheme = localStorage.getItem("theme");
+        const perUserKey = themeKeyForUser(username);
+        if (globalTheme && !localStorage.getItem(perUserKey)) {
+          localStorage.setItem(perUserKey, globalTheme);
+        }
         msg.textContent = "Log-In Successful!";
         msg.style.color = "#0f0";
         updateNav();
-        setTimeout(() => window.location.href = "profile.html", 1000);
+
+        // apply user's theme immediately after login
+        const userTheme = readSavedThemeForCurrentUser();
+        if (userTheme) applyTheme(userTheme);
+
+        setTimeout(() => window.location.href = "profile.html", 800);
       } else {
         msg.textContent = "Wrong Username or Password";
         msg.style.color = "#f00";
@@ -108,7 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Register ---
+  /* ============================
+     REGISTER (page-specific)
+     ============================ */
   const registerSubmit = document.getElementById("register-submit");
   if (registerSubmit) {
     registerSubmit.addEventListener("click", () => {
@@ -130,14 +243,19 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("users", JSON.stringify(users));
       msg.textContent = "Registration Successful! You Can Log-In Now.";
       msg.style.color = "#0f0";
+      // set a default theme for new user (inherit global or default to light)
+      const globalTheme = localStorage.getItem("theme") || "light";
+      localStorage.setItem(themeKeyForUser(username), globalTheme);
     });
   }
 
-  // --- Profile Stats ---
+  /* ============================
+     PROFILE page stats (page-specific)
+     ============================ */
   const profileUsername = document.getElementById("username");
   if (profileUsername) {
     const currentUser = localStorage.getItem("currentUser");
-    if (!currentUser) {
+    if (!currentUser || currentUser === "null") {
       window.location.href = "login.html";
     } else {
       profileUsername.textContent = currentUser;
@@ -147,14 +265,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const streak = Math.floor(Math.random() * 30);
       const level = Math.floor(progress / 20) + 1;
 
-      document.getElementById("progress-percentage").textContent = progress + "%";
-      document.getElementById("tasks-completed").textContent = tasks;
-      document.getElementById("streak-days").textContent = streak;
-      document.getElementById("level").textContent = level;
+      const pProgress = document.getElementById("progress-percentage");
+      const pTasks = document.getElementById("tasks-completed");
+      const pStreak = document.getElementById("streak-days");
+      const pLevel = document.getElementById("level");
+      if (pProgress) pProgress.textContent = progress + "%";
+      if (pTasks) pTasks.textContent = tasks;
+      if (pStreak) pStreak.textContent = streak;
+      if (pLevel) pLevel.textContent = level;
     }
   }
 
-  // --- Optional: Button Actions ---
+  /* ============================
+     Optional: small page-specific button handlers
+     ============================ */
   const editProfileBtn = document.getElementById("edit-profile");
   if (editProfileBtn) {
     editProfileBtn.addEventListener("click", () => alert("Editing profile feature coming soon!"));
@@ -165,36 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
     viewAchievementsBtn.addEventListener("click", () => alert("Achievements page coming soon!"));
   }
 
-// Background Slider
-const slides = document.querySelectorAll(".bg-slide");
-const prevBtn = document.getElementById("bg-prev");
-const nextBtn = document.getElementById("bg-next");
-let currentSlide = 0;
+  /* ============================
+     Trigger an event to notify others that theme is ready
+     Useful for background/slideshow modules to react immediately
+     ============================ */
+  window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove("active");
-    if (i === index) {
-      slide.classList.add("active");
-    }
-  });
-}
-
-prevBtn.addEventListener("click", () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-});
-
-nextBtn.addEventListener("click", () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-});
-
-// Optional: automatischer Wechsel alle 7 Sekunden
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}, 7000);
-
-});
-
+}); // DOMContentLoaded end
