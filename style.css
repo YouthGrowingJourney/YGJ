@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden; 
-  transition: background 0.6s ease, color 0.4s ease;
+  transition: background 0.5s ease, color 0.4s ease;
 }
 
 header {
@@ -326,6 +326,7 @@ footer {
 
 .bg-arrow.left { left: 20px; }
 .bg-arrow.right { right: 20px; }
+
 
 
 
