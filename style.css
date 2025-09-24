@@ -54,6 +54,11 @@ body.dark {
   color: #fff;
 }
 
+header.dark {
+  background: #333;
+  color: #fff;
+}
+
 body.dark header {
   background: #333;
   border-bottom: 1px solid #e0c280;
@@ -61,6 +66,11 @@ body.dark header {
 
 body.dark h1 {
   color: #e0c280;
+}
+
+footer.dark {
+  background: #333;
+  color: #fff;
 }
 
 /* --- Theme Button --- */
@@ -316,6 +326,7 @@ footer {
 
 .bg-arrow.left { left: 20px; }
 .bg-arrow.right { right: 20px; }
+
 
 
 
