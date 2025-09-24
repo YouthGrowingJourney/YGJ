@@ -68,10 +68,18 @@ body.dark h1 {
   color: #e0c280;
 }
 
-footer.dark {
+body.dark footer {
   background: #333;
   color: #fff;
 }
+
+body.dark card {
+  background: #333;
+  color: #fff; 
+
+body.dark sidebar {
+  background: #333;
+  color: #fff; 
 
 /* --- Theme Button --- */
 .theme-btn {
@@ -117,9 +125,9 @@ footer.dark {
   transform: translateX(100%);
   width: 250px;
   height: 100%;
-  background: rgba(51, 51, 51, 0.85);
+  background: #fff;
   backdrop-filter: blur(0px);
-  color: white;
+  color: #e0c280;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -326,6 +334,7 @@ footer {
 
 .bg-arrow.left { left: 20px; }
 .bg-arrow.right { right: 20px; }
+
 
 
 
