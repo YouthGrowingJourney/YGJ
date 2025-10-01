@@ -77,17 +77,24 @@ body.dark card {
   background: #333;
   color: #fff; 
 }
-body.dark sidebar {
+
+body.dark sidebar-open {
   background: #333;
   color: #fff; 
 }
+
+body.dark stat {
+  background: #333;
+  color: #fff;
+}
+  
 /* --- Theme Button --- */
 .theme-btn {
   background-color: #e0c280;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 10px 12px 12px 12px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 18px;
 }
@@ -334,6 +341,7 @@ footer {
 
 .bg-arrow.left { left: 20px; }
 .bg-arrow.right { right: 20px; }
+
 
 
 
