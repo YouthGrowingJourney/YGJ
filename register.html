@@ -15,11 +15,11 @@
       <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home">
     </a>
     <h1>Youth Growing Journey</h1>
-    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-     <button class="btn login-header-btn" onclick="window.location.href='login.html'">
-    <i class="fa-solid fa-right-to-bracket"></i> Log In
-   </button>
-     <button class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme" style="margin-right: 10px; padding: 10px 12px 12px 12px">🌙</button>
+    <button class="btn login-header-btn" onclick="window.location.href='login.html'">
+      <i class="fa-solid fa-right-to-bracket"></i> Log In
+    </button>
+    <button class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
     <button id="menu-toggle" class="menu-btn">&#9776;</button>
   </header>
 
@@ -28,24 +28,33 @@
       <button id="close-sidebar" class="close-btn">&times;</button>
     </div>
     <div class="sidebar-content">
-       <button onclick="window.location.href='profile.html'">
-    <i class="fa-solid fa-user"></i> Profile
-  </button>
-  <button onclick="window.location.href='about-us.html'">
-    <i class="fa-solid fa-info-circle"></i> About Us
-  </button>
-  <button onclick="window.location.href='contact.html'">
-    <i class="fa-solid fa-envelope"></i> Contact Us
-  </button>
+      <button onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
+      <button onclick="window.location.href='about-us.html'">
+        <i class="fa-solid fa-info-circle"></i> About Us
+      </button>
+      <button onclick="window.location.href='contact.html'">
+        <i class="fa-solid fa-envelope"></i> Contact Us
+      </button>
     </div>
   </div>
 
   <section class="intro">
     <h2>Create Account</h2>
-    <input type="text" id="new-username" placeholder="Username" class="login-input">
-    <input type="password" id="new-password" placeholder="Password" class="login-input">
-    <button class="btn" id="register-submit">Confirm</button>
-    <p id="register-message"></p>
+
+    <form id="registerForm" aria-label="Register form">
+      <label for="new-username" class="sr-only">Username</label>
+      <input type="text" id="new-username" name="username" placeholder="Username" class="login-input" autocomplete="username" required minlength="3">
+
+      <label for="new-password" class="sr-only">Password</label>
+      <input type="password" id="new-password" name="password" placeholder="Password" class="login-input" autocomplete="new-password" required minlength="8">
+
+      <small class="help-text">Password must be at least 8 characters and include a number and a letter.</small>
+      <button class="btn" id="register-submit" type="submit">Confirm</button>
+    </form>
+
+    <p id="register-message" role="status" aria-live="polite"></p>
   </section>
 
   <footer>
@@ -53,35 +62,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    document.getElementById("register-submit").addEventListener("click", () => {
-      const user = document.getElementById("new-username").value.trim();
-      const pass = document.getElementById("new-password").value.trim();
-      const message = document.getElementById("register-message");
-
-      if (!user || !pass) {
-        message.textContent = "Please Fill Out Every Container";
-        message.style.color = "#f00";
-        return;
-      }
-
-      // existierende User laden
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      if (users.find(u => u.username === user)) {
-        message.textContent = "Username Not Available";
-        message.style.color = "#f00";
-        return;
-      }
-
-      // neuen User speichern
-      users.push({ username: user, password: pass });
-      localStorage.setItem("users", JSON.stringify(users));
-
-      message.textContent = "Registration Sucessful!";
-      message.style.color = "#0f0";
-
-      setTimeout(() => window.location.href = "login.html", 1200);
-    });
-  </script>
 </body>
 </html>
