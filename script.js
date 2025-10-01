@@ -136,8 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentUser = localStorage.getItem("currentUser");
         if (!currentUser || currentUser === "null") {
           window.location.href = "login.html";
-        } else {
-          openModal("The free plan will be available soon. Stay tuned!");
+        ;
         }
       });
 
@@ -296,3 +295,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
