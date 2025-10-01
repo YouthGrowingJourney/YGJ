@@ -15,36 +15,47 @@
       <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home">
     </a>
     <h1>Youth Growing Journey</h1>
-   <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-       <button class="btn login-header-btn" onclick="window.location.href='login.html'">
-    <i class="fa-solid fa-right-to-bracket"></i> Log In
-   </button>
-     <button class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme" style="margin-right: 10px; padding: 10px 12px 12px 12px">🌙</button>
+    <button class="btn login-header-btn" onclick="window.location.href='login.html'">
+      <i class="fa-solid fa-right-to-bracket"></i> Log In
+    </button>
+    <button class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
     <button id="menu-toggle" class="menu-btn">&#9776;</button>
   </header>
-    <div class="sidebar" id="sidebar">
+
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <button id="close-sidebar" class="close-btn">&times;</button>
     </div>
     <div class="sidebar-content">
-     <button onclick="window.location.href='profile.html'">
-      <i class="fa-solid fa-user"></i> Profile
-     </button>
-   <button onclick="window.location.href='about-us.html'">
-    <i class="fa-solid fa-info-circle"></i> About Us
-   </button>
-  <button onclick="window.location.href='contact.html'">
-    <i class="fa-solid fa-envelope"></i> Contact Us
-  </button>  
+      <button onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
+      <button onclick="window.location.href='about-us.html'">
+        <i class="fa-solid fa-info-circle"></i> About Us
+      </button>
+      <button onclick="window.location.href='contact.html'">
+        <i class="fa-solid fa-envelope"></i> Contact Us
+      </button>
     </div>
   </div>
 
   <section class="intro">
     <h2>Log In</h2>
-    <input type="text" id="login-username" placeholder="Username" class="login-input">
-    <input type="password" id="login-password" placeholder="Password" class="login-input">
-    <button class="btn" id="login-submit">Confirm</button>
-    <p id="login-message"></p>
+
+    <!-- Formulier mit clientseitiger Validierung -->
+    <form id="loginForm" aria-label="Login form">
+      <label for="login-username" class="sr-only">Username</label>
+      <input type="text" id="login-username" name="username" placeholder="Username" class="login-input" autocomplete="username" required>
+
+      <label for="login-password" class="sr-only">Password</label>
+      <input type="password" id="login-password" name="password" placeholder="Password" class="login-input" autocomplete="current-password" required minlength="8">
+
+      <button class="btn" id="login-submit" type="submit">Confirm</button>
+    </form>
+
+    <p id="login-message" role="status" aria-live="polite"></p>
+    <p class="help-text">Forgot your password? <a href="password-reset.html">Reset here</a></p>
   </section>
 
   <footer>
@@ -52,28 +63,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    document.getElementById("login-submit").addEventListener("click", () => {
-      const user = document.getElementById("login-username").value.trim();
-      const pass = document.getElementById("login-password").value.trim();
-      const message = document.getElementById("login-message");
-
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      let found = users.find(u => u.username === user && u.password === pass);
-
-      if (found) {
-        message.textContent = "Log-In Succesful!";
-        message.style.color = "#0f0";
-
-        // Session speichern
-        localStorage.setItem("currentUser", user);
-
-        setTimeout(() => window.location.href = "profile.html", 1200);
-      } else {
-        message.textContent = "Wrong Username or Password!";
-        message.style.color = "#f00";
-      }
-    });
-  </script>
 </body>
 </html>
