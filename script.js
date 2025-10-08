@@ -222,32 +222,70 @@ document.body.addEventListener("click", (e) => {
   /* ============================
      REGISTER (page-specific)
      ============================ */
-  const registerSubmit = document.getElementById("register-submit");
-  if (registerSubmit) {
-    registerSubmit.addEventListener("click", () => {
-      const username = document.getElementById("new-username").value.trim();
-      const password = document.getElementById("new-password").value.trim();
-      const msg = document.getElementById("register-message");
-      if (!username || !password) {
-        msg.textContent = "Please Fill Out Everything!";
-        msg.style.color = "#f00";
-        return;
-      }
-      let users = JSON.parse(localStorage.getItem("users") || "[]");
-      if (users.find(u => u.username === username)) {
-        msg.textContent = "Username Was Taken!";
-        msg.style.color = "#f00";
-        return;
-      }
-      users.push({username, password});
-      localStorage.setItem("users", JSON.stringify(users));
-      msg.textContent = "Registration Successful! You Can Log-In Now.";
-      msg.style.color = "#0f0";
-      // set a default theme for new user (inherit global or default to light)
-      const globalTheme = localStorage.getItem("theme") || "light";
-      localStorage.setItem(themeKeyForUser(username), globalTheme);
-    });
-  }
+const registerSubmit = document.getElementById("register-submit");
+if (registerSubmit) {
+  registerSubmit.addEventListener("click", () => {
+    const username = document.getElementById("new-username").value.trim();
+    const password = document.getElementById("new-password").value.trim();
+    const confirm = document.getElementById("confirm-password")?.value.trim() || "";
+    const msg = document.getElementById("register-message");
+
+    // 1️⃣ Basic checks
+    if (!username || !password || !confirm) {
+      msg.textContent = "Please fill out all fields!";
+      msg.style.color = "#f00";
+      return;
+    }
+
+    // 2️⃣ Username regex (nur Buchstaben, Zahlen, Unterstrich)
+    if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
+      msg.textContent = "Username must be 3-20 characters, letters, numbers or underscore only!";
+      msg.style.color = "#f00";
+      return;
+    }
+
+    // 3️⃣ Password length check
+    if (password.length < 6) {
+      msg.textContent = "Password must be at least 6 characters!";
+      msg.style.color = "#f00";
+      return;
+    }
+
+    // 4️⃣ Password confirmation
+    if (password !== confirm) {
+      msg.textContent = "Passwords do not match!";
+      msg.style.color = "#f00";
+      return;
+    }
+
+    // 5️⃣ Check if username already exists
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (users.find(u => u.username === username)) {
+      msg.textContent = "Username already taken!";
+      msg.style.color = "#f00";
+      return;
+    }
+
+    // 6️⃣ Save new user
+    users.push({ username, password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // 7️⃣ Set default theme for new user
+    const globalTheme = localStorage.getItem("theme") || "light";
+    localStorage.setItem(`ygj_theme_${username}`, globalTheme);
+
+    // 8️⃣ Success message + auto login
+    localStorage.setItem("currentUser", username);
+    updateNav();
+    applyTheme(globalTheme);
+
+    msg.textContent = "Registration successful! Redirecting...";
+    msg.style.color = "#0f0";
+
+    setTimeout(() => window.location.href = "profile.html", 800);
+  });
+}
+
 
   /* ============================
      PROFILE page stats (page-specific)
@@ -296,5 +334,6 @@ document.body.addEventListener("click", (e) => {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
 
 
