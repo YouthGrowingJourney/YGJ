@@ -171,14 +171,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("currentUser");
-      updateNav();
-      alert("You have been logged out.");
-      window.location.href = "index.html";
-    });
-  }
+ // Delegate Logout: funktioniert auf allen Seiten
+document.body.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "logout-btn") {
+        localStorage.removeItem("currentUser");
+        updateNav();
+        alert("You have been logged out.");
+        window.location.href = "index.html";
+    }
+});
 
   updateNav();
 
@@ -295,4 +296,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
 
