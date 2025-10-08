@@ -219,70 +219,69 @@ document.body.addEventListener("click", (e) => {
     });
   }
 
-  /* ============================
-     REGISTER (page-specific)
-     ============================ */
+ /* ============================
+   REGISTER (page-specific) with Email
+   ============================ */
 const registerSubmit = document.getElementById("register-submit");
 if (registerSubmit) {
   registerSubmit.addEventListener("click", () => {
     const username = document.getElementById("new-username").value.trim();
+    const email = document.getElementById("new-email").value.trim();
     const password = document.getElementById("new-password").value.trim();
-    const confirm = document.getElementById("confirm-password")?.value.trim() || "";
+    const confirmPassword = document.getElementById("new-password-confirm").value.trim();
     const msg = document.getElementById("register-message");
 
-    // 1️⃣ Basic checks
-    if (!username || !password || !confirm) {
+    // Basic validation
+    if (!username || !email || !password || !confirmPassword) {
       msg.textContent = "Please fill out all fields!";
       msg.style.color = "#f00";
       return;
     }
 
-    // 2️⃣ Username regex (nur Buchstaben, Zahlen, Unterstrich)
-    if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
-      msg.textContent = "Username must be 3-20 characters, letters, numbers or underscore only!";
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      msg.textContent = "Invalid email format!";
       msg.style.color = "#f00";
       return;
     }
 
-    // 3️⃣ Password length check
-    if (password.length < 6) {
-      msg.textContent = "Password must be at least 6 characters!";
-      msg.style.color = "#f00";
-      return;
-    }
-
-    // 4️⃣ Password confirmation
-    if (password !== confirm) {
+    // Password match check
+    if (password !== confirmPassword) {
       msg.textContent = "Passwords do not match!";
       msg.style.color = "#f00";
       return;
     }
 
-    // 5️⃣ Check if username already exists
+    // Load existing users
     let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    // Check if username or email already exists
     if (users.find(u => u.username === username)) {
       msg.textContent = "Username already taken!";
       msg.style.color = "#f00";
       return;
     }
+    if (users.find(u => u.email === email)) {
+      msg.textContent = "Email already registered!";
+      msg.style.color = "#f00";
+      return;
+    }
 
-    // 6️⃣ Save new user
-    users.push({ username, password });
+    // Add new user
+    users.push({ username, email, password });
     localStorage.setItem("users", JSON.stringify(users));
 
-    // 7️⃣ Set default theme for new user
+    // Set default theme for new user
     const globalTheme = localStorage.getItem("theme") || "light";
-    localStorage.setItem(`ygj_theme_${username}`, globalTheme);
+    const perUserKey = themeKeyForUser(username);
+    localStorage.setItem(perUserKey, globalTheme);
 
-    // 8️⃣ Success message + auto login
-    localStorage.setItem("currentUser", username);
-    updateNav();
-    applyTheme(globalTheme);
-
-    msg.textContent = "Registration successful! Redirecting...";
+    msg.textContent = "Registration successful! You can log in now.";
     msg.style.color = "#0f0";
 
-    setTimeout(() => window.location.href = "profile.html", 800);
+    // Optionally, redirect after a short delay
+    setTimeout(() => window.location.href = "login.html", 1000);
   });
 }
 
@@ -334,6 +333,7 @@ if (registerSubmit) {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
 
 
 
