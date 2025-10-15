@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile – YGJ (Updated)</title>
+  <title>Profile – YGJ</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
@@ -37,28 +37,40 @@
 <body>
   <header>
     <a href="index.html" class="home-btn" title="Home"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home" style="width:34px"></a>
-    <h1>Youth Growing Journey – Profil</h1>
+    <h1>Youth Growing Journey – Profile</h1>
     <div style="margin-left:auto; display:flex; gap:.5rem; align-items:center">
-      <button id="menu-toggle" class="menu-btn" aria-label="Open menu">☰</button>
       <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
+      <button id="menu-toggle" class="menu-btn" aria-label="Open menu">☰</button>
     </div>
   </header>
 
   <!-- Sidebar (kept compact) -->
-  <div class="sidebar" id="sidebar" style="display:none; position:fixed; left:0; top:0; bottom:0; width:260px; background:#222; color:#fff; padding:12px; z-index:900;">
-    <div class="sidebar-header"><button id="close-sidebar" class="close-btn" style="background:none;border:0;color:#fff;font-size:20px">×</button></div>
-    <div class="sidebar-content">
-      <button onclick="window.location.href='free-plan.html'" class="btn" style="width:100%; margin-top:6px"><i class="fa-solid fa-list-check"></i> Free Plan</button>
-      <button onclick="window.location.href='index.html'" class="btn" style="width:100%; margin-top:6px"><i class="fa-solid fa-house"></i> Home</button>
-    </div>
+ <div class="sidebar open" id="sidebar">
+  <div class="sidebar-header">
+    <button id="close-sidebar" class="close-btn">× Close</button>
   </div>
+<div class="sidebar-content">
+  <button onclick="window.location.href='profile.html'">
+    <i class="fa-solid fa-user"></i> Profile
+  </button>
+  <button onclick="window.location.href='about-us.html'">
+    <i class="fa-solid fa-info-circle"></i> About Us
+  </button>
+  <button onclick="window.location.href='contact.html'">
+    <i class="fa-solid fa-envelope"></i> Contact Us
+  </button>
+  <button>
+    <i class="fa-solid fa-right-from-bracket"></i> Log Out
+  </button>
+</div>
+</div>
 
   <main class="intro">
     <div style="display:flex; gap:12px; align-items:center">
       <img id="profile-avatar" class="avatar" src="https://placehold.co/200x200/png?text=YGJ" alt="Avatar">
       <div>
-        <h2 id="display-name">Gast</h2>
-        <p class="small" id="profile-email">Nicht eingeloggt</p>
+        <h2 id="display-name">Guest</h2>
+        <p class="small" id="profile-email">Not logged-in</p>
       </div>
       <div style="margin-left:auto; display:flex; gap:.6rem;">
         <button id="edit-profile" class="btn">Edit Profile</button>
@@ -323,12 +335,12 @@
     });
 
     document.getElementById('reset-progress').addEventListener('click', () => {
-      if (!confirm('Bist du sicher? Dadurch werden Tasks und Streak zurückgesetzt.')) return;
+      if (!confirm('Are you sure? Your streak will be reset!')) return;
       localStorage.removeItem(nsFree('tasks'));
       localStorage.removeItem(nsFree('streak'));
       // keep profile meta
       renderProfile();
-      alert('Fortschritt zurückgesetzt. Neue Chance — leg los!');
+      alert('Resetted progress - Keep going!');
     });
 
     // Sidebar toggles (simple) — keep parity with script.js if it exists
@@ -353,3 +365,4 @@
   </script>
 </body>
 </html>
+
