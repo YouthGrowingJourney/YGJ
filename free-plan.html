@@ -185,6 +185,13 @@
 
   <!-- Page-specific logic kept isolated to avoid conflicts -->
   <script>
+     document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = localStorage.getItem("currentUser");
+    if (!currentUser || currentUser === "null") {
+      alert("⚠️ Du musst eingeloggt sein, um den Free-Plan zu nutzen!");
+      window.location.href = "login.html";
+    }
+  });
   (function() {
     // ---------- Helpers & Storage Namespacing ----------
     const getCurrentUser = () => localStorage.getItem('currentUser') || 'guest';
