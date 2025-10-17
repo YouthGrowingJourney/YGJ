@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us – YGJ</title>
+  <title>YGJ-About Us</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
@@ -15,10 +15,13 @@
       <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home" />
     </a>
     <h1>Youth Growing Journey</h1>
-    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
       <button class="btn login-header-btn" onclick="window.location.href='login.html'">
     <i class="fa-solid fa-right-to-bracket"></i> Log In
    </button>
+    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'">
+  <i class="fa-solid fa-user-plus"></i> Sign Up
+</button>
+ <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
     <button id="menu-toggle" class="menu-btn">&#9776;</button>
   </header>
   <div class="sidebar" id="sidebar">
@@ -35,7 +38,7 @@
       <button onclick="window.location.href='contact.html'">
         <i class="fa-solid fa-envelope"></i> Contact Us
       </button>
-      <button>
+      <button id="logout-btn">
         <i class="fa-solid fa-right-from-bracket"></i> Log Out
       </button>
     </div>
@@ -62,8 +65,32 @@
     &copy; Youth Growing Journey – built for a strong generation.
   </footer>
   <script src="script.js"></script>
+  <script>
+    function updateNav() {
+  const currentUser = localStorage.getItem("currentUser");
+  if (currentUser && currentUser !== "null") {
+    if (loginBtn) loginBtn.style.display = "none";
+    if (signupBtn) signupBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+  } else {
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    if (signupBtn) signupBtn.style.display = "inline-block";
+    if (logoutBtn) logoutBtn.style.display = "none";
+  }
+}
+        // Delegate Logout: funktioniert auf allen Seiten
+document.body.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "logout-btn") {
+        localStorage.removeItem("currentUser");
+        updateNav();
+        alert("You have been logged out.");
+        window.location.href = "index.html";
+    }
+});
+  </script>
 </body>
 </html>
+
 
 
 
