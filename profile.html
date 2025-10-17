@@ -59,7 +59,7 @@
   <button onclick="window.location.href='contact.html'">
     <i class="fa-solid fa-envelope"></i> Contact Us
   </button>
-  <button>
+  <button id="logout-btn>
     <i class="fa-solid fa-right-from-bracket"></i> Log Out
   </button>
 </div>
@@ -116,6 +116,17 @@
 
   <!-- Profile-specific logic: this ties the profile page to the Free Plan storage and makes progress "real" -->
   <script>
+
+ // Delegate Logout: funktioniert auf allen Seiten
+document.body.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "logout-btn") {
+        localStorage.removeItem("currentUser");
+        updateNav();
+        alert("You have been logged out.");
+        window.location.href = "index.html";
+    }
+});
+    
   (function(){
     // --- Helpers to access per-user free-plan storage ---
     const getCurrentUser = () => localStorage.getItem('currentUser') || 'guest';
@@ -365,4 +376,5 @@
   </script>
 </body>
 </html>
+
 
