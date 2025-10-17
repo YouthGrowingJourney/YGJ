@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YGJ</title>
+  <title>YGJ-Home</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
   <button onclick="window.location.href='contact.html'">
     <i class="fa-solid fa-envelope"></i> Contact Us
   </button>
-  <button>
+  <button id="logout-btn">
     <i class="fa-solid fa-right-from-bracket"></i> Log Out
   </button>
 </div>
@@ -57,8 +57,20 @@
     &copy; Youth Growing Journey – built for a strong generation.
   </footer>
 <script src="script.js"></script>
+  <script>
+     // Delegate Logout: funktioniert auf allen Seiten
+document.body.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "logout-btn") {
+        localStorage.removeItem("currentUser");
+        updateNav();
+        alert("You have been logged out.");
+        window.location.href = "index.html";
+    }
+});
+  </script>
 </body>
 </html>
+
 
 
 
