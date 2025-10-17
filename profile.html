@@ -107,7 +107,7 @@
     <div style="margin-top:18px">
       <h3>Quick Actions</h3>
       <div style="display:flex; gap:.6rem; margin-top:8px">
-        <button id="export-profile" class="btn">Export Profile (JSON)</button>
+        <button id="export-profile" class="btn">Export Profile</button>
         <button id="reset-progress" class="btn">Reset Progress</button>
         <button id="goto-free-plan" class="btn">Open Free Plan</button>
       </div>
@@ -193,8 +193,8 @@ document.body.addEventListener("click", (e) => {
     function renderProfile() {
       const user = getCurrentUser();
       const profile = loadProfile();
-      elDisplayName.textContent = profile.displayName || (user === 'guest' ? 'Gast' : user);
-      elEmail.textContent = profile.email || (user === 'guest' ? 'Nicht eingeloggt' : profile.email || '—');
+      elDisplayName.textContent = profile.displayName || (user === 'guest' ? 'Guest' : user);
+      elEmail.textContent = profile.email || (user === 'guest' ? 'Not logged in' : profile.email || '—');
       elAvatar.src = profile.avatar || elAvatar.src;
 
       const k = computeKPIs();
@@ -382,6 +382,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
