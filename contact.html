@@ -145,7 +145,7 @@
   <script>
     // EmailJS initialisieren
     (function() {
-      emailjs.init("DEIN_PUBLIC_KEY"); // <-- hier kommt dein Public Key rein
+      emailjs.init("ODSOg03RHLWny7u13"); // <-- hier kommt dein Public Key rein
     })();
 
     const form = document.getElementById("contact-form");
@@ -156,7 +156,7 @@
       statusDiv.textContent = "Sending...";
       statusDiv.className = "status";
 
-      emailjs.sendForm("DEIN_SERVICE_ID", "DEIN_TEMPLATE_ID", this)
+      emailjs.sendForm("service_63275pl", "template_coe299a", this)
         .then(() => {
           statusDiv.textContent = "✅ Message sent successfully!";
           statusDiv.classList.add("success");
@@ -170,3 +170,4 @@
   </script>
 </body>
 </html>
+
