@@ -167,7 +167,16 @@
           statusDiv.classList.add("error");
         });
     });
+
+      // ✅ Login-Schutz: Nur eingeloggte Nutzer dürfen diese Seite sehen
+  const user = localStorage.getItem("loggedInUser"); // Oder sessionStorage, je nach Login-System
+
+  if (!user) {
+    // ❌ Nicht eingeloggt -> Weiterleitung zur Login-Seite
+    window.location.href = "login.html";
+  }
   </script>
 </body>
 </html>
+
 
