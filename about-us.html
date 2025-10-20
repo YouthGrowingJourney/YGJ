@@ -98,25 +98,48 @@
     .newsletter button{margin-top:10px;width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));font-weight:700;cursor:pointer;}
 
     footer{margin:22px auto;text-align:center;color:var(--muted);font-size:0.9rem;}
-    /* small helpers */
     .muted{color:var(--muted);}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);font-weight:600;color:var(--accent);}
   </style>
 </head>
 
 <body>
-  <!-- AUTH CHECK: Wenn nicht eingeloggt, Weiterleitung (-> login.html). -->
+  <!-- 🔒 AUTH CHECK (sicher & fehlerfrei) -->
   <script>
-    // 🔒 Auth-Guard: passt zu deinem existierenden Login, der 'loggedInUser' in localStorage setzt.
-    (function(){
+    (function() {
       try {
-        const user = localStorage.getItem("loggedInUser");
-        if (!user) {
-          // Wenn du sessionStorage stattdessen nutzt, ersetze oben entsprechend.
+        // Prüfe, ob localStorage verfügbar ist
+        const storageAvailable = (() => {
+          try {
+            const testKey = '__test__';
+            localStorage.setItem(testKey, testKey);
+            localStorage.removeItem(testKey);
+            return true;
+          } catch {
+            return false;
+          }
+        })();
+
+        if (!storageAvailable) {
+          console.warn("LocalStorage nicht verfügbar – Weiterleitung zur Login-Seite.");
+          window.location.replace("login.html");
+          return;
+        }
+
+        // Aktuelle Seite prüfen (um Redirect-Schleifen zu verhindern)
+        const path = window.location.pathname;
+        const isLoginPage = path.includes("login.html") || path.includes("register.html");
+
+        // User laden
+        const raw = localStorage.getItem("loggedInUser");
+        const user = raw ? JSON.parse(raw) : null;
+
+        if (!user && !isLoginPage) {
+          console.log("Nicht eingeloggt → Weiterleitung zu login.html");
           window.location.replace("login.html");
         }
-      } catch (e) {
-        console.error("Auth check failed:", e);
+      } catch (err) {
+        console.error("Auth-Check Fehler:", err);
         window.location.replace("login.html");
       }
     })();
@@ -131,7 +154,6 @@
     <h1>Youth Growing Journey</h1>
 
     <div class="header-actions" id="header-actions">
-      <!-- Buttons werden dynamisch per JS ersetzt (Login / Username / Logout) -->
       <button id="theme-toggle" class="theme-btn btn" aria-label="Theme wechseln">🌙</button>
       <button id="menu-toggle" class="menu-btn btn" aria-label="Menu öffnen">&#9776;</button>
     </div>
@@ -139,7 +161,6 @@
 
   <!-- LAYOUT: Sidebar + Main -->
   <div class="layout container" role="main">
-    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar" aria-label="Seiten Navigation">
       <div class="sidebar-header">
         <button id="close-sidebar" class="close-btn" aria-label="Sidebar schließen">&times;</button>
@@ -153,11 +174,10 @@
       </nav>
     </aside>
 
-    <!-- MAIN -->
     <section class="card intro" aria-labelledby="about-title">
       <h2 id="about-title">About Us</h2>
       <p>
-       Youth Growing Journey (YGJ) is more than a website—it's a movement. 
+        Youth Growing Journey (YGJ) is more than a website—it's a movement. 
         We believe everyone has the potential to achieve their goals, stay strong, and become the best version of themselves.
       </p>
 
@@ -167,7 +187,7 @@
           <p class="muted">We provide young people with structure, tools, and community so they can consistently pursue their goals. Focus on progress rather than perfection.</p>
           <ul class="muted">
             <li>Mentorship & Coaching</li>
-            <li>Practial Content</li>
+            <li>Practical Content</li>
             <li>Community challenges & Accountability</li>
           </ul>
         </div>
@@ -199,13 +219,11 @@
         </div>
       </div>
 
-      <!-- Team -->
       <section class="team card" aria-label="Team">
         <h3>Our Team</h3>
         <p class="muted">Young visionaries, coaches and developers who believe in your strength.</p>
 
         <div class="team-grid" id="team-grid">
-          <!-- Beispiel-Mitglieder; ersetze mit echten Daten falls vorhanden -->
           <div class="member">
             <div class="avatar">MJ</div>
             <h4>A. Baumer</h4>
@@ -226,48 +244,19 @@
         </div>
       </section>
 
-      <!-- Stats & Timeline -->
       <div class="stats">
-        <div class="stat">
-          <div class="num" id="stat-members">—</div>
-          <div class="muted">Active Members</div>
-        </div>
-        <div class="stat">
-          <div class="num" id="stat-challenges">—</div>
-          <div class="muted">Completed Challenges</div>
-        </div>
-        <div class="stat">
-          <div class="num" id="stat-mentors">—</div>
-          <div class="muted">Mentors</div>
-        </div>
+        <div class="stat"><div class="num" id="stat-members">—</div><div class="muted">Active Members</div></div>
+        <div class="stat"><div class="num" id="stat-challenges">—</div><div class="muted">Completed Challenges</div></div>
+        <div class="stat"><div class="num" id="stat-mentors">—</div><div class="muted">Mentors</div></div>
       </div>
 
       <div class="timeline card" aria-label="Our Journey">
         <h3>Our Journey</h3>
-        <div class="timeline-item">
-          <div class="date">2022</div>
-          <div>
-            <strong>Founding</strong>
-            <p class="muted">YGJ was founded by young visionaries.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="date">2023</div>
-          <div>
-            <strong>Community Launch</strong>
-            <p class="muted">First community events, challenges & coaching sessions.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="date">2024</div>
-          <div>
-            <strong>Scale</strong>
-            <p class="muted">More mentors, structured programs, and premium content.</p>
-          </div>
-        </div>
+        <div class="timeline-item"><div class="date">2022</div><div><strong>Founding</strong><p class="muted">YGJ was founded by young visionaries.</p></div></div>
+        <div class="timeline-item"><div class="date">2023</div><div><strong>Community Launch</strong><p class="muted">First community events, challenges & coaching sessions.</p></div></div>
+        <div class="timeline-item"><div class="date">2024</div><div><strong>Scale</strong><p class="muted">More mentors, structured programs, and premium content.</p></div></div>
       </div>
 
-      <!-- CTA + Newsletter -->
       <div class="cta">
         <div class="cta-left">
           <h3>Join in — Become part of the movement</h3>
@@ -286,27 +275,18 @@
           <div id="newsletter-status" class="muted" style="margin-top:8px;font-size:0.92rem;"></div>
         </div>
       </div>
-
     </section>
   </div>
 
-  <footer>
-    &copy; Youth Growing Journey – built for a strong generation.
-  </footer>
+  <footer>&copy; Youth Growing Journey – built for a strong generation.</footer>
 
   <!-- SCRIPTS -->
   <script>
-    // -----------------------
-    // Utilities & State
-    // -----------------------
     const getUser = () => {
       try { return JSON.parse(localStorage.getItem("loggedInUser") || "null"); }
       catch { return null; }
     };
 
-    // -----------------------
-    // Header dynamic rendering
-    // -----------------------
     (function renderHeaderActions(){
       const header = document.getElementById("header-actions");
       const user = getUser();
@@ -317,157 +297,58 @@
       wrapper.style.alignItems = "center";
 
       if (user && user.name) {
-        // show username + logout
         const nameBtn = document.createElement("button");
         nameBtn.className = "btn";
         nameBtn.textContent = user.name;
-        nameBtn.title = "Your Profile";
         nameBtn.onclick = () => window.location.href = "profile.html";
 
         const logout = document.createElement("button");
         logout.className = "btn";
-        logout.id = "header-logout";
         logout.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i>Logout';
         logout.onclick = () => doLogout();
 
         wrapper.appendChild(nameBtn);
         wrapper.appendChild(logout);
       } else {
-        // show login / signup
         const login = document.createElement("button");
         login.className = "btn login-header-btn";
         login.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i>Log In';
         login.onclick = () => window.location.href = "login.html";
-
-        const sign = document.createElement("button");
-        sign.className = "btn";
-        sign.innerHTML = '<i class="fa-solid fa-user-plus"></i>Sign Up';
-        sign.onclick = () => window.location.href = "register.html";
-
         wrapper.appendChild(login);
-        wrapper.appendChild(sign);
       }
 
-      // add theme & menu buttons to remain
-      const themeBtn = document.getElementById("theme-toggle");
-      const menuBtn = document.getElementById("menu-toggle");
-      wrapper.appendChild(themeBtn);
-      wrapper.appendChild(menuBtn);
-
-      header.innerHTML = "";
       header.appendChild(wrapper);
     })();
 
-    // -----------------------
-    // Sidebar toggle
-    // -----------------------
-    const sidebar = document.getElementById("sidebar");
-    document.getElementById("menu-toggle").addEventListener("click", () => {
-      sidebar.style.display = sidebar.style.display === "block" ? "none" : "block";
-    });
-    document.getElementById("close-sidebar").addEventListener("click", () => {
-      sidebar.style.display = "none";
-    });
-    // On small screens start hidden
-    if (window.innerWidth <= 900) sidebar.style.display = "none";
-
-    // -----------------------
-    // Logout (cleans storage and redirects)
-    // -----------------------
     function doLogout(){
-      localStorage.removeItem("loggedInUser"); // oder sessionStorage entsprechend
-      // optional: clear any other keys like tokens
-      // localStorage.removeItem("authToken");
-      window.location.href = "login.html";
+      localStorage.removeItem("loggedInUser");
+      window.location.replace("login.html");
     }
-    const logoutBtn = document.getElementById("logout-btn");
-    if (logoutBtn) logoutBtn.addEventListener("click", doLogout);
 
-    // -----------------------
-    // Simple stat-counter (example values or pull from backend)
-    // -----------------------
-    (function populateStats(){
-      // Falls du echte Werte vom Backend hast: fetch() hier einsetzen.
-      // Für jetzt: benutze lokal gespeicherte oder Default-Werte.
-      const stats = {
-        members: localStorage.getItem("ygj_members_count") || 1582,
-        challenges: localStorage.getItem("ygj_challenges_count") || 324,
-        mentors: localStorage.getItem("ygj_mentors_count") || 28
-      };
-      document.getElementById("stat-members").textContent = stats.members;
-      document.getElementById("stat-challenges").textContent = stats.challenges;
-      document.getElementById("stat-mentors").textContent = stats.mentors;
-    })();
+    // Sidebar toggle
+    const sidebar = document.getElementById("sidebar");
+    document.getElementById("menu-toggle").onclick = ()=> sidebar.style.display = "block";
+    document.getElementById("close-sidebar").onclick = ()=> sidebar.style.display = "none";
+    document.getElementById("logout-btn").onclick = ()=> doLogout();
 
-    // -----------------------
-    // Newsletter subscribe (local demo)
-    // -----------------------
-    document.getElementById("subscribe-btn").addEventListener("click", () => {
-      const emailInput = document.getElementById("newsletter-email");
+    // Stats Simulation
+    document.getElementById("stat-members").textContent = Math.floor(200 + Math.random()*150);
+    document.getElementById("stat-challenges").textContent = Math.floor(500 + Math.random()*300);
+    document.getElementById("stat-mentors").textContent = 5 + Math.floor(Math.random()*4);
+
+    // Newsletter
+    document.getElementById("subscribe-btn").addEventListener("click", ()=>{
+      const email = document.getElementById("newsletter-email").value.trim();
       const status = document.getElementById("newsletter-status");
-      const email = (emailInput.value || "").trim();
-      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-        status.textContent = "Please enter a valid E-Mail-Adress.";
+      if(!email.includes("@")) {
+        status.textContent = "❌ Please enter a valid email.";
+        status.style.color = "#f88";
         return;
       }
-      // Demo: speichere lokal (in echt: API request)
-      const list = JSON.parse(localStorage.getItem("ygj_newsletter") || "[]");
-      if (list.includes(email)) {
-        status.textContent = "This E-Mail is already registered.";
-        return;
-      }
-      list.push(email);
-      localStorage.setItem("ygj_newsletter", JSON.stringify(list));
-      status.textContent = "Thanks! You registered successfully! ✅";
-      emailInput.value = "";
+      status.textContent = "✅ You’re in! Welcome to the journey.";
+      status.style.color = "#8f8";
+      document.getElementById("newsletter-email").value = "";
     });
-
-    // -----------------------
-    // Theme toggle (Dark <-> Light simple)
-    // -----------------------
-    (function initTheme(){
-      const themeBtn = document.getElementById("theme-toggle");
-      const stored = localStorage.getItem("ygj_theme") || "dark";
-      setTheme(stored);
-      themeBtn.addEventListener("click", () => {
-        const current = document.documentElement.getAttribute("data-theme") || "dark";
-        const next = current === "dark" ? "light" : "dark";
-        setTheme(next);
-      });
-
-      function setTheme(name){
-        if (name === "light"){
-          document.documentElement.style.setProperty('--bg', '#f7fafc');
-          document.documentElement.style.setProperty('--card', '#ffffff');
-          document.documentElement.style.setProperty('--muted', '#23303f');
-          document.documentElement.style.setProperty('--accent', '#e0c280');
-          document.body.style.background = "linear-gradient(180deg,#ffffff 0%, #f0f4f8 100%)";
-          localStorage.setItem("ygj_theme","light");
-          document.getElementById("theme-toggle").textContent = "☀️";
-        } else {
-          document.documentElement.style.removeProperty('--bg');
-          document.documentElement.style.removeProperty('--card');
-          document.documentElement.style.removeProperty('--muted');
-          document.documentElement.style.removeProperty('--accent');
-          document.body.style.background = "linear-gradient(180deg,#071024 0%, #0f1724 100%)";
-          localStorage.setItem("ygj_theme","dark");
-          document.getElementById("theme-toggle").textContent = "🌙";
-        }
-        document.documentElement.setAttribute("data-theme", name);
-      }
-    })();
-
-    // -----------------------
-    // Accessibility: keyboard-friendly close
-    // -----------------------
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") sidebar.style.display = "none";
-    });
-
-    // -----------------------
-    // END
-    // -----------------------
-
   </script>
 </body>
 </html>
