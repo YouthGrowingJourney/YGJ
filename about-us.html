@@ -102,57 +102,13 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);font-weight:600;color:var(--accent);}
   </style>
 </head>
-
 <body>
-  <!-- 🔒 AUTH CHECK (sicher & fehlerfrei) -->
-  <script>
-    (function() {
-      try {
-        // Prüfe, ob localStorage verfügbar ist
-        const storageAvailable = (() => {
-          try {
-            const testKey = '__test__';
-            localStorage.setItem(testKey, testKey);
-            localStorage.removeItem(testKey);
-            return true;
-          } catch {
-            return false;
-          }
-        })();
-
-        if (!storageAvailable) {
-          console.warn("LocalStorage nicht verfügbar – Weiterleitung zur Login-Seite.");
-          window.location.replace("login.html");
-          return;
-        }
-
-        // Aktuelle Seite prüfen (um Redirect-Schleifen zu verhindern)
-        const path = window.location.pathname;
-        const isLoginPage = path.includes("login.html") || path.includes("register.html");
-
-        // User laden
-        const raw = localStorage.getItem("loggedInUser");
-        const user = raw ? JSON.parse(raw) : null;
-
-        if (!user && !isLoginPage) {
-          console.log("Nicht eingeloggt → Weiterleitung zu login.html");
-          window.location.replace("login.html");
-        }
-      } catch (err) {
-        console.error("Auth-Check Fehler:", err);
-        window.location.replace("login.html");
-      }
-    })();
-  </script>
-
   <!-- HEADER -->
   <header>
     <a href="index.html" class="home-btn" aria-label="Home">
       <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home" />
     </a>
-
     <h1>Youth Growing Journey</h1>
-
     <div class="header-actions" id="header-actions">
       <button id="theme-toggle" class="theme-btn btn" aria-label="Theme wechseln">🌙</button>
       <button id="menu-toggle" class="menu-btn btn" aria-label="Menu öffnen">&#9776;</button>
@@ -352,3 +308,4 @@
   </script>
 </body>
 </html>
+
