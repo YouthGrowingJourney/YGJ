@@ -335,5 +335,13 @@ if (registerSubmit) {
 }); // DOMContentLoaded end
 
 
+document.getElementById("logout-btn")?.addEventListener("click", async () => {
+  await fetch("http://localhost:3000/logout", {
+    method: "POST",
+    credentials: "include"
+  });
+  window.location.href = "login.html";
+});
+
 
 
