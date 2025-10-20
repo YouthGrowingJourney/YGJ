@@ -143,6 +143,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
   <script>
+    checkAuth(); // 🔥 Prüft automatisch, ob User eingeloggt ist
+ 
     // EmailJS initialisieren
     (function() {
       emailjs.init("ODSOg03RHLWny7u13"); // <-- hier kommt dein Public Key rein
@@ -170,6 +172,7 @@
   </script>
 </body>
 </html>
+
 
 
 
