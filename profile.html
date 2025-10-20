@@ -123,6 +123,8 @@
   <!-- Profile-specific logic: this ties the profile page to the Free Plan storage and makes progress "real" -->
   <script>
 
+checkAuth(); // 🔥 Prüft automatisch, ob User eingeloggt ist
+    
  // Delegate Logout: funktioniert auf allen Seiten
 document.body.addEventListener("click", (e) => {
     if (e.target && e.target.id === "logout-btn") {
@@ -382,6 +384,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
