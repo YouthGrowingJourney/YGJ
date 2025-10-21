@@ -446,3 +446,29 @@
   });
 
 })(); // IIFE end
+
+// === checkAuth (für profile.html etc.) ===
+async function checkAuth() {
+  const API_BASE = "https://ygj-auth.onrender.com";
+  try {
+    const res = await fetch(`${API_BASE}/check-auth`, {
+      credentials: "include"
+    });
+
+    if (!res.ok) throw new Error("Response not ok");
+    const data = await res.json();
+
+    if (data.loggedIn) {
+      // User eingeloggt → speichern & anzeigen
+      localStorage.setItem("currentUser", data.username);
+      const usernameEl = document.getElementById("username");
+      if (usernameEl) usernameEl.textContent = data.username;
+    } else {
+      // Nicht eingeloggt → auf Login-Seite
+      window.location.href = "login.html";
+    }
+  } catch (err) {
+    console.error("Auth check failed:", err);
+    window.location.href = "login.html";
+  }
+}
