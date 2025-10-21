@@ -472,3 +472,9 @@ async function checkAuth() {
     window.location.href = "login.html";
   }
 }
+
+fetch("https://ygj-auth.onrender.com/check-auth", {
+  method: "GET",
+  credentials: "include" // <== GANZ WICHTIG
+})
+
