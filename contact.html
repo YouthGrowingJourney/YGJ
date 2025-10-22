@@ -142,12 +142,52 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
+
   <script>
-    checkAuth(); // 🔥 Prüft automatisch, ob User eingeloggt ist
- 
-    // EmailJS initialisieren
+    // 🔥 Auth-Prüfung + Session-Handling
+    checkAuth();
+
+    (async () => {
+      try {
+        const res = await fetch("https://ygj-auth.onrender.com/api/check-auth", {
+          credentials: "include",
+        });
+        const data = await res.json();
+
+        if (!data || !data.authenticated) {
+          console.warn("Nicht eingeloggt – leite weiter zu Login");
+          window.location.href = "login.html";
+          return;
+        } else {
+          console.log("✅ Eingeloggt als:", data.user?.email || "Unbekannt");
+          localStorage.setItem("currentUser", data.user?.email || "unknown");
+        }
+      } catch (err) {
+        console.warn("Auth-Check fehlgeschlagen:", err);
+        const localUser = localStorage.getItem("currentUser");
+        if (!localUser || localUser === "null") {
+          window.location.href = "login.html";
+        }
+      }
+    })();
+
+    // 🔒 Logout funktioniert überall
+    document.body.addEventListener("click", (e) => {
+      if (e.target && e.target.id === "logout-btn") {
+        fetch("https://ygj-auth.onrender.com/api/logout", {
+          method: "POST",
+          credentials: "include",
+        }).finally(() => {
+          localStorage.removeItem("currentUser");
+          alert("You have been logged out.");
+          window.location.href = "index.html";
+        });
+      }
+    });
+
+    // 📧 EmailJS Setup
     (function() {
-      emailjs.init("ODSOg03RHLWny7u13"); // <-- hier kommt dein Public Key rein
+      emailjs.init("ODSOg03RHLWny7u13");
     })();
 
     const form = document.getElementById("contact-form");
@@ -163,16 +203,23 @@
           statusDiv.textContent = "✅ Message sent successfully!";
           statusDiv.classList.add("success");
           form.reset();
-        }, (error) => {
-          console.error(error);
+        })
+        .catch((error) => {
+          console.error("EmailJS Error:", error);
           statusDiv.textContent = "❌ Failed to send. Please try again later.";
           statusDiv.classList.add("error");
         });
     });
+
+    // 📱 Sidebar-Toggle (wie in script.js)
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+    const closeSidebar = document.getElementById("close-sidebar");
+
+    if (menuToggle && sidebar) {
+      menuToggle.addEventListener("click", () => sidebar.style.display = "block");
+      if (closeSidebar) closeSidebar.addEventListener("click", () => sidebar.style.display = "none");
+    }
   </script>
 </body>
 </html>
-
-
-
-
