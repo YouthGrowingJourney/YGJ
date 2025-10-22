@@ -1,5 +1,5 @@
 (function() {
-  const API_BASE = "https://ygj-auth.onrender.com"; // Backend auf Render
+  const API_BASE = "https://ygj-auth.onrender.com"; // ✅ Ohne /api/
 
   // === Verbesserte Auth-Sync ===
   async function tryServerAuthSync() {
@@ -17,29 +17,41 @@
     }
   }
 
+  // === GLOBALE checkAuth Funktion (wird von Seiten aufgerufen) ===
+  window.checkAuth = async function() {
+    try {
+      const res = await fetch(`${API_BASE}/check-auth`, { credentials: "include" });
+      if (!res.ok) throw new Error("Response not ok");
+      const data = await res.json();
+      
+      if (data.loggedIn) {
+        localStorage.setItem("currentUser", data.username);
+        const usernameEl = document.getElementById("username");
+        if (usernameEl) usernameEl.textContent = data.username;
+        return true; // ✅ Eingeloggt
+      } else {
+        localStorage.removeItem("currentUser");
+        return false; // ❌ Nicht eingeloggt
+      }
+    } catch (err) {
+      console.error("Auth check failed:", err);
+      return false;
+    }
+  };
+
   tryServerAuthSync();
 
   document.addEventListener("DOMContentLoaded", () => {
     /* ============================
-       AUTO-LOGIN CHECK (fix)
+       AUTO-LOGIN CHECK (verbessert)
        ============================ */
     const path = window.location.pathname;
 
-    // 👇 Neue Version: nur redirect, wenn wirklich notwendig
-    if (path.includes("profile.html") || path.includes("contact.html")) {
+    // 🔥 NUR auf Login-Seite prüfen, ob bereits eingeloggt
+    if (path.includes("login.html")) {
       (async () => {
-        await tryServerAuthSync();
-        const currentUser = localStorage.getItem("currentUser");
-        if (!currentUser) {
-          window.location.href = "login.html";
-        }
-      })();
-    } else if (path.includes("login.html")) {
-      // 👇 Wenn eingeloggt und auf login.html -> gleich weiterleiten
-      (async () => {
-        await tryServerAuthSync();
-        const currentUser = localStorage.getItem("currentUser");
-        if (currentUser) {
+        const isLoggedIn = await window.checkAuth();
+        if (isLoggedIn) {
           window.location.href = "profile.html";
         }
       })();
@@ -133,7 +145,7 @@
     /* ============================
        MODAL helper
        ============================ */
-    function openModal(message) {
+    window.openModal = function(message) {
       const modal = document.createElement("div");
       modal.classList.add("modal-overlay");
       modal.innerHTML = `
@@ -163,7 +175,7 @@
           if (!currentUser) {
             window.location.href = "login.html";
           } else {
-            openModal("Premium features will follow!");
+            window.openModal("Premium features will follow!");
           }
         });
       }
@@ -176,7 +188,7 @@
     const signupBtn = document.getElementById("signup-btn");
     const logoutBtn = document.getElementById("logout-btn");
 
-    function updateNav() {
+    window.updateNav = function() {
       const currentUser = localStorage.getItem("currentUser");
       if (currentUser) {
         if (loginBtn) loginBtn.style.display = "none";
@@ -188,7 +200,7 @@
         if (logoutBtn) logoutBtn.style.display = "none";
       }
     }
-    updateNav();
+    window.updateNav();
 
     document.body.addEventListener("click", (e) => {
       if (e.target && e.target.id === "logout-btn") {
@@ -198,7 +210,7 @@
           } catch (err) {}
           finally {
             localStorage.removeItem("currentUser");
-            updateNav();
+            window.updateNav();
             alert("You have been logged out.");
             window.location.href = "index.html";
           }
@@ -229,7 +241,7 @@
               localStorage.setItem("currentUser", username);
               msg.textContent = "Log-In Successful!";
               msg.style.color = "#0f0";
-              updateNav();
+              window.updateNav();
               setTimeout(() => window.location.href = "profile.html", 800);
             } else {
               msg.textContent = data.message || "Invalid credentials";
@@ -297,30 +309,5 @@
         profileUsername.textContent = currentUser;
       }
     }
-  }); // DOMContentLoaded end
-
-  // === checkAuth (global verbessert) ===
-  async function checkAuth() {
-    try {
-      const res = await fetch(`${API_BASE}/check-auth`, { credentials: "include" });
-      if (!res.ok) throw new Error("Response not ok");
-      const data = await res.json();
-      if (data.loggedIn) {
-        localStorage.setItem("currentUser", data.username);
-        const usernameEl = document.getElementById("username");
-        if (usernameEl) usernameEl.textContent = data.username;
-      } else {
-        localStorage.removeItem("currentUser");
-        // 🔥 Kein Redirect, wenn bereits auf Login-Seite
-        if (!window.location.pathname.includes("login.html")) {
-          window.location.href = "login.html";
-        }
-      }
-    } catch (err) {
-      console.error("Auth check failed:", err);
-      if (!window.location.pathname.includes("login.html")) {
-        window.location.href = "login.html";
-      }
-    }
-  }
+  });
 })();
