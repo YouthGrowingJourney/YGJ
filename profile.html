@@ -124,6 +124,31 @@
   <script>
 
 checkAuth(); // 🔥 Prüft automatisch, ob User eingeloggt ist
+
+    (async () => {
+  try {
+    // Serverseitige Auth-Prüfung (Render)
+    const res = await fetch("https://ygj-auth.onrender.com/api/check-auth", {
+      credentials: "include",
+    });
+    const data = await res.json();
+
+    if (!data || !data.authenticated) {
+      console.warn("Nicht authentifiziert – leite zu Login weiter");
+      window.location.href = "login.html";
+      return;
+    } else {
+      console.log("✅ User ist authentifiziert:", data.user?.email || "Unknown");
+      localStorage.setItem("currentUser", data.user?.email || "unknown");
+    }
+  } catch (err) {
+    console.warn("Auth-Prüfung fehlgeschlagen:", err);
+    const localUser = localStorage.getItem("currentUser");
+    if (!localUser || localUser === "null") {
+      window.location.href = "login.html";
+    }
+  }
+})();
     
  // Delegate Logout: funktioniert auf allen Seiten
 document.body.addEventListener("click", (e) => {
@@ -384,6 +409,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
