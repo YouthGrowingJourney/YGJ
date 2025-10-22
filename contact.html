@@ -124,7 +124,7 @@
   <!-- Kontaktformular -->
   <section class="contact-container">
     <h2>Contact Us</h2>
-    <p>Have questions, feedback, or just want to say hello? Fill out the form below, and we’ll get back to you!</p>
+    <p>Have questions, feedback, or just want to say hello? Fill out the form below, and we'll get back to you!</p>
 
     <form id="contact-form">
       <input type="text" name="from_name" placeholder="Your Name" required />
@@ -144,46 +144,17 @@
   <script src="script.js"></script>
 
   <script>
-    // 🔥 Auth-Prüfung + Session-Handling
-    checkAuth();
-
+    // 🔥 NUR EINE Auth-Prüfung!
     (async () => {
-      try {
-        const res = await fetch("https://ygj-auth.onrender.com/api/check-auth", {
-          credentials: "include",
-        });
-        const data = await res.json();
-
-        if (!data || !data.authenticated) {
-          console.warn("Nicht eingeloggt – leite weiter zu Login");
-          window.location.href = "login.html";
-          return;
-        } else {
-          console.log("✅ Eingeloggt als:", data.user?.email || "Unbekannt");
-          localStorage.setItem("currentUser", data.user?.email || "unknown");
-        }
-      } catch (err) {
-        console.warn("Auth-Check fehlgeschlagen:", err);
-        const localUser = localStorage.getItem("currentUser");
-        if (!localUser || localUser === "null") {
-          window.location.href = "login.html";
-        }
+      const isLoggedIn = await checkAuth(); // ✅ Nutzt globale Funktion aus script.js
+      if (!isLoggedIn) {
+        alert("⚠️ You have to log-in to access the contact page!");
+        window.location.href = "login.html";
+        return;
       }
+      // Wenn eingeloggt, zeige Navigation korrekt an
+      updateNav();
     })();
-
-    // 🔒 Logout funktioniert überall
-    document.body.addEventListener("click", (e) => {
-      if (e.target && e.target.id === "logout-btn") {
-        fetch("https://ygj-auth.onrender.com/api/logout", {
-          method: "POST",
-          credentials: "include",
-        }).finally(() => {
-          localStorage.removeItem("currentUser");
-          alert("You have been logged out.");
-          window.location.href = "index.html";
-        });
-      }
-    });
 
     // 📧 EmailJS Setup
     (function() {
@@ -210,16 +181,6 @@
           statusDiv.classList.add("error");
         });
     });
-
-    // 📱 Sidebar-Toggle (wie in script.js)
-    const menuToggle = document.getElementById("menu-toggle");
-    const sidebar = document.getElementById("sidebar");
-    const closeSidebar = document.getElementById("close-sidebar");
-
-    if (menuToggle && sidebar) {
-      menuToggle.addEventListener("click", () => sidebar.style.display = "block");
-      if (closeSidebar) closeSidebar.addEventListener("click", () => sidebar.style.display = "none");
-    }
   </script>
 </body>
 </html>
