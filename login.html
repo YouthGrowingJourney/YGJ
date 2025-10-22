@@ -53,36 +53,27 @@
 
   <script src="script.js"></script>
   <script>
- document.getElementById("login-submit").addEventListener("click", () => {
-  const user = document.getElementById("login-username").value.trim();
-  const pass = document.getElementById("login-password").value.trim();
-  const message = document.getElementById("login-message");
+    document.getElementById("login-submit").addEventListener("click", () => {
+      const user = document.getElementById("login-username").value.trim();
+      const pass = document.getElementById("login-password").value.trim();
+      const message = document.getElementById("login-message");
 
-  // 🔥 Backend-Login
-  fetch("https://ygj-auth.onrender.com", {
-    method: "POST",
-    credentials: "include", // wichtig für Session
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username: user, password: pass }),
-  })
-  .then(res => res.json())
-  .then(data => {
-    if(data.success) {
-      message.textContent = "Log-In Successful!";
-      message.style.color = "#0f0";
-      // Session wird vom Backend via Cookie gesetzt
-      setTimeout(() => window.location.href = "profile.html", 1200);
-    } else {
-      message.textContent = data.message || "Wrong Username or Password!";
-      message.style.color = "#f00";
-    }
-  })
-  .catch(err => {
-    console.error("Login error:", err);
-    message.textContent = "Server error. Try again.";
-    message.style.color = "#f00";
-  });
-});
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      let found = users.find(u => u.username === user && u.password === pass);
+
+      if (found) {
+        message.textContent = "Log-In Succesful!";
+        message.style.color = "#0f0";
+
+        // Session speichern
+        localStorage.setItem("currentUser", user);
+
+        setTimeout(() => window.location.href = "profile.html", 1200);
+      } else {
+        message.textContent = "Wrong Username or Password!";
+        message.style.color = "#f00";
+      }
+    });
   </script>
 </body>
 </html>
