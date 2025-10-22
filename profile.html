@@ -122,17 +122,17 @@
 
   <!-- Profile-specific logic: this ties the profile page to the Free Plan storage and makes progress "real" -->
   <script>
-    // 🔥 NUR EINE Auth-Prüfung!
-    (async () => {
-      const isLoggedIn = await checkAuth(); // ✅ Nutzt globale Funktion aus script.js
-      if (!isLoggedIn) {
-        window.location.href = "login.html";
-        return;
-      }
-      // Wenn eingeloggt, zeige Navigation korrekt an
-      updateNav();
-    })();
 
+ // Delegate Logout: funktioniert auf allen Seiten
+document.body.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "logout-btn") {
+        localStorage.removeItem("currentUser");
+        updateNav();
+        alert("You have been logged out.");
+        window.location.href = "index.html";
+    }
+});
+    
   (function(){
     // --- Helpers to access per-user free-plan storage ---
     const getCurrentUser = () => localStorage.getItem('currentUser') || 'guest';
@@ -382,3 +382,10 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
