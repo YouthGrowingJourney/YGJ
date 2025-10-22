@@ -1,6 +1,5 @@
 (function() {
-  // === Minimaler Backend-Hook ===
-  const API_BASE = "https://ygj-auth.onrender.com"; // <- Render-Backend
+  const API_BASE = "https://ygj-auth.onrender.com"; // Backend auf Render
 
   // === Verbesserte Auth-Sync ===
   async function tryServerAuthSync() {
@@ -18,18 +17,15 @@
     }
   }
 
-  // Starte Sync beim Laden
   tryServerAuthSync();
 
-  // ============================
-  // Original DOMContentLoaded-Wrapper (beibehalten)
-  // ============================
   document.addEventListener("DOMContentLoaded", () => {
-
     /* ============================
-       AUTO-LOGIN CHECK FÜR PROTECTED SEITEN
+       AUTO-LOGIN CHECK (fix)
        ============================ */
     const path = window.location.pathname;
+
+    // 👇 Neue Version: nur redirect, wenn wirklich notwendig
     if (path.includes("profile.html") || path.includes("contact.html")) {
       (async () => {
         await tryServerAuthSync();
@@ -38,10 +34,19 @@
           window.location.href = "login.html";
         }
       })();
+    } else if (path.includes("login.html")) {
+      // 👇 Wenn eingeloggt und auf login.html -> gleich weiterleiten
+      (async () => {
+        await tryServerAuthSync();
+        const currentUser = localStorage.getItem("currentUser");
+        if (currentUser) {
+          window.location.href = "profile.html";
+        }
+      })();
     }
 
     /* ============================
-       THEME (Per-User Light/Dark)
+       THEME (per-user)
        ============================ */
     function getCurrentUser() {
       return localStorage.getItem("currentUser") || "guest";
@@ -114,7 +119,7 @@
     }
 
     /* ============================
-       SIDEBAR (open/close)
+       SIDEBAR
        ============================ */
     const sidebar = document.getElementById("sidebar");
     const menuBtn = document.getElementById("menu-toggle");
@@ -143,7 +148,7 @@
     }
 
     /* ============================
-       INDEX / START Buttons
+       START Buttons
        ============================ */
     const startSection = document.querySelector("section.intro");
     if (startSection && window.location.pathname.includes("index.html")) {
@@ -281,7 +286,7 @@
     }
 
     /* ============================
-       PROFILE PAGE (stats)
+       PROFILE PAGE
        ============================ */
     const profileUsername = document.getElementById("username");
     if (profileUsername) {
@@ -292,10 +297,9 @@
         profileUsername.textContent = currentUser;
       }
     }
-
   }); // DOMContentLoaded end
 
-  // === checkAuth (global verfügbar) ===
+  // === checkAuth (global verbessert) ===
   async function checkAuth() {
     try {
       const res = await fetch(`${API_BASE}/check-auth`, { credentials: "include" });
@@ -307,11 +311,16 @@
         if (usernameEl) usernameEl.textContent = data.username;
       } else {
         localStorage.removeItem("currentUser");
-        window.location.href = "login.html";
+        // 🔥 Kein Redirect, wenn bereits auf Login-Seite
+        if (!window.location.pathname.includes("login.html")) {
+          window.location.href = "login.html";
+        }
       }
     } catch (err) {
       console.error("Auth check failed:", err);
-      window.location.href = "login.html";
+      if (!window.location.pathname.includes("login.html")) {
+        window.location.href = "login.html";
+      }
     }
   }
 })();
