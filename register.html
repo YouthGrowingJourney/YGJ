@@ -59,34 +59,28 @@
 
   <script src="script.js"></script>
   <script>
-    document.getElementById("register-submit").addEventListener("click", () => {
-      const user = document.getElementById("new-username").value.trim();
-      const pass = document.getElementById("new-password").value.trim();
-      const message = document.getElementById("register-message");
-
-      if (!user || !pass) {
-        message.textContent = "Please Fill Out Every Container";
-        message.style.color = "#f00";
-        return;
-      }
-
-      // existierende User laden
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      if (users.find(u => u.username === user)) {
-        message.textContent = "Username Not Available";
-        message.style.color = "#f00";
-        return;
-      }
-
-      // neuen User speichern
-      users.push({ username: user, password: pass });
-      localStorage.setItem("users", JSON.stringify(users));
-
-      message.textContent = "Registration Sucessful!";
-      message.style.color = "#0f0";
-
-      setTimeout(() => window.location.href = "login.html", 1200);
-    });
+   fetch("https://ygj-auth.onrender.com", {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username: user, email: email, password: pass }),
+})
+.then(res => res.json())
+.then(data => {
+  if(data.message === "User registered successfully") {
+    message.textContent = "Registration Successful!";
+    message.style.color = "#0f0";
+    setTimeout(() => window.location.href = "login.html", 1200);
+  } else {
+    message.textContent = data.message || "Registration failed";
+    message.style.color = "#f00";
+  }
+})
+.catch(err => {
+  console.error("Register error:", err);
+  message.textContent = "Server error. Try again.";
+  message.style.color = "#f00";
+});
   </script>
 </body>
 </html>
