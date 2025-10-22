@@ -1,276 +1,82 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YGJ - About Us</title>
-
-  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <style>
-    :root{
-      --bg: #333;
-      --card: #3d3d3d;
-      --muted: #bdbdbd;
-      --accent: #e0c280;
-      --accent-2: #c0a060;
-      --glass: rgba(255,255,255,0.06);
-      --radius: 14px;
-      --max-width:1200px;
-      color-scheme: dark;
-    }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Playfair Display", serif;
-      background: var(--bg);
-      color: #fff;
-    }
-
-    a { color: var(--accent); text-decoration: none; }
-
-    .container { max-width: var(--max-width); margin: 30px auto; padding: 20px; }
-
-    /* Header */
-    header {
-      display: flex; align-items: center; gap: 18px;
-      padding: 18px; border-radius: 16px;
-      background: var(--card);
-      margin: 12px auto; max-width: var(--max-width);
-    }
-
-    .home-btn img { width: 44px; height: 44px; border-radius: 8px; }
-    header h1 { font-family: "Cinzel Decorative", serif; margin: 0; font-size: 1.25rem; color: var(--accent); }
-    .header-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-
-    .btn {
-      background: transparent;
-      border: 1px solid var(--glass);
-      padding: 8px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      color: inherit;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-
-    .btn:hover {
-      background: var(--glass);
-    }
-
-    .login-header-btn {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color: #000;
-      font-weight: 700;
-    }
-
-    /* Layout */
-    .layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; }
-    @media (max-width:900px){ .layout{grid-template-columns:1fr;} .sidebar{order:2;} header{flex-wrap:wrap;}}
-
-    /* Sidebar */
-    .sidebar {
-      background: var(--card);
-      padding: 14px;
-      border-radius: 16px;
-      height: fit-content;
-      display: none;
-    }
-    .sidebar.open { display: block; }
-    .sidebar-header { display: flex; justify-content: flex-end; }
-    .close-btn { background: transparent; border: 0; color: var(--muted); font-size: 1.2rem; cursor: pointer; }
-    .sidebar-content { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-    .sidebar-content button {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px; border-radius: 12px; border: 0;
-      background: transparent; color: var(--muted);
-      cursor: pointer; text-align: left;
-    }
-    .sidebar-content button:hover { background: var(--glass); color: var(--accent); }
-
-    /* Card */
-    .card {
-      background: var(--card);
-      padding: 22px;
-      border-radius: var(--radius);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    .intro h2 { font-family: "Playfair Display", serif; color: var(--accent); margin: 0; font-size: 2rem; }
-    .intro p { color: var(--muted); line-height: 1.6; margin-top: 10px; }
-
-    /* Grid */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
-    @media (max-width:900px){ .grid-2{grid-template-columns:1fr;} }
-
-    /* Team */
-    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-    @media (max-width:1000px){ .team-grid{grid-template-columns: repeat(2,1fr);} }
-    @media (max-width:600px){ .team-grid{grid-template-columns: 1fr;} }
-
-    .member { background: var(--glass); padding: 16px; border-radius: 12px; text-align: center; }
-    .avatar {
-      width: 92px; height: 92px; border-radius: 50%;
-      margin: 0 auto;
-      background: linear-gradient(90deg,var(--accent),var(--accent-2));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; color: #000; font-size: 1.1rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
-    }
-
-    .member h4 { margin: 10px 0 2px 0; }
-    .member p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-
-    /* Stats */
-    .stats { display: flex; gap: 12px; justify-content: space-between; margin-top: 18px; }
-    @media (max-width:700px){ .stats{flex-direction: column;} }
-    .stat { flex: 1; padding: 14px; border-radius: 12px; background: var(--glass); text-align: center; }
-    .stat .num { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
-
-    footer { margin: 22px auto; text-align: center; color: var(--muted); font-size: 0.9rem; }
-  </style>
 </head>
+
 <body>
-  <!-- HEADER -->
+
   <header>
-    <a href="index.html" class="home-btn" aria-label="Home">
-      <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home" />
+    <a href="index.html" class="home-btn">
+      <img
+        src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png"
+        alt="Home"
+      />
     </a>
+
     <h1>Youth Growing Journey</h1>
-    <div class="header-actions" id="header-actions"></div>
-    <button id="menu-toggle" class="btn" aria-label="Menu öffnen"><i class="fa-solid fa-bars"></i></button>
+
+    <!-- Wichtig: IDs hinzugefügt für Script-Kompatibilität -->
+    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'">
+      <i class="fa-solid fa-right-to-bracket"></i> Log In
+    </button>
+
+    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'">
+      <i class="fa-solid fa-user-plus"></i> Sign Up
+    </button>
+
+    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
+    <button id="menu-toggle" class="menu-btn">&#9776;</button>
   </header>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <button id="close-sidebar" class="close-btn" aria-label="Sidebar schließen">&times;</button>
+      <button id="close-sidebar" class="close-btn">&times;</button>
     </div>
-    <nav class="sidebar-content">
-      <button onclick="window.location.href='profile.html'"><i class="fa-solid fa-user"></i> Profile</button>
-      <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button>
-      <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact</button>
-      <button id="logout-btn" style="display:none;"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
-    </nav>
-  </aside>
 
-  <!-- MAIN -->
-  <div class="layout container">
-    <section class="card intro">
-      <h2>About Us</h2>
-      <p>Youth Growing Journey (YGJ) ist mehr als eine Website – es ist eine Bewegung. Wir glauben an dein Potenzial, Bruder. 💪🔥</p>
+    <div class="sidebar-content">
+      <button onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
 
-      <div class="grid-2">
-        <div class="card">
-          <h3>Our Mission</h3>
-          <p class="muted">Struktur. Fokus. Disziplin. YGJ unterstützt dich, dein bestes Ich zu formen.</p>
-        </div>
-        <div class="card">
-          <h3>Our Values</h3>
-          <p class="muted">Community. Growth. Determination. Kein Aufgeben – niemals.</p>
-        </div>
-      </div>
+      <button onclick="window.location.href='about-us.html'">
+        <i class="fa-solid fa-info-circle"></i> About Us
+      </button>
 
-      <section class="team card">
-        <h3>Our Team</h3>
-        <div class="team-grid">
-          <div class="member">
-            <div class="avatar">Rex</div>
-            <h4>Rex187</h4>
-            <p class="muted">Founder</p>
-          </div>
-          <div class="member">
-            <div class="avatar">JD</div>
-            <h4>John Doe</h4>
-            <p class="muted">Community</p>
-          </div>
-          <div class="member">
-            <div class="avatar">GPT</div>
-            <h4>ChatGPT</h4>
-            <p class="muted">Tech Lead</p>
-          </div>
-        </div>
-      </section>
+      <button onclick="window.location.href='contact.html'">
+        <i class="fa-solid fa-envelope"></i> Contact Us
+      </button>
 
-      <div class="stats">
-        <div class="stat"><div class="num" id="stat-members">—</div><div class="muted">Active Members</div></div>
-        <div class="stat"><div class="num" id="stat-challenges">—</div><div class="muted">Completed Challenges</div></div>
-        <div class="stat"><div class="num" id="stat-mentors">—</div><div class="muted">Mentors</div></div>
-      </div>
-    </section>
+      <button id="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
   </div>
-
-  <footer>&copy; Youth Growing Journey – built for a strong generation.</footer>
-
-  <!-- SCRIPT -->
-  <script>
-    const header = document.getElementById("header-actions");
-    const logoutBtn = document.getElementById("logout-btn");
-
-    function getUser(){
-      try { return JSON.parse(localStorage.getItem("loggedInUser") || "null"); }
-      catch { return null; }
-    }
-
-    function renderHeader(){
-      header.innerHTML = "";
-      const user = getUser();
-
-      if(user){
-        // User logged in
-        const nameBtn = document.createElement("button");
-        nameBtn.className = "btn";
-        nameBtn.textContent = user.name;
-        nameBtn.onclick = () => window.location.href = "profile.html";
-
-        const logout = document.createElement("button");
-        logout.className = "btn";
-        logout.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Logout';
-        logout.onclick = doLogout;
-
-        header.appendChild(nameBtn);
-        header.appendChild(logout);
-        logoutBtn.style.display = "flex";
-      } else {
-        // User logged out
-        const login = document.createElement("button");
-        login.className = "btn login-header-btn";
-        login.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Log In';
-        login.onclick = () => window.location.href = "login.html";
-
-        const register = document.createElement("button");
-        register.className = "btn login-header-btn";
-        register.innerHTML = '<i class="fa-solid fa-user-plus"></i> Register';
-        register.onclick = () => window.location.href = "register.html";
-
-        header.appendChild(login);
-        header.appendChild(register);
-        logoutBtn.style.display = "none";
-      }
-    }
-
-    function doLogout(){
-      localStorage.removeItem("loggedInUser");
-      renderHeader();
-      window.location.replace("login.html");
-    }
-
-    // Sidebar toggle
-    const sidebar = document.getElementById("sidebar");
-    document.getElementById("menu-toggle").onclick = () => sidebar.classList.add("open");
-    document.getElementById("close-sidebar").onclick = () => sidebar.classList.remove("open");
-    logoutBtn.onclick = doLogout;
-
-    // Stats simulation
-    document.getElementById("stat-members").textContent = Math.floor(200 + Math.random()*150);
-    document.getElementById("stat-challenges").textContent = Math.floor(500 + Math.random()*300);
-    document.getElementById("stat-mentors").textContent = 5 + Math.floor(Math.random()*4);
-
-    renderHeader();
-  </script>
+  <section class="intro">
+    <h2>About Us</h2>
+    <p>
+      Youth Growing Journey (YGJ) is more than just a website – it's a movement.<br />
+      We deeply believe that every human has the potential to grow, reach their goals,
+      and become the best version of themselves.
+    </p>
+    <p>
+      Founded by young visionaries, YGJ creates structure and community.<br />
+      Our goal is to give you all the tools you need to reach your true potential — no matter where you start.
+    </p>
+    <p>
+      Whether you're starting for free or joining our premium plan, our focus is always on progress.<br />
+      We're here to walk the path with you.
+    </p>
+  </section>
+  <footer>
+    &copy; Youth Growing Journey – built for a strong generation.
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
