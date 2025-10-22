@@ -124,7 +124,7 @@
   <!-- Kontaktformular -->
   <section class="contact-container">
     <h2>Contact Us</h2>
-    <p>Have questions, feedback, or just want to say hello? Fill out the form below, and we'll get back to you!</p>
+    <p>Have questions, feedback, or just want to say hello? Fill out the form below, and we’ll get back to you!</p>
 
     <form id="contact-form">
       <input type="text" name="from_name" placeholder="Your Name" required />
@@ -142,23 +142,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
-
   <script>
-    // 🔥 NUR EINE Auth-Prüfung!
-    (async () => {
-      const isLoggedIn = await checkAuth(); // ✅ Nutzt globale Funktion aus script.js
-      if (!isLoggedIn) {
-        alert("⚠️ You have to log-in to access the contact page!");
-        window.location.href = "login.html";
-        return;
-      }
-      // Wenn eingeloggt, zeige Navigation korrekt an
-      updateNav();
-    })();
-
-    // 📧 EmailJS Setup
+    // EmailJS initialisieren
     (function() {
-      emailjs.init("ODSOg03RHLWny7u13");
+      emailjs.init("ODSOg03RHLWny7u13"); // <-- hier kommt dein Public Key rein
     })();
 
     const form = document.getElementById("contact-form");
@@ -174,9 +161,8 @@
           statusDiv.textContent = "✅ Message sent successfully!";
           statusDiv.classList.add("success");
           form.reset();
-        })
-        .catch((error) => {
-          console.error("EmailJS Error:", error);
+        }, (error) => {
+          console.error(error);
           statusDiv.textContent = "❌ Failed to send. Please try again later.";
           statusDiv.classList.add("error");
         });
@@ -184,3 +170,5 @@
   </script>
 </body>
 </html>
+
+
