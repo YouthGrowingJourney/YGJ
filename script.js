@@ -173,16 +173,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
  // Delegate Logout: funktioniert auf allen Seiten
 document.body.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "logout-btn") {
-        localStorage.removeItem("currentUser");
-        updateNav();
-        alert("You have been logged out.");
-        window.location.href = "index.html";
-    }
+  if (e.target && e.target.id === "logout-btn") {
+    localStorage.removeItem("currentUser");
+    updateNav();
+    const modal = document.createElement('div');
+    modal.classList.add('modal-overlay');
+    modal.innerHTML = `
+      <div class="modal-content">
+        <p><i class="fa-solid fa-door-open"></i> You have been logged out.</p>
+        <button class="close-modal-btn btn">OK</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    // OK-Button → Modal schließen und danach Redirect ausführen
+    modal.querySelector('.close-modal-btn').addEventListener('click', () => {
+      modal.remove();
+      window.location.href = "index.html";
+    });
+    alert("You have been logged out.");
+    window.location.href = "index.html";
+  }
 });
-
   updateNav();
-
   /* ============================
      LOGIN (page-specific)
      ============================ */
@@ -333,6 +345,7 @@ if (registerSubmit) {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
 
 
 
