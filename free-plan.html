@@ -61,6 +61,45 @@
     .notice { font-size:.95rem; opacity:.8; }
     .divider { height:1px; background: rgba(255,255,255,0.1); margin: 1rem 0; }
     .pdf-note { font-size:.9rem; opacity:.85; margin-top:.35rem; }
+    .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 0 20px #e0c280;
+  color: #e0c280;
+}
+.modal-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+/* Animation (optional, für Premium-Vibe) */
+@keyframes modal-pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+body.dark .modal-content {
+  background: #333;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 0 20px #e0c280;
+  color: #fff;
+}
   </style>
 </head>
 <body>
