@@ -190,9 +190,6 @@ document.body.addEventListener("click", (e) => {
       modal.remove();
       window.location.href = "index.html";
     });
-    alert("You have been logged out.");
-    window.location.href = "index.html";
-  }
 });
   updateNav();
   /* ============================
@@ -345,6 +342,7 @@ if (registerSubmit) {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
 
 
 
