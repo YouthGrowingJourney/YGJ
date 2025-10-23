@@ -174,23 +174,59 @@ document.addEventListener("DOMContentLoaded", () => {
  // Delegate Logout: funktioniert auf allen Seiten
 document.body.addEventListener("click", (e) => {
   if (e.target && e.target.id === "logout-btn") {
+    // === unverändert: ausloggen + UI updaten ===
     localStorage.removeItem("currentUser");
     updateNav();
+
+    // === Modal anzeigen (anstelle des blockierenden alert + sofort-redirect) ===
+    // Falls schon ein Modal offen ist, nichts tun
+    if (document.querySelector('.modal-overlay')) return;
+
     const modal = document.createElement('div');
     modal.classList.add('modal-overlay');
+
     modal.innerHTML = `
-      <div class="modal-content">
-        <p><i class="fa-solid fa-door-open"></i> You have been logged out.</p>
-        <button class="close-modal-btn btn">OK</button>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-label="Logged out">
+        <p><i class="fa-solid fa-door-open"></i> You have been logged out successfully.</p>
+        <button class="close-modal-btn btn" type="button">OK</button>
       </div>
     `;
+
     document.body.appendChild(modal);
-    // OK-Button → Modal schließen und danach Redirect ausführen
-    modal.querySelector('.close-modal-btn').addEventListener('click', () => {
+
+    // Klick auf OK -> Modal schließen und dann redirect (wie vorher)
+    const okBtn = modal.querySelector('.close-modal-btn');
+    okBtn.addEventListener('click', () => {
       modal.remove();
+      // genau wie vorher: weiterleiten
       window.location.href = "index.html";
     });
-};
+
+    // Optional: Klick auf Overlay schließt ebenfalls und redirect (UX-freundlich)
+    modal.addEventListener('click', (ev) => {
+      if (ev.target === modal) {
+        modal.remove();
+        window.location.href = "index.html";
+      }
+    });
+
+    // Optional: Escape key schließt ebenfalls
+    const onEsc = (ev) => {
+      if (ev.key === "Escape") {
+        document.removeEventListener('keydown', onEsc);
+        if (modal.parentElement) {
+          modal.remove();
+          window.location.href = "index.html";
+        }
+      }
+    };
+    document.addEventListener('keydown', onEsc);
+
+    // --- wichtig: KEIN alert() mehr hier ---
+    // alert("You have been logged out.");
+    // window.location.href = "index.html";
+  }
+});
   updateNav();
   /* ============================
      LOGIN (page-specific)
@@ -344,3 +380,4 @@ if (registerSubmit) {
 }); // DOMContentLoaded end
 }
 )
+
