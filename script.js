@@ -377,7 +377,8 @@ if (registerSubmit) {
      ============================ */
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
-}); // DOMContentLoaded end
+); // DOMContentLoaded end
 }
 )
+
 
