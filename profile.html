@@ -73,6 +73,7 @@
       <div>
         <h2 id="display-name">Guest</h2>
         <p class="small" id="profile-email">Not logged-in</p>
+        <p class="small" id="profile-info"></p>
       </div>
       <div style="margin-left:auto; display:flex; gap:.6rem;">
         <button id="edit-profile" class="btn">Edit Profile</button>
@@ -192,6 +193,7 @@ document.body.addEventListener("click", (e) => {
       elDisplayName.textContent = profile.displayName || (user === 'guest' ? 'Guest' : user);
       elEmail.textContent = profile.email || (user === 'guest' ? 'Not logged in' : profile.email || '—');
       elAvatar.src = profile.avatar || elAvatar.src;
+      elInfo.textContent = profile.info || (user === 'guest' ? 'No Info' : profile.info || '-');
 
       const k = computeKPIs();
       elProgress.textContent = k.progress + '%';
@@ -223,6 +225,9 @@ document.body.addEventListener("click", (e) => {
               <label class="small acc">Avatar (URL)<br><input id="modal-avatar" type="url" style="width:100%; padding:.4rem; margin-top:6px; border-radius: 8px 8px 8px 8px;
               border: solid 1.5px #e0c280;" 
               value="${existing.avatar || ''}"></label>
+              <label class="small acc">Info (max. 200 characters)<br><input id="modal-info" type="text" maxlength="200" style="width:100%; padding:.4rem; margin-top: 6px; border-radius: 8px 8px 8px 8px;
+              border: solid 1.5px #e0c280;"
+              value="${existing.info || ''}"></label>
             </div>
           </div>
           <div style="display:flex; gap:.6rem; justify-content:flex-end; margin-top:12px">
@@ -239,6 +244,7 @@ document.body.addEventListener("click", (e) => {
           displayName: modal.querySelector('#modal-displayname').value.trim() || existing.displayName || getCurrentUser(),
           email: modal.querySelector('#modal-email').value.trim() || existing.email || '',
           avatar: modal.querySelector('#modal-avatar').value.trim() || existing.avatar || elAvatar.src
+          info: modal.querySelector('modal-info').value.trim() ||existing.info || '',
         };
         saveProfile(newMeta);
         renderProfile();
@@ -384,6 +390,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
