@@ -240,12 +240,12 @@ document.body.addEventListener("click", (e) => {
       // handlers
       modal.querySelector('#modal-cancel').addEventListener('click', () => modal.remove());
       modal.querySelector('#modal-save').addEventListener('click', () => {
-        const newMeta = {
-          displayName: modal.querySelector('#modal-displayname').value.trim() || existing.displayName || getCurrentUser(),
-          email: modal.querySelector('#modal-email').value.trim() || existing.email || '',
-          avatar: modal.querySelector('#modal-avatar').value.trim() || existing.avatar || elAvatar.src
-          info: modal.querySelector('modal-info').value.trim() ||existing.info || '', }
-        };
+    const newMeta = {
+       displayName: modal.querySelector('#modal-displayname').value.trim() || existing.displayName || getCurrentUser(),
+       email: modal.querySelector('#modal-email').value.trim() || existing.email || '',
+       avatar: modal.querySelector('#modal-avatar').value.trim() || existing.avatar || elAvatar.src,
+       info: modal.querySelector('#modal-info').value.trim() || existing.info || ''
+     };
         saveProfile(newMeta);
         renderProfile();
         modal.remove();
@@ -390,6 +390,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
