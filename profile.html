@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,10 +20,6 @@
     .profile-buttons { margin-top:12px; display:flex; gap:.6rem; }
     .btn { border-radius:8px; border:0; cursor:pointer; background:#e0c280; color:#fff; }
     .avatar { width:72px; height:72px; border-radius:12px; object-fit:cover; }
-
-    /* Modal (reuse same style as free-plan) */
-    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content:center; align-items:center; z-index:1100; }
-    .modal-content { background: #fff; padding:1rem 1.2rem; border-radius:12px; max-width:720px; width: 94%; color:#111; }
 
     /* Statistics small chart */
     .stats-grid { display:grid; grid-template-columns: 1fr 320px; gap:12px; }
@@ -218,13 +214,13 @@ document.body.addEventListener("click", (e) => {
           <div style="display:flex; gap:12px; align-items:center; margin-top:8px">
             <img id="modal-avatar-preview" src="${existing.avatar || elAvatar.src}" alt="avatar" style="width:84px;height:84px;border-radius:10px;object-fit:cover">
             <div style="flex:1">
-              <label class="small acc">Display Name<br><input id="modal-displayname" type="text" maxlength="12" style="width:100%; padding:.4rem; margin-top: 6px; border-radius: 8px 8px 8px 8px;
+              <label class="small acc">Display Name (max. 20 characters)<br><input id="modal-displayname" type="text" maxlength="20" style="width:100%; padding:.4rem; margin-top: 6px; border-radius: 8px 8px 8px 8px;
               border: solid 1.5px #e0c280;"
               value="${existing.displayName || ''}"></label>
               <label class="small acc">Email (optional)<br><input id="modal-email" type="email" style="width:100%; padding:.4rem; margin-top:6px; border-radius: 8px 8px 8px 8px;
               border: solid 1.5px #e0c280;" 
               value="${existing.email || ''}"></label>
-              <label class="small acc">Avatar URL<br><input id="modal-avatar" type="url" style="width:100%; padding:.4rem; margin-top:6px; border-radius: 8px 8px 8px 8px;
+              <label class="small acc">Avatar (URL)<br><input id="modal-avatar" type="url" style="width:100%; padding:.4rem; margin-top:6px; border-radius: 8px 8px 8px 8px;
               border: solid 1.5px #e0c280;" 
               value="${existing.avatar || ''}"></label>
             </div>
@@ -388,6 +384,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
