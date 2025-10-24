@@ -361,15 +361,7 @@ if (registerSubmit) {
   /* ============================
      Optional: small page-specific button handlers
      ============================ */
-  const editProfileBtn = document.getElementById("edit-profile");
-  if (editProfileBtn) {
-    editProfileBtn.addEventListener("click", () => alert("Editing profile feature coming soon!"));
-  }
 
-  const viewAchievementsBtn = document.getElementById("view-achievements");
-  if (viewAchievementsBtn) {
-    viewAchievementsBtn.addEventListener("click", () => alert("Achievements page coming soon!"));
-  }
 
   /* ============================
      Trigger an event to notify others that theme is ready
@@ -380,6 +372,7 @@ if (registerSubmit) {
 ; // DOMContentLoaded end
 }
 )
+
 
 
 
