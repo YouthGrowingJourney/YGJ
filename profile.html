@@ -31,7 +31,7 @@
     table.stats-table { width:100%; border-collapse:collapse; }
     table.stats-table th, table.stats-table td { padding:8px; border-bottom:1px solid rgba(0,0,0,0.06); text-align:left; }
 
-    .small { font-size:.92rem; color:#444; }
+    .small { font-size:.92rem; color:#e0c280; }
   </style>
 </head>
 <body>
@@ -218,9 +218,15 @@ document.body.addEventListener("click", (e) => {
           <div style="display:flex; gap:12px; align-items:center; margin-top:8px">
             <img id="modal-avatar-preview" src="${existing.avatar || elAvatar.src}" alt="avatar" style="width:84px;height:84px;border-radius:10px;object-fit:cover">
             <div style="flex:1">
-              <label class="small">Display Name<br><input id="modal-displayname" type="text" style="width:100%; padding:.4rem; margin-top:6px" value="${existing.displayName || ''}"></label>
-              <label class="small">Email (optional)<br><input id="modal-email" type="email" style="width:100%; padding:.4rem; margin-top:6px" value="${existing.email || ''}"></label>
-              <label class="small">Avatar URL<br><input id="modal-avatar" type="url" style="width:100%; padding:.4rem; margin-top:6px" value="${existing.avatar || ''}"></label>
+              <label class="small acc">Display Name<br><input id="modal-displayname" type="text" maxlength="12" style="width:100%; padding:.4rem; margin-top: 6px; border-radius: 8px 8px 8px 8px;
+              border: solid 1.5px #e0c280;"
+              value="${existing.displayName || ''}"></label>
+              <label class="small acc">Email (optional)<br><input id="modal-email" type="email" style="width:100%; padding:.4rem; margin-top:6px; border-radius: 8px 8px 8px 8px;
+              border: solid 1.5px #e0c280;" 
+              value="${existing.email || ''}"></label>
+              <label class="small acc">Avatar URL<br><input id="modal-avatar" type="url" style="width:100%; padding:.4rem; margin-top:6px; border-radius: 8px 8px 8px 8px;
+              border: solid 1.5px #e0c280;" 
+              value="${existing.avatar || ''}"></label>
             </div>
           </div>
           <div style="display:flex; gap:.6rem; justify-content:flex-end; margin-top:12px">
@@ -382,6 +388,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
