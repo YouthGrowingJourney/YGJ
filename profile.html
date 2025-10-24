@@ -244,7 +244,7 @@ document.body.addEventListener("click", (e) => {
           displayName: modal.querySelector('#modal-displayname').value.trim() || existing.displayName || getCurrentUser(),
           email: modal.querySelector('#modal-email').value.trim() || existing.email || '',
           avatar: modal.querySelector('#modal-avatar').value.trim() || existing.avatar || elAvatar.src
-          info: modal.querySelector('modal-info').value.trim() ||existing.info || '',
+          info: modal.querySelector('modal-info').value.trim() ||existing.info || '', }
         };
         saveProfile(newMeta);
         renderProfile();
@@ -390,6 +390,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
