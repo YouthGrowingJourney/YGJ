@@ -101,6 +101,92 @@
   margin-right: 10px;
   font-size: 18px;
 }
+    /* --- PROFILE LAYOUT RESTRUCTURED --- */
+.profile-card {
+  background: rgba(0,0,0,0.03);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  margin-bottom: 18px;
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #e0c280;
+}
+
+.profile-actions {
+  margin-left: auto;
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 1.2rem 0;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.quick-actions {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+
+.extra-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 1.6rem;
+}
+
+.panel {
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+body.dark .profile-card,
+body.dark .panel,
+body.dark .stat-card {
+  background: #444;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
   </style>
 </head>
 <body>
@@ -140,50 +226,66 @@
 </div>
 </div>
 
-  <main class="intro">
-    <div style="display:flex; gap:12px; align-items:center">
+<main class="intro">
+  <!-- PROFILE CARD -->
+  <section class="profile-card">
+    <div class="profile-top">
       <img id="profile-avatar" class="avatar" src="https://placehold.co/200x200/png?text=YGJ" alt="Avatar">
-      <div>
+      <div class="profile-info">
         <h2 id="display-name">Guest</h2>
         <p class="small" id="profile-email">Not logged-in</p>
         <p class="small" id="profile-info"></p>
       </div>
-      <div style="margin-left:auto; display:flex; gap:.6rem;">
-        <button id="edit-profile" class="btn">Edit Profile</button>
-        <button id="view-stats" class="btn">View Statistics</button>
-        <button id="view-achievements" class="btn">View Achievements</button>
+      <div class="profile-actions">
+        <button id="edit-profile" class="btn">Edit</button>
       </div>
     </div>
+  </section>
 
-    <div class="profile-stats" style="margin-top:16px">
-      <div class="stat">
-        <h3 id="progress-percentage">0%</h3>
-        <p>Goals Completed</p>
-      </div>
-      <div class="stat">
-        <h3 id="tasks-completed">0</h3>
-        <p>Tasks Completed</p>
-      </div>
-      <div class="stat">
-        <h3 id="streak-days">0</h3>
-        <p>Consecutive Days Active</p>
-      </div>
-      <div class="stat">
-        <h3 id="level">1</h3>
-        <p>Level</p>
-      </div>
+  <!-- STATISTICS GRID -->
+  <section class="stats-section">
+    <div class="stat-card">
+      <h3 id="progress-percentage">0%</h3>
+      <p>Goals Completed</p>
     </div>
-
-    <div style="margin-top:18px">
-      <h3>Quick Actions</h3>
-      <div style="display:flex; gap:.30rem; margin-left:12px; justify-content: center;">
-        <button id="export-profile" class="btn">Export Profile</button>
-        <button id="reset-progress" class="btn">Reset Progress</button>
-        <button id="goto-free-plan" class="btn">Open Free Plan</button>
-      </div>
+    <div class="stat-card">
+      <h3 id="tasks-completed">0</h3>
+      <p>Tasks Completed</p>
     </div>
+    <div class="stat-card">
+      <h3 id="streak-days">0</h3>
+      <p>Streak (Days)</p>
+    </div>
+    <div class="stat-card">
+      <h3 id="level">1</h3>
+      <p>Level</p>
+    </div>
+  </section>
 
-  </main>
+  <!-- ACTION BUTTONS -->
+  <section class="quick-actions">
+    <h3>Quick Actions</h3>
+    <div class="action-buttons">
+      <button id="export-profile" class="btn">Export Profile</button>
+      <button id="reset-progress" class="btn">Reset Progress</button>
+      <button id="goto-free-plan" class="btn">Open Free Plan</button>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL PANELS -->
+  <section class="extra-panels">
+    <div class="panel">
+      <h3>Achievements</h3>
+      <p class="small">View your earned badges</p>
+      <button id="view-achievements" class="btn">View</button>
+    </div>
+    <div class="panel">
+      <h3>Statistics</h3>
+      <p class="small">See your progress trends</p>
+      <button id="view-stats" class="btn">Open</button>
+    </div>
+  </section>
+</main>
 
   <footer style="text-align:center; padding:18px; opacity:.8">&copy; Youth Growing Journey</footer>
 
@@ -464,6 +566,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
