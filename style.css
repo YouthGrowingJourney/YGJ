@@ -360,6 +360,112 @@ footer {
 
 
 
+/* ===== ABOUT PAGE ===== */
+.about-page {
+  padding: 40px 8%;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+.about-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about-hero h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.5rem;
+  color: var(--accent-color);
+}
+
+.about-hero h2 span {
+  color: var(--text-color);
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.about-mission, .about-values, .about-story, .about-team, .about-cta {
+  margin-bottom: 80px;
+}
+
+.about-values .values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.value-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+}
+
+.value-card i {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.team-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 260px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.team-card img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-card h4 {
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.team-card .quote {
+  font-style: italic;
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.about-cta {
+  text-align: center;
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.about-cta h3 {
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.about-cta .btn {
+  margin-top: 15px;
+}
+
 
 
 
