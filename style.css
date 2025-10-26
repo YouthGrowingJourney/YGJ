@@ -67,8 +67,16 @@ body.dark header {
 body.dark h1 {
   color: #e0c280;
 }
-
-body.dark footer {
+body.dark h2 {
+  color: #e0c280;
+}
+body.dark h3 {
+  color: #e0c280;
+}
+body.dark h4 {
+  color: #e0c280;
+}
+  body.dark footer {
   background: #333;
   color: #fff;
 }
@@ -465,6 +473,7 @@ footer {
 .about-cta .btn {
   margin-top: 15px;
 }
+
 
 
 
