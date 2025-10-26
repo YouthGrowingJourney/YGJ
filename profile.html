@@ -122,7 +122,13 @@
   font-size: 1.5rem;
   color: #e0c280;
 }
-
+#profile-info {
+  white-space: pre-wrap;       /* Erlaubt Zeilenumbrüche und erhält manuelle \n */
+  word-wrap: break-word;       /* Bricht Wörter bei zu langen Zeilen */
+  overflow-wrap: break-word;   /* Moderne Alternative zu word-wrap */
+  max-width: 100%;             /* Verhindert Überlauf */
+  line-height: 1.4;            /* Bessere Lesbarkeit */
+}
 .profile-actions {
   margin-left: auto;
 }
@@ -566,6 +572,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
