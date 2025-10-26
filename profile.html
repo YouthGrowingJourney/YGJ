@@ -28,6 +28,10 @@
     table.stats-table th, table.stats-table td { padding:8px; border-bottom:1px solid rgba(0,0,0,0.06); text-align:left; }
 
     .small { font-size:.92rem; color:#e0c280; }
+
+    body.dark .achievement {
+      background: #444;
+    }
   </style>
 </head>
 <body>
@@ -275,7 +279,7 @@ document.body.addEventListener("click", (e) => {
           <h3>Achievements</h3>
           <p class="small">Earned badges based on your activity.</p>
           <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap:8px; margin-top:12px">
-            ${ach.length ? ach.map(a => `<div style="border-radius:8px;padding:10px;background:#f7f7f7"><strong>${a.title}</strong><div class="small">${a.desc}</div></div>`).join('') : '<div class="small">No achievements yet. Keep grinding!</div>'}
+            ${ach.length ? ach.map(a => `<div class="achievement" style="border-radius:8px;padding:10px;background:#f7f7f7"><strong>${a.title}</strong><div class="small">${a.desc}</div></div>`).join('') : '<div class="small">No achievements yet. Keep grinding!</div>'}
           </div>
           <div style="display:flex; justify-content:flex-end; margin-top:12px"><button id="ach-close" class="btn">Close</button></div>
         </div>`;
@@ -391,6 +395,7 @@ document.body.addEventListener("click", (e) => {
   </script>
 </body>
 </html>
+
 
 
 
