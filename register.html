@@ -47,7 +47,7 @@
     <label for="new-email">Email:</label>
     <input type="email" id="new-email" placeholder="Enter email" />
   </div>
-    <input type="password" id="new-password" placeholder="Password" class="login-input">
+    <input type="password" id="new-password" placeholder="Password" class="login-input" minlength="8">
     
     <button class="btn" id="register-submit">Confirm</button>
     <p id="register-message"></p>
@@ -62,9 +62,10 @@
     document.getElementById("register-submit").addEventListener("click", () => {
       const user = document.getElementById("new-username").value.trim();
       const pass = document.getElementById("new-password").value.trim();
+      const email = document.getElementById("new-email").value.trim();
       const message = document.getElementById("register-message");
 
-      if (!user || !pass) {
+      if (!user || !pass || !email) {
         message.textContent = "Please Fill Out Every Container";
         message.style.color = "#f00";
         return;
@@ -87,6 +88,34 @@
 
       setTimeout(() => window.location.href = "login.html", 1200);
     });
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const passwordInput = document.getElementById("new-password");
+  const registerBtn = document.getElementById("register-submit");
+  const message = document.getElementById("register-message");
+
+  registerBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // Verhindert das Absenden
+    const password = passwordInput.value.trim();
+
+    if (password.length < 8) {
+      message.textContent = "You need at least 8 characters";
+      message.style.color = "red";
+      passwordInput.style.borderColor = "red";
+      return; // Registrierung wird hier abgebrochen
+    }
+
+    // Wenn alles passt:
+    message.textContent = "";
+    passwordInput.style.borderColor = "";
+    
+  
+    console.log("Registration successful!");
+  });
+});
+</script>
+
   </script>
 </body>
 </html>
