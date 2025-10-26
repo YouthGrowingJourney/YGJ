@@ -425,6 +425,126 @@ footer {
   margin-top: 15px;
 }
 
+/* ===== HOME PAGE ===== */
+.home-container {
+  padding: 40px 8%;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h2 {
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--accent-color);
+  font-size: 2.6rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* VALUES */
+.values {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.values h3 {
+  color: var(--accent-color);
+  margin-bottom: 40px;
+  font-size: 1.8rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.value-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35),
+              0 0 15px rgba(224,194,128,0.3);
+}
+
+.value-card i {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+/* PREMIUM SECTION */
+.premium-preview {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.premium-preview h3 {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+}
+
+.premium-card {
+  margin: 40px auto 0;
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+
+.premium-card:hover {
+  transform: scale(1.03);
+}
+
+.premium-card i {
+  font-size: 2.2rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+/* CTA */
+.cta {
+  margin-top: 100px;
+  text-align: center;
+  background: var(--card-bg);
+  padding: 50px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.cta h3 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
 
 
 
