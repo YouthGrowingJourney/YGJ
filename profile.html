@@ -619,7 +619,7 @@ function computeKPIs() {
       if (e.key && (e.key.startsWith(`ygj_free_${getCurrentUser()}`) || e.key === nsProfile('meta'))) renderProfile();
     });
 
-  })();
+  });
     function renderUserStats() {
   const tasks = JSON.parse(localStorage.getItem('ygj_tasks') || '[]');
   const done = tasks.filter(t => t.done).length;
@@ -636,6 +636,7 @@ function computeKPIs() {
   </script>
 </body>
 </html>
+
 
 
 
