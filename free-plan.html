@@ -329,28 +329,51 @@ body.dark .modal-content {
       saveTasks(tasks);
       renderTasks();
     }
+function removeTask(index) {
+  const tasks = loadTasks();
+  const task = tasks[index];
+  
+  // Wenn die Task erledigt war → in History speichern
+  if (task && task.done) archiveTask(task);
+  
+  // Danach aus der aktuellen Liste löschen
+  tasks.splice(index, 1);
+  saveTasks(tasks);
+  renderTasks();
+}
 
-    function moveTask(index, dir) {
-      const tasks = loadTasks();
-      const newIndex = index + dir;
-      if (newIndex < 0 || newIndex >= tasks.length) return;
-      const [item] = tasks.splice(index, 1);
-      tasks.splice(newIndex, 0, item);
-      saveTasks(tasks);
-      renderTasks();
-    }
+   function updateKPIs(tasks) {
+  const history = loadCompletedHistory();
+  const total = tasks.length;
+  const done = tasks.filter(t => t.done).length + history.length; // erledigte + archivierte
+  const progress = total ? Math.round((done / (total + history.length)) * 100) : 100;
 
-    function updateKPIs(tasks) {
-      const total = tasks.length;
-      const done = tasks.filter(t => t.done).length;
-      const progress = total ? Math.round((done / total) * 100) : 0;
-      kpiTasks.textContent = total;
-      kpiDone.textContent = done;
-      kpiProgress.textContent = progress + '%';
-      progressLabel.textContent = progress + '%';
-      progressBar.style.width = progress + '%';
-    }
-
+  kpiTasks.textContent = total + history.length;
+  kpiDone.textContent = done;
+  kpiProgress.textContent = progress + '%';
+  progressLabel.textContent = progress + '%';
+  progressBar.style.width = progress + '%';
+}
+    // ========== HISTORIC TRACKING SYSTEM ==========
+// Lädt archivierte erledigte Tasks
+function loadCompletedHistory() {
+  try { return JSON.parse(localStorage.getItem(ns('completedHistory')) || '[]'); }
+  catch { return []; }
+}
+// Speichert archivierte erledigte Tasks
+function saveCompletedHistory(history) {
+  localStorage.setItem(ns('completedHistory'), JSON.stringify(history));
+}
+// Fügt erledigten Task zur History hinzu
+function archiveTask(task) {
+  const history = loadCompletedHistory();
+  // Doppelte Einträge vermeiden (z. B. wenn man eine alte Task neu hinzufügt)
+  if (!history.find(h => h.text === task.text && h.doneAt === task.doneAt)) {
+    task.doneAt = task.doneAt || Date.now();
+    history.push(task);
+    saveCompletedHistory(history);
+  }
+}
     function escapeHtml(s) {
       return s.replace(/[&<>"]+/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     }
