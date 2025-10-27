@@ -193,6 +193,13 @@ body.dark .stat-card {
   background: #444;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
+  #profile-info {
+   white-space: pre-wrap;       /* Zeilenumbrüche aus dem Text werden beachtet */
+   word-wrap: break-word;       /* Lange Wörter umbrechen */
+   overflow-wrap: break-word;   /* Moderne Alternative zu word-wrap */
+   max-width: 100%;             /* Kein horizontaler Overflow */
+   line-height: 1.4;            /* Bessere Lesbarkeit */
+}
   </style>
 </head>
 <body>
@@ -408,7 +415,8 @@ document.body.addEventListener("click", (e) => {
         elDisplayName.textContent = profile.displayName || (user === 'guest' ? 'Guest' : user);
         elEmail.textContent = profile.email || (user === 'guest' ? 'Not logged in' : profile.email || '—');
         elAvatar.src = profile.avatar || elAvatar.src;
-        elInfo.textContent = profile.info || (user === 'guest' ? 'No Info' : profile.info || '-');
+        elInfo.innerHTML = (profile.info || (user === 'guest' ? 'No Info' : '-'))
+                    .replace(/\n/g, '<br>');
 
         const k = computeKPIs();
         elProgress.textContent = k.progress + '%';
@@ -432,7 +440,8 @@ document.body.addEventListener("click", (e) => {
                     <label class="small acc">Display Name (max. 20 characters)<br><input id="modal-displayname" type="text" maxlength="20" style="width:100%; padding:.4rem; margin-top:6px; border-radius:8px; border: solid 1.5px #e0c280;" value="${existing.displayName || ''}"></label>
                     <label class="small acc">Email (optional)<br><input id="modal-email" type="email" style="width:100%; padding:.4rem; margin-top:6px; border-radius:8px; border: solid 1.5px #e0c280;" value="${existing.email || ''}"></label>
                     <label class="small acc">Avatar (URL)<br><input id="modal-avatar" type="url" style="width:100%; padding:.4rem; margin-top:6px; border-radius:8px; border: solid 1.5px #e0c280;" value="${existing.avatar || ''}"></label>
-                    <label class="small acc">Info (max. 200 characters)<br><input id="modal-info" type="text" maxlength="200" style="width:100%; padding:.4rem; margin-top:6px; border-radius:8px; border: solid 1.5px #e0c280;" value="${existing.info || ''}"></label>
+                    <label class="small acc">Info (max. 200 characters)<br><textarea id="modal-info" maxlength="200" rows="4" style="width:100%; padding:.4rem; margin-top:6px; border-radius:8px; border: solid 1.5px #e0c280; resize:vertical;">${existing.info || ''}</textarea>
+
                 </div>
             </div>
             <div style="display:flex; gap:.6rem; justify-content:flex-end; margin-top:12px">
@@ -588,6 +597,7 @@ document.body.addEventListener("click", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
