@@ -327,12 +327,6 @@ document.body.addEventListener("click", (e) => {
     const elLevel = document.getElementById('level');
     const elInfo = document.getElementById('profile-info');
 
-    // Load tasks from free-plan storage (compatible with existing free-plan implementation)
-    function loadTasks() {
-      try { return JSON.parse(localStorage.getItem(nsFree('tasks')) || '[]'); }
-      catch (e) { return []; }
-    }
-    function saveTasks(tasks) { localStorage.setItem(nsFree('tasks'), JSON.stringify(tasks)); }
 
     function loadStreak() {
       try { return JSON.parse(localStorage.getItem(nsFree('streak')) || '{"count":0,"last":""}'); }
@@ -635,6 +629,7 @@ function computeKPIs() {
     }  })</script>
 </body>
 </html>
+
 
 
 
