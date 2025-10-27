@@ -350,68 +350,75 @@ function ns(key) {
   return `ygj_${key}`;
 }
 
-// Lädt aktive Tasks
+// =====================
+// TASKS + HISTORY HANDLING (Done Tasks bleiben erhalten)
+// =====================
+
+// Lädt aktive Tasks (aktuelle Liste im Free Plan)
 function loadTasks() {
-  try { return JSON.parse(localStorage.getItem(ns('tasks')) || '[]'); }
-  catch { return []; }
+  try { return JSON.parse(localStorage.getItem(nsFree('tasks')) || '[]'); }
+  catch (e) { return []; }
+}
+
+// Speichert aktive Tasks
+function saveTasks(tasks) {
+  localStorage.setItem(nsFree('tasks'), JSON.stringify(tasks));
 }
 
 // Lädt archivierte erledigte Tasks
 function loadCompletedHistory() {
-  try { return JSON.parse(localStorage.getItem(ns('completedHistory')) || '[]'); }
-  catch { return []; }
+  try { return JSON.parse(localStorage.getItem(nsFree('completedHistory')) || '[]'); }
+  catch (e) { return []; }
 }
 
-// Berechnet Statistikdaten
-function calculateUserStats() {
-  const tasks = loadTasks();
-  const history = loadCompletedHistory();
-
-  const totalTasks = tasks.length + history.length;
-  const doneTasks = tasks.filter(t => t.done).length + history.length;
-  const progress = totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 100;
-
-  return { totalTasks, doneTasks, progress };
+// Speichert archivierte erledigte Tasks
+function saveCompletedHistory(history) {
+  localStorage.setItem(nsFree('completedHistory'), JSON.stringify(history));
 }
 
-// Rendert Statistik im Profil
-function renderUserStats() {
-  const { totalTasks, doneTasks, progress } = calculateUserStats();
+// Normalisiert Tasks und archiviert gelöschte erledigte Aufgaben
+function normalizeTasksWithHistory() {
+  let tasks = loadTasks();
+  let history = loadCompletedHistory();
+  let changed = false;
 
-  // Beispielhafte IDs, bitte anpassen falls deine anders heißen:
-  const elTotal = document.getElementById('profile-total-tasks');
-  const elDone = document.getElementById('profile-done-tasks');
-  const elProgress = document.getElementById('profile-progress');
+  // Falls eine erledigte Aufgabe gelöscht wurde, bleibt sie im Archiv
+  const archivedIds = new Set(history.map(h => h.id));
 
-  if (elTotal) elTotal.textContent = totalTasks;
-  if (elDone) elDone.textContent = doneTasks;
-  if (elProgress) elProgress.textContent = progress + '%';
-}   
+  // Ergänze fehlende doneAt-Zeitstempel
+  tasks.forEach(t => {
+    if (t.done && !t.doneAt) {
+      t.doneAt = Date.now();
+      changed = true;
     }
-    function saveProfile(meta) { localStorage.setItem(nsProfile('meta'), JSON.stringify(meta)); }
+  });
 
-    // Ensure tasks with done=true have doneAt timestamp (best-effort) so we can compute historic stats
-    function normalizeTasksWithDoneAt() {
-      const tasks = loadTasks();
-      let changed = false;
-      const now = Date.now();
-      tasks.forEach(t => {
-        if (t.done && !t.doneAt) { t.doneAt = t.doneAt || t.createdAt || now; changed = true; }
-      });
-      if (changed) saveTasks(tasks);
-      return tasks;
-    }
+  // Füge alle erledigten hinzu, die noch nicht im Archiv sind
+  tasks.filter(t => t.done && !archivedIds.has(t.id))
+       .forEach(t => {
+         history.push({ ...t, archivedAt: Date.now() });
+       });
 
-    // Compute KPIs from free-plan data
-    function computeKPIs() {
-      const tasks = normalizeTasksWithDoneAt();
-      const total = tasks.length;
-      const done = tasks.filter(t => t.done).length;
-      const progress = total ? Math.round((done/total)*100) : 0;
-      const streak = loadStreak().count || 0;
-      const level = Math.max(1, Math.floor(progress/20) + 1);
-      return { total, done, progress, streak, level, tasks };
-    }
+  saveCompletedHistory(history);
+  if (changed) saveTasks(tasks);
+
+  return { tasks, history };
+}
+
+// =====================
+// KPI-Berechnung (mit History)
+// =====================
+function computeKPIs() {
+  const { tasks, history } = normalizeTasksWithHistory();
+  const total = tasks.length + history.length;
+  const done = tasks.filter(t => t.done).length + history.length;
+  const progress = total ? Math.round((done / total) * 100) : 0;
+  const streak = loadStreak().count || 0;
+  const level = Math.max(1, Math.floor(progress / 20) + 1);
+
+  return { total, done, progress, streak, level, tasks };
+}
+
 
     function renderProfile() {
       const user = getCurrentUser();
@@ -629,6 +636,7 @@ function renderUserStats() {
   </script>
 </body>
 </html>
+
 
 
 
