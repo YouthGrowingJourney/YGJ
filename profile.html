@@ -613,12 +613,23 @@ function renderUserStats() {
     });
 
   })();
+    function renderUserStats() {
+  const tasks = JSON.parse(localStorage.getItem('ygj_tasks') || '[]');
+  const done = tasks.filter(t => t.done).length;
+  const total = tasks.length;
+  const progress = total ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('progress-percentage').textContent = progress + '%';
+  document.getElementById('tasks-completed').textContent = done;
+}
+
     document.addEventListener('DOMContentLoaded', () => {
   renderUserStats();
 });
   </script>
 </body>
 </html>
+
 
 
 
