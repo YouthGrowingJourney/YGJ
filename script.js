@@ -136,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentUser = localStorage.getItem("currentUser");
         if (!currentUser || currentUser === "null") {
           window.location.href = "login.html";
-        ;
         }
       });
 
@@ -234,11 +233,20 @@ document.body.addEventListener("click", (e) => {
   const loginSubmit = document.getElementById("login-submit");
   if (loginSubmit) {
     loginSubmit.addEventListener("click", () => {
-      const username = document.getElementById("login-username").value.trim();
-      const password = document.getElementById("login-password").value.trim();
+      // guard element retrieval to avoid null .value access
+      const usernameEl = document.getElementById("login-username");
+      const passwordEl = document.getElementById("login-password");
+      const msg = document.getElementById("login-message");
+
+      if (!usernameEl || !passwordEl || !msg) {
+        console.warn("Login handler: missing input or message element on this page.");
+        return;
+      }
+
+      const username = usernameEl.value.trim();
+      const password = passwordEl.value.trim();
       const users = JSON.parse(localStorage.getItem("users") || "[]");
       const user = users.find(u => u.username === username && u.password === password);
-      const msg = document.getElementById("login-message");
 
       if (user) {
         localStorage.setItem("currentUser", username);
@@ -270,11 +278,22 @@ document.body.addEventListener("click", (e) => {
 const registerSubmit = document.getElementById("register-submit");
 if (registerSubmit) {
   registerSubmit.addEventListener("click", () => {
-    const username = document.getElementById("new-username").value.trim();
-    const email = document.getElementById("new-email").value.trim();
-    const password = document.getElementById("new-password").value.trim();
-    const confirmPassword = document.getElementById("new-password-confirm").value.trim();
+    // guard element retrieval to avoid null .value access
+    const usernameEl = document.getElementById("new-username");
+    const emailEl = document.getElementById("new-email");
+    const passwordEl = document.getElementById("new-password");
+    const confirmEl = document.getElementById("new-password-confirm");
     const msg = document.getElementById("register-message");
+
+    if (!usernameEl || !emailEl || !passwordEl || !confirmEl || !msg) {
+      console.warn("Register handler: missing input or message element on this page.");
+      return;
+    }
+
+    const username = usernameEl.value.trim();
+    const email = emailEl.value.trim();
+    const password = passwordEl.value.trim();
+    const confirmPassword = confirmEl.value.trim();
 
     // Basic validation
     if (!username || !email || !password || !confirmPassword) {
@@ -369,10 +388,4 @@ if (registerSubmit) {
      ============================ */
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
-; // DOMContentLoaded end
-}
-)
-
-
-
-
+}); // DOMContentLoaded end
