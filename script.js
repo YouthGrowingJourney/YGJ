@@ -320,17 +320,27 @@ if (registerSubmit) {
     // Load existing users
     let users = JSON.parse(localStorage.getItem("users") || "[]");
 
-    // Check if username or email already exists
-    if (users.find(u => u.username === username)) {
-      msg.textContent = "Username already taken!";
-      msg.style.color = "#f00";
-      return;
-    }
-    if (users.find(u => u.email === email)) {
-      msg.textContent = "Email already registered!";
-      msg.style.color = "#f00";
-      return;
-    }
+   // Check if username or email already exists
+const usernameExists = users.find(u => u.username === username);
+const emailExists = users.find(u => u.email === email);
+
+if (usernameExists || emailExists) {
+  // Rote Fehlermeldung mit kurzer "Aufleucht"-Animation
+  let msgText = "";
+  if (usernameExists) msgText += "Username is already taken ";
+  if (emailExists) msgText += "E-Mail already in use";
+
+  msg.textContent = msgText;
+  msg.style.display = "block";
+  msg.style.color = "#f00";
+  msg.style.fontWeight = "bold";
+  msg.style.transition = "opacity 0.4s ease";
+  msg.style.opacity = "1";
+
+  // sanftes Aufleuchten
+  msg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, iterations: 1 });
+  return;
+}
 
     // Add new user
     users.push({ username, email, password });
@@ -361,11 +371,6 @@ if (registerSubmit) {
     } else {
       profileUsername.textContent = currentUser;
 
-      const progress = Math.floor(Math.random() * 100);
-      const tasks = Math.floor(Math.random() * 50) + 1;
-      const streak = Math.floor(Math.random() * 30);
-      const level = Math.floor(progress / 20) + 1;
-
       const pProgress = document.getElementById("progress-percentage");
       const pTasks = document.getElementById("tasks-completed");
       const pStreak = document.getElementById("streak-days");
@@ -389,3 +394,4 @@ if (registerSubmit) {
   window.dispatchEvent(new CustomEvent('ygj:themeloaded', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } }));
 
 }); // DOMContentLoaded end
+
