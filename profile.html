@@ -11,14 +11,14 @@
   <style>
     /* Small page-specific styles for the updated profile page */
     body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
-    header { display:flex; align-items:center; gap:12px; padding:12px; }
+    header { display:flex; align-items:center; gap:12px; padding:10px 20px; }
     header h1 { margin:0; font-size:1.1rem; }
     .intro { max-width:1100px; margin:18px auto; padding:1rem; }
     .profile-stats { display:grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:12px; }
     .stat { background:rgba(0,0,0,0.045); padding:12px; border-radius:12px; text-align:center; }
     .stat h3 { margin:0; font-size:1.4rem; }
     .profile-buttons { margin-top:12px; display:flex; gap:.6rem; }
-    .btn { border-radius:8px; border:0; cursor:pointer; background:#e0c280; color:#fff; }
+    .btn { border-radius:6px; border:0; cursor:pointer; background:#e0c280; color:#fff; }
     .avatar { width:72px; height:72px; border-radius:12px; object-fit:cover; }
 
     /* Statistics small chart */
@@ -203,41 +203,46 @@ body.dark .stat-card {
   </style>
 </head>
 <body>
-  <header>
-    <a href="index.html" class="home-btn" title="Home"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home" style="width:34px"></a>
-    <h1>Youth Growing Journey – Profile</h1>
-    <div style="margin-left:auto; display:flex; gap:.5rem; align-items:center">
-      <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'">
+   <header>
+    <a href="index.html" class="home-btn">
+      <img
+        src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home"/>
+    </a>
+    <h1>Youth Growing Journey</h1>
+    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'">
       <i class="fa-solid fa-right-to-bracket"></i> Log In
     </button>
     <button id="signup-btn" class="btn" onclick="window.location.href='register.html'">
       <i class="fa-solid fa-user-plus"></i> Sign Up
     </button>
-      <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-      <button id="menu-toggle" class="menu-btn" aria-label="Open menu">☰</button>
-    </div>
+    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
+    <button id="menu-toggle" class="menu-btn">&#9776;</button>
   </header>
 
-  <!-- Sidebar (kept compact) -->
- <div class="sidebar open" id="sidebar">
-  <div class="sidebar-header">
-    <button id="close-sidebar" class="close-btn">× Close</button>
+ <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button id="close-sidebar" class="close-btn">&times;</button>
+    </div>
+
+    <div class="sidebar-content">
+      <button onclick="window.location.href='profile.html'">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
+
+      <button onclick="window.location.href='about-us.html'" class="active">
+        <i class="fa-solid fa-info-circle"></i> About Us
+      </button>
+
+      <button onclick="window.location.href='contact.html'">
+        <i class="fa-solid fa-envelope"></i> Contact Us
+      </button>
+
+      <button id="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
   </div>
-<div class="sidebar-content">
-  <button onclick="window.location.href='profile.html'">
-    <i class="fa-solid fa-user"></i> Profile
-  </button>
-  <button onclick="window.location.href='about-us.html'">
-    <i class="fa-solid fa-info-circle"></i> About Us
-  </button>
-  <button onclick="window.location.href='contact.html'">
-    <i class="fa-solid fa-envelope"></i> Contact Us
-  </button>
-  <button id="logout-btn">
-    <i class="fa-solid fa-right-from-bracket"></i> Log Out
-  </button>
-</div>
-</div>
 
 <main class="intro">
   <!-- PROFILE CARD -->
@@ -597,6 +602,7 @@ document.body.addEventListener("click", (e) => {
 </script>
 </body>
 </html>
+
 
 
 
