@@ -1,48 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Optimization | YGJ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            ygj: {
-              bg: '#0d0d0f',
-              card: '#141417',
-              anthracite: '#333333',
-              gold: '#e0c280'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif']
-          },
-          boxShadow: {
-            soft: '0 18px 45px rgba(0, 0, 0, 0.35)',
-            gold: '0 0 24px rgba(224, 194, 128, 0.22)'
-          }
-        }
-      }
-    };
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+  <title>YGJ - Sleep Optimization</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    html { scroll-behavior: smooth; }
-    body { background: #0d0d0f; }
-    .bg-grid {
-      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
-      background-size: 34px 34px;
-    }
+     .sleep-container{max-width:980px;margin:0 auto;padding:32px 20px 60px}
+    .sleep-head{text-align:center;margin-bottom:24px}
+    .sleep-head h2{font-size:2.2rem;margin-bottom:8px}
+    .sleep-head p{color:#8f7f57}
+    .accordion{display:grid;gap:12px}
+    details{background:#fff;border:1px solid #e0c280;border-radius:12px;padding:14px 16px;box-shadow:0 8px 22px rgba(0,0,0,.1)}
+    summary{cursor:pointer;font-weight:700;color:#b89241}
+    ul{margin-top:12px;color:#7a6c4a;line-height:1.6}
+    body.dark details{background:#2f2f2f}
+    body.dark .sleep-head p,body.dark ul{color:#e9e9e9}
   </style>
 </head>
 <body class="text-white font-sans antialiased min-h-screen bg-ygj-bg">
