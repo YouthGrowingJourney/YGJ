@@ -1,92 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Optimization Hub | YGJ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            ygj: {
-              bg: '#0b0b0d',
-              card: '#141417',
-              gold: '#e0c280'
-            }
-          },
-          boxShadow: {
-            card: '0 15px 40px rgba(0,0,0,0.4)',
-            glow: '0 0 28px rgba(224,194,128,0.22)'
-          }
-        }
-      }
-    }
-  </script>
+  <title>YGJ - Optimization Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    html { scroll-behavior: smooth; }
-    body { background: #0b0b0d; }
+    .hub-container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hub-title { text-align: center; margin-bottom: 28px; }
+    .hub-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
+    .hub-title p { color: #8f7f57; max-width: 760px; margin: 0 auto; }
+    .hub-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 18px; }
+    .hub-card { background: #fff; border: 1px solid #e0c280; border-radius: 14px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,.12); transition: transform .25s, box-shadow .25s; }
+    .hub-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(224,194,128,.28); }
+    .hub-card h3 { margin-top: 6px; margin-bottom: 8px; }
+    .hub-card p { color: #7b6d4b; min-height: 48px; }
+    .hub-card .open-link { display: inline-block; margin-top: 10px; color: #e0c280; text-decoration: none; font-weight: 700; }
+    .coming { opacity: .8; }
+    body.dark .hub-card { background: #2f2f2f; border-color: #e0c280; }
+    body.dark .hub-title p, body.dark .hub-card p { color: #e9e9e9; }
+    body.dark .hub-card .open-link { color: #f0d7a0; }
   </style>
 </head>
-<body class="bg-ygj-bg text-white antialiased">
-  <div class="relative min-h-screen overflow-hidden">
-    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 34px 34px;"></div>
-    <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-ygj-gold/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute top-1/3 -right-20 h-80 w-80 rounded-full bg-ygj-gold/10 blur-3xl"></div>
+<body>
+  <header>
+    <a href="index.html" class="home-btn"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home"></a>
+    <h1>Youth Growing Journey</h1>
+    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
+    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
+    <button id="menu-toggle" class="menu-btn">&#9776;</button>
+  </header>
 
-    <main class="relative max-w-6xl mx-auto px-5 sm:px-8 py-14 md:py-20">
-      <header class="flex items-start justify-between gap-4 mb-12">
-        <div>
-          <p class="text-xs tracking-[0.3em] uppercase text-ygj-gold/80 mb-3">YGJ Maxxing System</p>
-          <h1 class="text-4xl md:text-6xl font-bold tracking-tight">Optimization Hub</h1>
-          <p class="mt-5 text-white/75 max-w-3xl text-base md:text-lg leading-relaxed">
-            Your premium overview for every core optimization area. Pick a system, dive deep, and build your strongest version.
-          </p>
-        </div>
-        <span class="shrink-0 rounded-full border border-ygj-gold/50 px-4 py-2 text-sm font-semibold text-ygj-gold shadow-glow">YGJ</span>
-      </header>
-
-      <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <a href="sleep-optimization.html" class="group rounded-2xl border border-white/10 bg-ygj-card/95 p-6 shadow-card hover:shadow-glow hover:border-ygj-gold/55 transition-all duration-300">
-          <p class="text-xs uppercase tracking-[0.2em] text-ygj-gold/80 mb-3">Live Page</p>
-          <h2 class="text-2xl font-semibold mb-3">Sleep Optimization</h2>
-          <p class="text-white/75 mb-5">Recovery, focus, hormone support, and powerful routines for deep sleep quality.</p>
-          <span class="text-ygj-gold font-medium">Open page →</span>
-        </a>
-
-        <div class="rounded-2xl border border-white/10 bg-ygj-card/70 p-6 shadow-card opacity-95">
-          <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Coming Next</p>
-          <h2 class="text-2xl font-semibold mb-3">Fitness Optimization</h2>
-          <p class="text-white/70">Training structure, performance systems, and body composition foundations.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/10 bg-ygj-card/70 p-6 shadow-card opacity-95">
-          <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Coming Next</p>
-          <h2 class="text-2xl font-semibold mb-3">Nutrition Optimization</h2>
-          <p class="text-white/70">Simple nutrition rules for muscle growth, mental clarity, and consistent energy.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/10 bg-ygj-card/70 p-6 shadow-card opacity-95">
-          <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Coming Next</p>
-          <h2 class="text-2xl font-semibold mb-3">Focus Optimization</h2>
-          <p class="text-white/70">Attention training, deep work routines, and distraction control systems.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/10 bg-ygj-card/70 p-6 shadow-card opacity-95">
-          <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Coming Next</p>
-          <h2 class="text-2xl font-semibold mb-3">Discipline Optimization</h2>
-          <p class="text-white/70">Habit engineering, accountability loops, and identity-based execution.</p>
-        </div>
-
-        <div class="rounded-2xl border border-white/10 bg-ygj-card/70 p-6 shadow-card opacity-95">
-          <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-3">Coming Next</p>
-          <h2 class="text-2xl font-semibold mb-3">Mindset Optimization</h2>
-          <p class="text-white/70">Mental resilience, confidence calibration, and long-term performance psychology.</p>
-        </div>
-      </section>
-    </main>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header"><button id="close-sidebar" class="close-btn">&times;</button></div>
+    <div class="sidebar-content">
+      <button onclick="window.location.href='profile.html'"><i class="fa-solid fa-user"></i> Profile</button>
+      <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button>
+      <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact Us</button>
+      <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+    </div>
   </div>
+
+  <main class="hub-container">
+    <div class="hub-title">
+      <h2>Optimization Hub</h2>
+      <p>Central overview for all YGJ optimization systems. Choose one area and go deep with a structured, practical page.</p>
+    </div>
+
+    <section class="hub-grid">
+      <article class="hub-card">
+        <i class="fa-solid fa-moon"></i>
+        <h3>Sleep Optimization</h3>
+        <p>Improve sleep quality, recovery, focus, and morning energy with clear routines.</p>
+        <a class="open-link" href="sleep-optimization.html">Open Page →</a>
+      </article>
+
+      <article class="hub-card coming"><i class="fa-solid fa-dumbbell"></i><h3>Fitness Optimization</h3><p>Training systems for strength, physique and consistency.</p></article>
+      <article class="hub-card coming"><i class="fa-solid fa-utensils"></i><h3>Nutrition Optimization</h3><p>Food frameworks for energy, health and performance.</p></article>
+      <article class="hub-card coming"><i class="fa-solid fa-brain"></i><h3>Focus Optimization</h3><p>Attention and deep-work systems for high output.</p></article>
+      <article class="hub-card coming"><i class="fa-solid fa-bolt"></i><h3>Discipline Optimization</h3><p>Habit and execution systems that remove excuses.</p></article>
+      <article class="hub-card coming"><i class="fa-solid fa-mountain"></i><h3>Mindset Optimization</h3><p>Mental strength, resilience and identity-based growth.</p></article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
