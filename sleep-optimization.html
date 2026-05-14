@@ -1,4 +1,64 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>YGJ - Sleep Optimization</title> <link rel="stylesheet" href="style.css" /> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <style> html { scroll-behavior: smooth; } body.dark { background: radial-gradient(circle at 12% 8%, rgba(224, 194, 128, 0.12), transparent 30%), radial-gradient(circle at 85% 28%, rgba(224, 194, 128, 0.1), transparent 34%), #171717; } .sleep-container { position: relative; max-width: 1050px; margin: 0 auto; padding: 38px 20px 70px; z-index: 1; } .sleep-container::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(224,194,128,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(224,194,128,0.06) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(circle at center, rgba(0,0,0,0.8), transparent 92%); pointer-events: none; z-index: -1; } .sleep-head { margin-bottom: 26px; } .top-row { display: flex; justify-content: space-between; align-items: start; gap: 14px; margin-bottom: 18px; } .brand { font-size: .8rem; letter-spacing: .16em; color: #e0c280; border: 1px solid rgba(224,194,128,.45); border-radius: 999px; padding: 6px 10px; font-weight: 700; } .sleep-head h2 { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 10px; } .sleep-head p { color: #dfdfdf; max-width: 760px; font-size: 1.03rem; } .accordion { display: grid; gap: 14px; } details { border: 1px solid rgba(224,194,128,.35); border-radius: 16px; padding: 18px; background: linear-gradient(145deg, rgba(42,42,42,.95), rgba(28,28,28,.95)); box-shadow: 0 10px 26px rgba(0,0,0,.28); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; } details:hover { transform: translateY(-2px); border-color: rgba(224,194,128,.75); box-shadow: 0 0 0 1px rgba(224,194,128,.24), 0 16px 34px rgba(224,194,128,.2); } summary { cursor: pointer; font-size: 1.35rem; font-weight: 700; color: #f4dba0; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; } summary::-webkit-details-marker { display: none; } summary::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: .95rem; opacity: .8; transition: transform .2s ease; } details[open] summary::after { transform: rotate(180deg); } .item-list { margin: 15px 0 0; padding-left: 20px; color: #efefef; line-height: 1.75; } .item-list li { margin-bottom: 4px; } </style> </head> <body class="dark"> <header> <a href="index.html" class="home-btn"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home"></a> <h1>Youth Growing Journey</h1> <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'"><i class="fa-solid fa-right-to-bracket"></i> Log In</button> <button id="signup-btn" class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button> <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button> <button id="menu-toggle" class="menu-btn">&#9776;</button> </header> <div class="sidebar" id="sidebar"> <div class="sidebar-header"><button id="close-sidebar" class="close-btn">&times;</button></div> <div class="sidebar-content"> <button onclick="window.location.href='profile.html'"><i class="fa-solid fa-user"></i> Profile</button> <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button> <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact Us</button> <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button> </div> </div> <main class="sleep-container"> <section class="sleep-head"> <div class="top-row"> <div> <h2>Sleep Optimization</h2> <p>Sleep is the foundation for energy, focus, testosterone, discipline, and mental strength.</p> </div> <span class="brand">YGJ</span> </div> </section>
+
+<section class="accordion">
+  <details open>
+    <summary>1. Why Sleep Is Important</summary>
+    <ul class="item-list">
+      <li>Regeneration</li>
+      <li>Focus</li>
+      <li>Testosterone</li>
+      <li>Muscle Growth</li>
+      <li>Mood</li>
+      <li>Discipline</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>2. Improve Falling Asleep</summary>
+    <ul class="item-list">
+      <li>Reduce Screen Time</li>
+      <li>Evening Routine</li>
+      <li>Room Temperature</li>
+      <li>Avoid Light</li>
+      <li>Fixed Sleep Times</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>3. Sleep Killers</summary>
+    <ul class="item-list">
+      <li>Phone in Bed</li>
+      <li>Late Caffeine</li>
+      <li>Irregular Sleep</li>
+      <li>Stress</li>
+      <li>Poor Nutrition</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>4. Maximize Sleep Quality</summary>
+    <ul class="item-list">
+      <li>Deep Sleep</li>
+      <li>Magnesium</li>
+      <li>Dark Room</li>
+      <li>Consistent Routine</li>
+      <li>Daytime Movement</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>5. Morning Energy</summary>
+    <ul class="item-list">
+      <li>Sunlight</li>
+      <li>Drink Water</li>
+      <li>No Immediate Phone</li>
+      <li>Movement</li>
+      <li>Wake Up Early</li>
+    </ul>
+  </details>
+</section>
+
+</main> <script> localStorage.setItem('theme', 'dark'); </script> <script src="script.js"></script> </body> </html><!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
