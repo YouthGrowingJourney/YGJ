@@ -1,176 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YGJ – Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact – YGJ</title>
+  <meta name="description" content="Questions, feedback, collaborations or the app waitlist – get in touch with Youth Growing Journey." />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="icon" href="assets/ygj-logo-white-blanc.png" />
+  <link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    /* Zusätzliche Styles für das Kontaktformular */
-    .contact-container {
-      max-width: 700px;
-      margin: 50px auto;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .contact-container h2 {
-      text-align: center;
-      color: #e0c280;
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-
-    .contact-container p {
-      text-align: center;
-      color: #ccc;
-      margin-bottom: 30px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input, textarea {
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      font-size: 1em;
-      width: 100%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    }
-
-    input {
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    textarea {
-      min-height: 120px;
-      background: rgba(255, 255, 255, 0.9);
-      resize: vertical;
-    }
-
-    button[type="submit"] {
-      background: linear-gradient(90deg, #e0c280, #c0a060);
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      padding: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    button[type="submit"]:hover {
-      transform: scale(1.05);
-      background: linear-gradient(90deg, #f0d290, #e0b070);
-    }
-
-    .status {
-      text-align: center;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .success {
-      color: #4caf50;
-    }
-
-    .error {
-      color: #ff4d4d;
-    }
-  </style>
 </head>
+<body data-page="contact">
+<main>
 
-<body>
-  <header>
-    <a href="index.html" class="home-btn">
-      <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home" />
-    </a>
-    <h1>Youth Growing Journey</h1>
-
-    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'">
-      <i class="fa-solid fa-right-to-bracket"></i> Log In
-    </button>
-
-    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'">
-      <i class="fa-solid fa-user-plus"></i> Sign Up
-    </button>
-
-    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-    <button id="menu-toggle" class="menu-btn">&#9776;</button>
-  </header>
-
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <button id="close-sidebar" class="close-btn">&times;</button>
+  <section class="page-hero" style="padding-bottom:40px">
+    <div class="ghost-word" aria-hidden="true">HELLO</div>
+    <div class="wrap">
+      <span class="eyebrow reveal">Contact</span>
+      <h1 class="split-words" style="margin-top:18px">Let's <span class="text-gold">talk.</span></h1>
+      <p class="lead reveal">Questions, feedback, a collaboration idea – or you want to know first when the app launches? Every message is read personally.</p>
     </div>
-    <div class="sidebar-content">
-      <button onclick="window.location.href='profile.html'"><i class="fa-solid fa-user"></i> Profile</button>
-      <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button>
-      <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact Us</button>
-      <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
-    </div>
-  </div>
-
-  <!-- Kontaktformular -->
-  <section class="contact-container">
-    <h2>Contact Us</h2>
-    <p>Have questions, feedback, or just want to say hello? Fill out the form below, and we’ll get back to you!</p>
-
-    <form id="contact-form">
-      <input type="text" name="from_name" placeholder="Your Name" required />
-      <input type="email" name="from_email" placeholder="Your Email" required />
-      <input type="text" name="subject" placeholder="Subject" required />
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-      <div id="status" class="status"></div>
-    </form>
   </section>
 
-  <footer>
-    &copy; Youth Growing Journey – built for a strong generation.
-  </footer>
+  <section class="section tight" style="padding-top:20px">
+    <div class="wrap contact-layout">
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="script.js"></script>
-  <script>
-    // EmailJS initialisieren
-    (function() {
-      emailjs.init("ODSOg03RHLWny7u13"); // <-- hier kommt dein Public Key rein
-    })();
+      <aside class="contact-side">
+        <a class="glass spot contact-tile reveal" href="https://www.instagram.com/youthgrowingjourney/" target="_blank" rel="noopener">
+          <span class="icon"><svg><use href="#i-ig"/></svg></span>
+          <span><b>Instagram</b><small>@youthgrowingjourney · fastest for quick questions</small></span>
+          <svg class="arrow"><use href="#i-out"/></svg>
+        </a>
+        <a class="glass spot contact-tile reveal" href="https://www.tiktok.com/@youthgrowingjourney" target="_blank" rel="noopener" style="--delay:.05s">
+          <span class="icon"><svg><use href="#i-tt"/></svg></span>
+          <span><b>TikTok</b><small>@youthgrowingjourney · comment on any video</small></span>
+          <svg class="arrow"><use href="#i-out"/></svg>
+        </a>
+        <a class="glass spot contact-tile reveal" href="https://www.youtube.com/@YouthGrowingJourney" target="_blank" rel="noopener" style="--delay:.1s">
+          <span class="icon"><svg><use href="#i-yt"/></svg></span>
+          <span><b>YouTube</b><small>@YouthGrowingJourney</small></span>
+          <svg class="arrow"><use href="#i-out"/></svg>
+        </a>
+        <button class="glass spot contact-tile reveal" id="copy-mail" type="button" style="--delay:.15s;border:0;width:100%;text-align:left;cursor:pointer">
+          <span class="icon"><svg><use href="#i-mail"/></svg></span>
+          <span><b>E-mail</b><small>ygjcontact@gmail.com · <span id="copy-label">click to copy</span></small></span>
+          <svg class="arrow"><use href="#i-plus"/></svg>
+        </button>
+        <div class="glass card reveal" style="--delay:.2s;padding:24px">
+          <div style="display:flex;gap:14px;align-items:center">
+            <span class="icon"><svg><use href="#i-clock"/></svg></span>
+            <div><b style="font-family:var(--sans)">Usually within 48 hours</b><br /><small class="muted" style="font-family:var(--sans)">YGJ is run by one person – thanks for your patience.</small></div>
+          </div>
+        </div>
+      </aside>
 
-    const form = document.getElementById("contact-form");
-    const statusDiv = document.getElementById("status");
+      <div class="glass form-card reveal" id="form-card" style="--delay:.1s">
+        <form id="contact-form" novalidate>
+          <fieldset class="topics">
+            <legend>What's it about?</legend>
+            <input type="radio" name="topic" id="t-general" value="General" checked /><label for="t-general">💬 General</label>
+            <input type="radio" name="topic" id="t-app" value="App waitlist" /><label for="t-app">📱 App waitlist</label>
+            <input type="radio" name="topic" id="t-feedback" value="Feedback" /><label for="t-feedback">💡 Feedback &amp; ideas</label>
+            <input type="radio" name="topic" id="t-collab" value="Collaboration" /><label for="t-collab">🤝 Collaboration</label>
+            <input type="radio" name="topic" id="t-story" value="My story" /><label for="t-story">🔥 Share my journey</label>
+          </fieldset>
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      statusDiv.textContent = "Sending...";
-      statusDiv.className = "status";
+          <div class="fields">
+            <div class="field"><input id="f-name" name="from_name" type="text" placeholder=" " autocomplete="name" maxlength="80" required /><label for="f-name">Your name</label></div>
+            <div class="field"><input id="f-email" name="from_email" type="email" placeholder=" " autocomplete="email" maxlength="120" required /><label for="f-email">Your e-mail</label></div>
+            <div class="field full"><input id="f-subject" name="subject" type="text" placeholder=" " maxlength="120" required /><label for="f-subject">Subject</label></div>
+            <div class="field full"><textarea id="f-message" name="message" placeholder=" " maxlength="2000" required></textarea><label for="f-message">Your message</label><span class="count" id="count">0 / 2000</span></div>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
 
-      emailjs.sendForm("service_63275pl", "template_coe299a", this)
-        .then(() => {
-          statusDiv.textContent = "✅ Message sent successfully!";
-          statusDiv.classList.add("success");
-          form.reset();
-        }, (error) => {
-          console.error(error);
-          statusDiv.textContent = "❌ Failed to send. Please try again later.";
-          statusDiv.classList.add("error");
-        });
+          <label class="consent">
+            <input type="checkbox" id="f-consent" required />
+            <span>I agree that my message and e-mail address are sent to YGJ (ygjcontact@gmail.com) via the form services EmailJS or FormSubmit so YGJ can reply. Details in the <a href="privacy.html">privacy notice</a>.</span>
+          </label>
+
+          <div class="form-actions">
+            <div class="form-status" id="status" role="status" aria-live="polite"></div>
+            <button class="btn btn-gold" type="submit" id="send"><span class="spinner"></span><span class="lbl">Send message</span><svg class="lbl-arrow"><use href="#i-arrow"/></svg></button>
+          </div>
+        </form>
+
+        <div class="success" aria-live="polite">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+          <h3 style="font-size:44px">Message sent.</h3>
+          <p class="muted" style="max-width:380px">Thanks for reaching out – you'll get an answer soon. Until then: keep showing up.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
+            <a class="btn btn-glass btn-sm" href="index.html#videos">Watch YGJ</a>
+            <button class="btn btn-glass btn-sm" type="button" id="again">Send another</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap" style="max-width:900px">
+      <div class="section-head center">
+        <span class="eyebrow reveal">FAQ</span>
+        <h2 class="split-words">Quick <em>answers.</em></h2>
+      </div>
+      <div class="acc faq" data-single>
+        <div class="glass acc-item reveal"><button><span class="t"><h3>Is YGJ free?</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button><div class="acc-panel"><div><div class="acc-body"><p>Yes. This website, all guides (Sleep, Gym, Nutrition, Socializing), our reels and the Daily Tracker are completely free – no ads, no sign-up.</p></div></div></div></div>
+        <div class="glass acc-item reveal"><button><span class="t"><h3>When does the YGJ App launch?</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button><div class="acc-panel"><div><div class="acc-body"><p>The app is in its final phase of development. Pick "App waitlist" above or follow us on Instagram and TikTok – you'll know the moment it's live.</p></div></div></div></div>
+        <div class="glass acc-item reveal"><button><span class="t"><h3>Do I need an account on this website?</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button><div class="acc-panel"><div><div class="acc-body"><p>No. This website is purely for information – no accounts, no cookies, no tracking. Your personal progress will live in the YGJ App.</p></div></div></div></div>
+        <div class="glass acc-item reveal"><button><span class="t"><h3>Can I collaborate with YGJ?</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button><div class="acc-panel"><div><div class="acc-body"><p>If you're a creator, coach or brand that shares our values, choose "Collaboration" and tell us your idea.</p></div></div></div></div>
+        <div class="glass acc-item reveal"><button><span class="t"><h3>Can I share my own journey?</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button><div class="acc-panel"><div><div class="acc-body"><p>Absolutely – real stories are what YGJ is about. Choose "Share my journey". We never publish anything without asking you first.</p></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<script>
+(function () {
+  // All messages are addressed to ygjcontact@gmail.com.
+  var TO = "ygjcontact@gmail.com";
+  var EJS = { key: "ODSOg03RHLWny7u13", service: "service_63275pl", template: "template_coe299a" };
+  var ENDPOINT = "https://formsubmit.co/ajax/" + TO;
+  if (window.emailjs) emailjs.init({ publicKey: EJS.key });
+  var form = document.getElementById("contact-form"), card = document.getElementById("form-card");
+  var statusEl = document.getElementById("status"), sendBtn = document.getElementById("send");
+  var msg = document.getElementById("f-message"), count = document.getElementById("count");
+
+  // Preselect topic from ?topic=app|feedback|collab|story
+  var map = { app: "t-app", feedback: "t-feedback", collab: "t-collab", story: "t-story" };
+  var q = new URLSearchParams(location.search).get("topic");
+  if (q && map[q]) document.getElementById(map[q]).checked = true;
+  var subjects = { "App waitlist": "Notify me when the YGJ App launches", "Feedback": "", "Collaboration": "", "My story": "", "General": "" };
+  function prefill() {
+    var t = form.querySelector('input[name="topic"]:checked').value, s = document.getElementById("f-subject");
+    if (!s.value || s.dataset.auto === "1") { s.value = subjects[t] || ""; s.dataset.auto = s.value ? "1" : ""; }
+  }
+  Array.prototype.forEach.call(form.querySelectorAll('input[name="topic"]'), function (r) { r.addEventListener("change", prefill); });
+  document.getElementById("f-subject").addEventListener("input", function () { this.dataset.auto = ""; });
+  prefill();
+
+  msg.addEventListener("input", function () { count.textContent = msg.value.length + " / 2000"; });
+
+  function setStatus(text, err) { statusEl.textContent = text; statusEl.className = "form-status" + (err ? " err" : ""); }
+
+  function validate() {
+    var ok = true;
+    Array.prototype.forEach.call(form.querySelectorAll(".field input, .field textarea"), function (el) {
+      var bad = !el.value.trim() || (el.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()));
+      el.parentNode.classList.toggle("invalid", bad);
+      if (bad) ok = false;
     });
-  </script>
+    if (!ok) { setStatus("Please fill in all fields with a valid e-mail.", true); return false; }
+    if (!document.getElementById("f-consent").checked) { setStatus("Please confirm the privacy note.", true); return false; }
+    return true;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (form.website.value) return; // bot
+    if (!validate()) return;
+    var last = 0; try { last = +localStorage.getItem("ygj_last_msg") || 0; } catch (x) {}
+    if (Date.now() - last < 60000) { setStatus("You just sent a message – please wait a minute.", true); return; }
+
+    var topic = form.querySelector('input[name="topic"]:checked').value;
+    var params = {
+      name: form.from_name.value.trim(),
+      email: form.from_email.value.trim(),
+      topic: topic,
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim(),
+      _subject: "YGJ Website – [" + topic + "] " + form.subject.value.trim(),
+      _replyto: form.from_email.value.trim(),
+      _template: "table",
+      _captcha: "false"
+    };
+    sendBtn.classList.add("loading"); sendBtn.disabled = true; setStatus("Sending…");
+
+    // 1) EmailJS (existing YGJ account). The template's "To Email" must be {{to_email}} or ygjcontact@gmail.com.
+    function viaEmailJS() {
+      if (!window.emailjs) return Promise.reject(new Error("EmailJS not loaded"));
+      return emailjs.send(EJS.service, EJS.template, {
+        to_email: TO,
+        from_name: params.name,
+        from_email: params.email,
+        reply_to: params.email,
+        subject: params._subject,
+        message: "Topic: " + topic + "\n\n" + params.message
+      });
+    }
+    // 2) FormSubmit as backup (address is in the URL, no account needed).
+    function viaFormSubmit() {
+      var body = new FormData();
+      Object.keys(params).forEach(function (k) { body.append(k, params[k]); });
+      return fetch(ENDPOINT, { method: "POST", headers: { "Accept": "application/json" }, body: body }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok || String(data.success) === "false") throw new Error(data.message || ("HTTP " + res.status));
+        });
+      });
+    }
+
+    viaEmailJS().catch(function (err) { console.warn("EmailJS failed, trying FormSubmit", err); return viaFormSubmit(); }).then(function () {
+      try { localStorage.setItem("ygj_last_msg", String(Date.now())); } catch (x) {}
+      card.classList.add("sent"); form.reset(); count.textContent = "0 / 2000"; setStatus("");
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, function (err) {
+      console.error(err);
+      // Fallback: open the finished message in the visitor's own mail app, addressed to YGJ.
+      var href = "mailto:ygjcontact@gmail.com?subject=" + encodeURIComponent(params._subject) +
+        "&body=" + encodeURIComponent(params.message + "\n\n– " + params.name);
+      statusEl.className = "form-status err";
+      statusEl.innerHTML = 'The form service is not reachable right now. <a class="gold" style="text-decoration:underline" href="' + href + '">Send it with your e-mail app instead →</a>';
+    }).then(function () { sendBtn.classList.remove("loading"); sendBtn.disabled = false; });
+  });
+
+  document.getElementById("again").addEventListener("click", function () { card.classList.remove("sent"); prefill(); });
+
+  var copyBtn = document.getElementById("copy-mail"), copyLabel = document.getElementById("copy-label");
+  copyBtn.addEventListener("click", function () {
+    var done = function () { copyLabel.textContent = "copied ✓"; setTimeout(function () { copyLabel.textContent = "click to copy"; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText("ygjcontact@gmail.com").then(done, function () { location.href = "mailto:ygjcontact@gmail.com"; });
+    else location.href = "mailto:ygjcontact@gmail.com";
+  });
+})();
+</script>
 </body>
 </html>
-
-
-

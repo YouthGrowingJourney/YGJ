@@ -1,159 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YGJ - About Us</title>
-
-  <!-- Styles & Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About YGJ – Youth Growing Journey</title>
+  <meta name="description" content="Why YGJ exists, who it is for and what it stands for: discipline, high standards, growth, fitness, mindset, character and practical systems." />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="icon" href="assets/ygj-logo-white-blanc.png" />
+  <link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+<body data-page="about">
+<main>
 
-<body>
-  <!-- HEADER -->
-  <header>
-    <a href="index.html" class="home-btn">
-      <img
-        src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png"
-        alt="Home"
-      />
-    </a>
-
-    <h1>Youth Growing Journey</h1>
-
-    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'">
-      <i class="fa-solid fa-right-to-bracket"></i> Log In
-    </button>
-
-    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'">
-      <i class="fa-solid fa-user-plus"></i> Sign Up
-    </button>
-
-    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-    <button id="menu-toggle" class="menu-btn">&#9776;</button>
-  </header>
-
-  <!-- SIDEBAR -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <button id="close-sidebar" class="close-btn">&times;</button>
+  <section class="page-hero">
+    <div class="ghost-word" aria-hidden="true">YGJ</div>
+    <div class="wrap">
+      <span class="eyebrow reveal">About YGJ</span>
+      <h1 class="split-words" style="margin-top:18px">Growth is a journey,<br /><span class="text-gold">not a moment.</span></h1>
+      <p class="lead reveal">Youth Growing Journey is a movement of young people becoming their best selves – built by someone who walked the same road and decided to share what changed his life.</p>
     </div>
+  </section>
 
-    <div class="sidebar-content">
-      <button onclick="window.location.href='profile.html'">
-        <i class="fa-solid fa-user"></i> Profile
-      </button>
-
-      <button onclick="window.location.href='about-us.html'" class="active">
-        <i class="fa-solid fa-info-circle"></i> About Us
-      </button>
-
-      <button onclick="window.location.href='contact.html'">
-        <i class="fa-solid fa-envelope"></i> Contact Us
-      </button>
-
-      <button id="logout-btn">
-        <i class="fa-solid fa-right-from-bracket"></i> Log Out
-      </button>
-    </div>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <main class="page-container about-page">
-    <!-- HERO SECTION -->
-    <section class="about-hero">
-      <h2>About <span>YGJ</span></h2>
-      <p>Empowering youth to grow stronger, wiser, and unstoppable.</p>
-    </section>
-
-    <!-- OUR MISSION -->
-    <section class="about-mission">
-      <h3>Our Mission</h3>
-      <p style=" box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); border-radius: 16px; padding: 20px;">
-        Youth Growing Journey (YGJ) isn’t just a website – it’s a movement.
-        Our mission is to guide individuals toward becoming their best selves.
-        Whether it’s through mindset, fitness, or discipline – we believe in 
-        structured growth and long-term success.
-      </p>
-    </section>
-
-    <!-- OUR VALUES -->
-    <section class="about-values">
-      <h3>Our Core Values</h3>
-      <div class="values-grid">
-        <div class="value-card">
-          <i class="fa-solid fa-bullseye"></i>
-          <h4>Focus</h4>
-          <p>Every step you take matters. Stay focused on your vision and never lose sight of your goal.</p>
+  <!-- Story -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:stretch">
+        <div class="glass spot card reveal">
+          <span class="eyebrow">Why YGJ exists</span>
+          <h3 style="font-size:clamp(34px,4vw,50px);margin-top:16px">It started with a personal journey.</h3>
+          <p style="margin-top:14px">Most young men are not really living – they are just existing. Wake up, school, hours on the phone, sleep, repeat. YGJ was founded out of that exact experience: seeing friends lose themselves, and learning first-hand that discipline is the key to controlling everything in your life.</p>
+          <p style="margin-top:14px">The goal is simple: pass on what actually helped. No secret formula – practical steps, honest words and a system that makes you show up every day.</p>
         </div>
-        <div class="value-card">
-          <i class="fa-solid fa-dumbbell"></i>
-          <h4>Discipline</h4>
-          <p>Success isn’t luck — it’s built day by day through consistent effort and dedication.</p>
-        </div>
-        <div class="value-card">
-          <i class="fa-solid fa-fire"></i>
-          <h4>Passion</h4>
-          <p>Your drive fuels your growth. We believe passion turns dreams into unstoppable action.</p>
-        </div>
-        <div class="value-card">
-          <i class="fa-solid fa-people-group"></i>
-          <h4>Community</h4>
-          <p>We rise together. YGJ builds a space where motivation, strength, and purpose unite.</p>
+        <div class="glass card reveal" style="--delay:.1s;display:grid;align-content:space-between;gap:26px">
+          <div class="quote-band" style="text-align:left;justify-items:start;gap:14px">
+            <div class="qmark" aria-hidden="true">“</div>
+            <blockquote style="font-size:clamp(22px,2.4vw,30px)">If you are able to choose the hard, productive habits over the easy, cheap dopamine-inducing ones – that's when your life truly changes.</blockquote>
+            <cite>— A. Baumer, Founder of YGJ</cite>
+          </div>
+          <div style="display:flex;gap:14px;align-items:center">
+            <span data-mark style="width:64px;display:block"></span>
+            <span class="muted" style="font-family:var(--sans);font-size:14px">From a young person,<br />for young people.</span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- THE STORY -->
-    <section class="about-story">
-      <h3>Our Story</h3>
-      <p style=" box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); border-radius: 16px; padding: 20px;">
-        YGJ was born from a simple belief: <strong>growth is a journey, not a moment.</strong>  
-        Founded by young dreamers, we’ve created a platform that empowers youth all around the world.  
-        We combine structure, mindset, and community to help you achieve real progress – mentally, physically, and personally.
-      </p>
-    </section>
+  <!-- Mission / Vision -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="grid grid-3">
+        <article class="glass spot card reveal">
+          <div class="icon"><svg><use href="#i-target"/></svg></div>
+          <h3>Mission</h3>
+          <p>Help young people unlock their potential through discipline, high standards, growth, fitness, mindset, character and practical systems.</p>
+        </article>
+        <article class="glass spot card reveal" style="--delay:.08s">
+          <div class="icon"><svg><use href="#i-mountain"/></svg></div>
+          <h3>Vision</h3>
+          <p>The biggest self-improvement app for young men, a real community with events – and a brand that stands for a strong generation.</p>
+        </article>
+        <article class="glass spot card reveal" style="--delay:.16s">
+          <div class="icon"><svg><use href="#i-compass"/></svg></div>
+          <h3>Approach</h3>
+          <p>Practical instead of just motivation. Remove what holds you back, build what moves you forward – step by step, with structure.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <!-- TEAM SECTION -->
-    <section class="about-team">
-      <h3>Meet The Visionaries</h3>
-      <div class="team-grid">
-        <div style="transition: transform 0.2s ease;" class="team-card">
-          <img src="assets/ygj-logo-white-blanc.png" alt="Founder" />
-          <h4>A. Baumer</h4>
-          <p>Founder & Visionary</p>
-          <p class="quote">“I wouldn't be satisfied with my life, if I won't achieve my goals.”</p>
+  <!-- Pillars -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">What we stand for</span>
+        <h2 class="split-words">Seven pillars. <em>One standard.</em></h2>
+        <p class="lead reveal">Everything YGJ creates – every video, guide and feature – is built on these seven themes.</p>
+      </div>
+      <div class="pillars">
+        <div class="glass spot pillar reveal"><span class="idx">01</span><h3>Discipline</h3><p>Motivation fades. Discipline stays. Do it anyway – especially when you don't feel like it.</p></div>
+        <div class="glass spot pillar reveal" style="--delay:.05s"><span class="idx">02</span><h3>High Standards</h3><p>Average is a choice. We expect more from ourselves than anyone else ever could.</p></div>
+        <div class="glass spot pillar reveal" style="--delay:.1s"><span class="idx">03</span><h3>Growth</h3><p>Every day is a chance to get 1% better. Small steps, stacked consistently, change everything.</p></div>
+        <div class="glass spot pillar reveal" style="--delay:.15s"><span class="idx">04</span><h3>Fitness</h3><p>Take care of your body – it's the only place you have to live. Strength builds confidence.</p></div>
+        <div class="glass spot pillar reveal"><span class="idx">05</span><h3>Mindset</h3><p>You can't control every event, but you can always control your response.</p></div>
+        <div class="glass spot pillar reveal" style="--delay:.05s"><span class="idx">06</span><h3>Character</h3><p>Honest, respectful, reliable. Ambitious – but never arrogant, toxic or fake.</p></div>
+        <div class="glass spot pillar reveal" style="--delay:.1s"><span class="idx">07</span><h3>Practical Systems</h3><p>Routines, trackers and clear plans. Systems win when willpower runs out.</p></div>
+        <div class="glass pillar reveal" style="--delay:.15s;background:linear-gradient(145deg,rgba(224,194,128,.18),rgba(224,194,128,.03))"><span class="idx">+</span><h3>Community</h3><p>We rise together. Brotherly competition where we push each other forward.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow reveal">The mindset of control</span>
+        <h2 class="split-words">Three beliefs <em>we live by.</em></h2>
+      </div>
+      <div class="principles">
+        <div class="glass spot principle reveal"><div class="big">I am <span>responsible.</span></div><p>I don't blame teachers, parents or society for everything. My actions shape my results. Even if life is unfair, I control my response.</p></div>
+        <div class="glass spot principle reveal" style="--delay:.08s"><div class="big">I am <span>capable.</span></div><p>I may not know everything today, but I can learn, adapt and grow. Skills can be developed, weaknesses turned into strengths.</p></div>
+        <div class="glass spot principle reveal" style="--delay:.16s"><div class="big">I am <span>persistent.</span></div><p>I won't stop because things get hard. Every obstacle is not a signal to quit – it's a test of my determination.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="grid grid-2">
+        <div class="glass spot card reveal">
+          <span class="eyebrow">Who YGJ is for</span>
+          <h3 style="font-size:clamp(34px,4vw,50px);margin-top:16px">Young men, 13 to 23.</h3>
+          <p style="margin-top:14px">For everyone who feels stuck between phone, gaming and junk food. Who's unhappy with how things are going – at school, with their body, with their confidence – and is ready to change it.</p>
+          <div class="tag-cloud"><span>Low energy</span><span>No focus</span><span>Bad grades</span><span>Low confidence</span><span>Too much screen time</span><span>No direction</span></div>
         </div>
-        <div style="transition: transform 0.2s ease;" class="team-card">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMdM9MEQ0ExL1PmInT3U5I8v63YXBEdoIT0Q&s" alt="Co-Founder" />
-          <h4>Future Team</h4>
-          <p>Creators & Builders</p>
-          <p class="quote">“Together we rise – as one generation that refuses to give up.”</p>
+        <div class="glass spot card reveal" style="--delay:.1s">
+          <span class="eyebrow">How we talk</span>
+          <h3 style="font-size:clamp(34px,4vw,50px);margin-top:16px">Like a big brother.</h3>
+          <ul class="feature-list" style="grid-template-columns:1fr;margin:20px 0 0">
+            <li><span class="mini"><svg><use href="#i-heart"/></svg></span><span><b>Honest</b>No bullshit, no fake promises, no shortcuts.</span></li>
+            <li><span class="mini"><svg><use href="#i-zap"/></svg></span><span><b>Motivating</b>Positive and real – we believe in you.</span></li>
+            <li><span class="mini"><svg><use href="#i-flame"/></svg></span><span><b>Direct</b>Tough love when it's needed.</span></li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA SECTION -->
-    <section class="about-cta">
-      <h3>Join the Journey</h3>
-      <p style=" box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); border-radius: 16px; padding: 20px;">Start growing today. Whether it’s your first step or your next milestone — YGJ walks beside you.</p>
-      <button class="btn" onclick="window.location.href='register.html'">
-        <i class="fa-solid fa-arrow-right"></i> Get Started
-      </button>
-    </section>
-  </main>
+  <section class="section tight">
+    <div class="wrap">
+      <div class="glass cta-band reveal">
+        <h2>Ready to <span class="text-gold">start?</span></h2>
+        <p class="lead">Follow the journey, grab the free guide or tell us your story.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+          <a class="btn btn-gold" href="index.html#follow">Follow YGJ <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-glass" href="contact.html">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Youth Growing Journey – Built for a strong generation.
-  </footer>
-
-  <script src="script.js"></script>
+</main>
+<script src="script.js"></script>
 </body>
 </html>
-
-
-

@@ -1,256 +1,138 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>YGJ - Sleep Optimization</title> <link rel="stylesheet" href="style.css" /> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <style> html { scroll-behavior: smooth; } body.dark { background: radial-gradient(circle at 12% 8%, rgba(224, 194, 128, 0.12), transparent 30%), radial-gradient(circle at 85% 28%, rgba(224, 194, 128, 0.1), transparent 34%), #171717; } .sleep-container { position: relative; max-width: 1050px; margin: 0 auto; padding: 38px 20px 70px; z-index: 1; } .sleep-container::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(224,194,128,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(224,194,128,0.06) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(circle at center, rgba(0,0,0,0.8), transparent 92%); pointer-events: none; z-index: -1; } .sleep-head { margin-bottom: 26px; } .top-row { display: flex; justify-content: space-between; align-items: start; gap: 14px; margin-bottom: 18px; } .brand { font-size: .8rem; letter-spacing: .16em; color: #e0c280; border: 1px solid rgba(224,194,128,.45); border-radius: 999px; padding: 6px 10px; font-weight: 700; } .sleep-head h2 { font-size: clamp(2rem, 4vw, 3.4rem); margin-bottom: 10px; } .sleep-head p { color: #dfdfdf; max-width: 760px; font-size: 1.03rem; } .accordion { display: grid; gap: 14px; } details { border: 1px solid rgba(224,194,128,.35); border-radius: 16px; padding: 18px; background: linear-gradient(145deg, rgba(42,42,42,.95), rgba(28,28,28,.95)); box-shadow: 0 10px 26px rgba(0,0,0,.28); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; } details:hover { transform: translateY(-2px); border-color: rgba(224,194,128,.75); box-shadow: 0 0 0 1px rgba(224,194,128,.24), 0 16px 34px rgba(224,194,128,.2); } summary { cursor: pointer; font-size: 1.35rem; font-weight: 700; color: #f4dba0; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; } summary::-webkit-details-marker { display: none; } summary::after { content: "\f078"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: .95rem; opacity: .8; transition: transform .2s ease; } details[open] summary::after { transform: rotate(180deg); } .item-list { margin: 15px 0 0; padding-left: 20px; color: #efefef; line-height: 1.75; } .item-list li { margin-bottom: 4px; } </style> </head> <body class="dark"> <header> <a href="index.html" class="home-btn"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home"></a> <h1>Youth Growing Journey</h1> <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'"><i class="fa-solid fa-right-to-bracket"></i> Log In</button> <button id="signup-btn" class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button> <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button> <button id="menu-toggle" class="menu-btn">&#9776;</button> </header> <div class="sidebar" id="sidebar"> <div class="sidebar-header"><button id="close-sidebar" class="close-btn">&times;</button></div> <div class="sidebar-content"> <button onclick="window.location.href='profile.html'"><i class="fa-solid fa-user"></i> Profile</button> <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button> <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact Us</button> <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button> </div> </div> <main class="sleep-container"> <section class="sleep-head"> <div class="top-row"> <div> <h2>Sleep Optimization</h2> <p>Sleep is the foundation for energy, focus, testosterone, discipline, and mental strength.</p> </div> <span class="brand">YGJ</span> </div> </section>
-
-<section class="accordion">
-  <details open>
-    <summary>1. Why Sleep Is Important</summary>
-    <ul class="item-list">
-      <li>Regeneration</li>
-      <li>Focus</li>
-      <li>Testosterone</li>
-      <li>Muscle Growth</li>
-      <li>Mood</li>
-      <li>Discipline</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>2. Improve Falling Asleep</summary>
-    <ul class="item-list">
-      <li>Reduce Screen Time</li>
-      <li>Evening Routine</li>
-      <li>Room Temperature</li>
-      <li>Avoid Light</li>
-      <li>Fixed Sleep Times</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>3. Sleep Killers</summary>
-    <ul class="item-list">
-      <li>Phone in Bed</li>
-      <li>Late Caffeine</li>
-      <li>Irregular Sleep</li>
-      <li>Stress</li>
-      <li>Poor Nutrition</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>4. Maximize Sleep Quality</summary>
-    <ul class="item-list">
-      <li>Deep Sleep</li>
-      <li>Magnesium</li>
-      <li>Dark Room</li>
-      <li>Consistent Routine</li>
-      <li>Daytime Movement</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>5. Morning Energy</summary>
-    <ul class="item-list">
-      <li>Sunlight</li>
-      <li>Drink Water</li>
-      <li>No Immediate Phone</li>
-      <li>Movement</li>
-      <li>Wake Up Early</li>
-    </ul>
-  </details>
-</section>
-
-</main> <script> localStorage.setItem('theme', 'dark'); </script> <script src="script.js"></script> </body> </html><!DOCTYPE html>
-<html lang="en" class="dark">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sleep Optimization | YGJ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            ygj: {
-              bg: '#0d0d0f',
-              card: '#141417',
-              anthracite: '#333333',
-              gold: '#e0c280'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif']
-          },
-          boxShadow: {
-            soft: '0 18px 45px rgba(0, 0, 0, 0.35)',
-            gold: '0 0 24px rgba(224, 194, 128, 0.22)'
-          }
-        }
-      }
-    };
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sleep Optimization – YGJ</title>
+  <meta name="description" content="The YGJ sleep guide: why sleep matters, how to fall asleep faster, sleep killers, deeper sleep and morning energy." />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="icon" href="assets/ygj-logo-white-blanc.png" />
+  <link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    html { scroll-behavior: smooth; }
-    body { background: #0d0d0f; }
-    .bg-grid {
-      background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
-      background-size: 34px 34px;
+    .night { position: relative; }
+    .moon {
+      position: absolute; right: max(4vw, 16px); top: 120px; width: clamp(110px, 16vw, 220px); aspect-ratio: 1; border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle at 35% 35%, #fff4d6, #e0c280 45%, #8a6a35 100%);
+      box-shadow: 0 0 80px 10px rgba(224,194,128,.35), 0 0 200px 40px rgba(224,194,128,.12);
+      animation: bob 9s ease-in-out infinite;
     }
+    .moon::after { content: ""; position: absolute; inset: -2px; border-radius: 50%; background: radial-gradient(circle at 70% 40%, #0b0b0d 48%, transparent 50%); opacity: .85; }
   </style>
 </head>
-<body class="text-white font-sans antialiased min-h-screen bg-ygj-bg">
-  <div id="root"></div>
+<body data-page="hub">
+<main>
 
-  <script type="text/babel">
-    const { useState } = React;
-    const { motion, AnimatePresence } = Motion;
+  <section class="page-hero night">
+    <div class="moon" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow reveal">YGJ Knowledge System</span>
+      <h1 class="split-words" style="margin-top:18px">Sleep <span class="text-gold">Optimization.</span></h1>
+      <p class="lead reveal">Sleep is the foundation for energy, focus, testosterone, discipline and mental strength. Win the night – and you've already won half of tomorrow.</p>
+      <div class="reveal" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:26px">
+        <span class="pill">5 chapters</span><span class="pill">26 rules</span><span class="pill">5 min read</span>
+      </div>
+    </div>
+  </section>
 
-    const sections = [
-      {
-        title: 'Why Sleep Matters',
-        points: [
-          ['Recovery', 'Cell repair, nervous system reset, and hormone balance all happen during sleep.'],
-          ['Focus', 'Strong sleep sharpens attention, memory, and execution during high-pressure days.'],
-          ['Testosterone', 'Consistent sleep supports healthy testosterone production and long-term vitality.'],
-          ['Muscle Growth', 'Deep sleep improves protein synthesis and training adaptation.'],
-          ['Mood', 'Better sleep reduces emotional volatility and improves stress tolerance.'],
-          ['Discipline', 'A rested brain chooses long-term goals over short-term impulses.']
-        ]
-      },
-      {
-        title: 'Improve Falling Asleep',
-        points: [
-          ['Reduce Screen Time', 'Cut bright screens 60 minutes before bed to lower cognitive stimulation.'],
-          ['Evening Routine', 'Use a repeatable wind-down ritual to signal shutdown mode to your brain.'],
-          ['Room Temperature', 'Keep the room cool to speed up natural sleep onset.'],
-          ['Avoid Light', 'Minimize artificial light to support natural melatonin release.'],
-          ['Fixed Sleep Schedule', 'Sleep and wake at similar times to stabilize your circadian rhythm.']
-        ]
-      },
-      {
-        title: 'Sleep Killers',
-        points: [
-          ['Phone in Bed', 'Scrolling keeps your mind alert and delays deep recovery.'],
-          ['Late Caffeine', 'Afternoon and evening caffeine can block restorative sleep cycles.'],
-          ['Irregular Sleep', 'Chaotic bedtimes reduce sleep quality even if total hours look fine.'],
-          ['Stress', 'Unprocessed stress elevates arousal and fragments night recovery.'],
-          ['Poor Nutrition', 'Heavy, late, or low-quality meals can disrupt sleep architecture.']
-        ]
-      },
-      {
-        title: 'Maximize Sleep Quality',
-        points: [
-          ['Deep Sleep', 'Protect the first sleep cycles where physical restoration is strongest.'],
-          ['Magnesium', 'Magnesium can help relaxation when used intelligently and consistently.'],
-          ['Dark Room', 'Total darkness supports uninterrupted melatonin signaling.'],
-          ['Consistent Routine', 'Repetition trains your biology for faster and deeper recovery.'],
-          ['Daytime Movement', 'Regular training and walking improve nighttime sleep pressure.']
-        ]
-      },
-      {
-        title: 'Morning Energy',
-        points: [
-          ['Sunlight', 'Morning natural light anchors circadian rhythm and wakefulness.'],
-          ['Drink Water', 'Hydration right after waking improves alertness and mental clarity.'],
-          ['No Immediate Phone', 'Start with intention, not notifications and dopamine spikes.'],
-          ['Movement', 'Light activity quickly increases blood flow and energy output.'],
-          ['Wake Up Early', 'Early rising builds proactive momentum and consistency.']
-        ]
-      }
-    ];
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">The YGJ evening protocol</span>
+        <h2 class="split-words">A night <em>that works for you.</em></h2>
+      </div>
+      <div class="timeline">
+        <div class="glass spot reveal"><div class="time">−3 h</div><b>Last big meal</b><p>Heavy, late food disrupts sleep. Eat earlier and lighter.</p></div>
+        <div class="glass spot reveal" style="--delay:.06s"><div class="time">−60 min</div><b>Screens off</b><p>Cut bright screens to lower stimulation and let melatonin rise.</p></div>
+        <div class="glass spot reveal" style="--delay:.12s"><div class="time">−30 min</div><b>Wind-down ritual</b><p>Same routine every night: dim lights, read, journal, stretch.</p></div>
+        <div class="glass spot reveal" style="--delay:.18s"><div class="time">0:00</div><b>Cool, dark, quiet</b><p>Phone out of the bed. Fixed bedtime – every day.</p></div>
+      </div>
+    </div>
+  </section>
 
-    function AccordionCard({ section, open, onToggle, index }) {
-      return (
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: index * 0.07 }}
-          className="group rounded-2xl border border-white/10 bg-ygj-card/95 backdrop-blur-sm shadow-soft hover:shadow-gold hover:border-ygj-gold/50 transition-all duration-300"
-        >
-          <button
-            onClick={onToggle}
-            className="w-full text-left px-6 md:px-8 py-6 flex items-center justify-between gap-4"
-            aria-expanded={open}
-          >
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-ygj-gold/80 mb-2">Category {index + 1}</p>
-              <h2 className="text-xl md:text-2xl font-semibold text-white">{section.title}</h2>
-            </div>
-            <motion.span
-              animate={{ rotate: open ? 180 : 0 }}
-              transition={{ duration: 0.25 }}
-              className="text-ygj-gold text-lg"
-            >⌄</motion.span>
-          </button>
+  <section class="section tight">
+    <div class="wrap">
+      <div class="acc" data-single>
 
-          <AnimatePresence initial={false}>
-            {open && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.35, ease: 'easeInOut' }}
-                className="overflow-hidden"
-              >
-                <div className="px-6 md:px-8 pb-7 pt-1 border-t border-white/10 grid gap-4">
-                  {section.points.map(([title, description]) => (
-                    <article key={title} className="rounded-xl border border-white/8 bg-black/20 px-4 py-4 hover:border-ygj-gold/40 transition-colors duration-300">
-                      <h3 className="text-base font-semibold text-ygj-gold mb-1">{title}</h3>
-                      <p className="text-sm text-white/78 leading-relaxed">{description}</p>
-                    </article>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.section>
-      );
-    }
-
-    function App() {
-      const [openIndex, setOpenIndex] = useState(0);
-
-      return (
-        <div className="relative overflow-hidden min-h-screen bg-grid">
-          <div className="pointer-events-none absolute -top-28 -left-24 h-80 w-80 rounded-full bg-ygj-gold/10 blur-3xl" />
-          <div className="pointer-events-none absolute top-1/3 -right-20 h-72 w-72 rounded-full bg-ygj-gold/10 blur-3xl" />
-
-          <main className="relative max-w-5xl mx-auto px-4 sm:px-7 lg:px-10 py-16 md:py-20">
-            <div className="flex items-start justify-between gap-4 mb-12">
-              <div>
-                <p className="text-ygj-gold text-xs tracking-[0.28em] uppercase mb-3">YGJ Knowledge System</p>
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Sleep Optimization</h1>
-                <p className="mt-5 text-base md:text-lg text-white/75 max-w-3xl leading-relaxed">
-                  Sleep is the foundation for energy, focus, testosterone, discipline, and mental strength.
-                </p>
-              </div>
-              <span className="shrink-0 rounded-full border border-ygj-gold/45 px-4 py-2 text-sm font-semibold text-ygj-gold shadow-gold">YGJ</span>
-            </div>
-
-            <div className="grid gap-5">
-              {sections.map((section, index) => (
-                <AccordionCard
-                  key={section.title}
-                  section={section}
-                  index={index}
-                  open={openIndex === index}
-                  onToggle={() => setOpenIndex(openIndex === index ? -1 : index)}
-                />
-              ))}
-            </div>
-          </main>
+        <div class="glass acc-item open reveal">
+          <button><span class="t"><span class="k">01</span><h3>Why Sleep Matters</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="acc-panel"><div><div class="acc-body"><div class="tips">
+            <div class="tip"><b>Recovery</b><span>Cell repair, nervous system reset and hormone balance all happen during sleep.</span></div>
+            <div class="tip"><b>Focus</b><span>Strong sleep sharpens attention, memory and execution on high-pressure days.</span></div>
+            <div class="tip"><b>Testosterone</b><span>Consistent sleep supports healthy testosterone production and long-term vitality.</span></div>
+            <div class="tip"><b>Muscle growth</b><span>Deep sleep improves protein synthesis and training adaptation.</span></div>
+            <div class="tip"><b>Mood</b><span>Better sleep reduces emotional swings and improves stress tolerance.</span></div>
+            <div class="tip"><b>Discipline</b><span>A rested brain chooses long-term goals over short-term impulses.</span></div>
+          </div></div></div></div>
         </div>
-      );
-    }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+        <div class="glass acc-item reveal">
+          <button><span class="t"><span class="k">02</span><h3>Fall Asleep Faster</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="acc-panel"><div><div class="acc-body"><div class="tips">
+            <div class="tip"><b>Reduce screen time</b><span>Cut bright screens 60 minutes before bed to lower mental stimulation.</span></div>
+            <div class="tip"><b>Evening routine</b><span>A repeatable wind-down ritual signals shutdown mode to your brain.</span></div>
+            <div class="tip"><b>Room temperature</b><span>Keep the room cool to speed up natural sleep onset.</span></div>
+            <div class="tip"><b>Avoid light</b><span>Minimize artificial light to support natural melatonin release.</span></div>
+            <div class="tip"><b>Fixed schedule</b><span>Sleep and wake at similar times to stabilize your circadian rhythm.</span></div>
+          </div></div></div></div>
+        </div>
+
+        <div class="glass acc-item reveal">
+          <button><span class="t"><span class="k">03</span><h3>Sleep Killers</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="acc-panel"><div><div class="acc-body"><div class="tips">
+            <div class="tip"><b>Phone in bed</b><span>Scrolling keeps your mind alert and delays deep recovery.</span></div>
+            <div class="tip"><b>Late caffeine</b><span>Afternoon and evening caffeine can block restorative sleep cycles.</span></div>
+            <div class="tip"><b>Irregular sleep</b><span>Chaotic bedtimes reduce sleep quality even if total hours look fine.</span></div>
+            <div class="tip"><b>Stress</b><span>Unprocessed stress raises arousal and fragments night recovery.</span></div>
+            <div class="tip"><b>Poor nutrition</b><span>Heavy, late or low-quality meals can disrupt your sleep.</span></div>
+          </div></div></div></div>
+        </div>
+
+        <div class="glass acc-item reveal">
+          <button><span class="t"><span class="k">04</span><h3>Maximize Sleep Quality</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="acc-panel"><div><div class="acc-body"><div class="tips">
+            <div class="tip"><b>Deep sleep</b><span>Protect the first sleep cycles, where physical restoration is strongest.</span></div>
+            <div class="tip"><b>Magnesium</b><span>Magnesium can help relaxation when used sensibly and consistently.</span></div>
+            <div class="tip"><b>Dark room</b><span>Total darkness supports uninterrupted melatonin signaling.</span></div>
+            <div class="tip"><b>Consistent routine</b><span>Repetition trains your body for faster and deeper recovery.</span></div>
+            <div class="tip"><b>Daytime movement</b><span>Regular training and walking build healthy sleep pressure.</span></div>
+          </div></div></div></div>
+        </div>
+
+        <div class="glass acc-item reveal">
+          <button><span class="t"><span class="k">05</span><h3>Morning Energy</h3></span><span class="plus"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="acc-panel"><div><div class="acc-body"><div class="tips">
+            <div class="tip"><b>Sunlight</b><span>Morning daylight anchors your circadian rhythm and wakefulness.</span></div>
+            <div class="tip"><b>Drink water</b><span>Hydration right after waking improves alertness and clarity.</span></div>
+            <div class="tip"><b>No phone first</b><span>Start with intention – not notifications and dopamine spikes.</span></div>
+            <div class="tip"><b>Movement</b><span>Light activity quickly increases blood flow and energy.</span></div>
+            <div class="tip"><b>Wake up early</b><span>Early rising builds proactive momentum and consistency.</span></div>
+          </div></div></div></div>
+        </div>
+
+      </div>
+      <p class="privacy-note reveal" style="margin-top:20px"><svg><use href="#i-shield"/></svg> General information, not medical advice. If sleep problems last for weeks, talk to a doctor.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="glass cta-band reveal">
+        <h2>Track your nights <span class="text-gold">in the app.</span></h2>
+        <p class="lead">Turn "phone away at 22:00" into a streak – and watch your energy climb with your level.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+          <a class="btn btn-gold" href="index.html#app"><svg><use href="#i-phone"/></svg> Discover the YGJ App</a>
+          <a class="btn btn-glass" href="optimization-hub.html#guides">All guides</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="wrap guide-nav" aria-label="More guides">
+    <span data-guide-nav></span>
+  </nav>
+
+</main>
+<script src="script.js"></script>
 </body>
 </html>

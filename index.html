@@ -1,142 +1,382 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YGJ - Home</title>
-
-  <!-- Fonts & Styles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YGJ – Youth Growing Journey</title>
+  <meta name="description" content="YGJ is a movement for young men who are done with being average: discipline, fitness, mindset and practical systems to unlock your full potential." />
+  <meta name="theme-color" content="#09090b" />
+  <meta property="og:title" content="YGJ – Youth Growing Journey" />
+  <meta property="og:description" content="You were made for more. Break bad habits, build discipline, unlock your full potential." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/ygj-logo-white-blanc.png" />
+  <link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/lora.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
+<body data-page="home">
+<main>
 
-  <!-- HEADER -->
-  <header>
-    <a href="index.html" class="home-btn">
-      <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home">
-    </a>
-    <h1>Youth Growing Journey</h1>
-
-    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'">
-      <i class="fa-solid fa-right-to-bracket"></i> Log In
-    </button>
-
-    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'">
-      <i class="fa-solid fa-user-plus"></i> Sign Up
-    </button>
-
-    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-    <button id="menu-toggle" class="menu-btn">&#9776;</button>
-  </header>
-
-  <!-- SIDEBAR -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <button id="close-sidebar" class="close-btn">&times;</button>
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <svg class="hero-mark" viewBox="0 0 250 120" fill="none" aria-hidden="true">
+        <defs><linearGradient id="heroG" x1="0" y1="0" x2="250" y2="120" gradientUnits="userSpaceOnUse"><stop stop-color="#f6e2b3"/><stop offset=".5" stop-color="#e0c280"/><stop offset="1" stop-color="#c49a55"/></linearGradient></defs>
+        <g stroke="url(#heroG)" stroke-width="9" stroke-linecap="square">
+          <path d="M8 104 L104 14 L200 104"/><path d="M68 104 L110 66 L150 104"/><path d="M123 79 L168 34 L240 104"/>
+        </g>
+      </svg>
+      <span class="eyebrow">Youth Growing Journey</span>
+      <h1>
+        <span class="line"><span>You were made</span></span>
+        <span class="line"><span class="text-gold">for more.</span></span>
+      </h1>
+      <p class="lead">YGJ is a movement for young men who are done with being average. Break bad habits, build real discipline and unlock your full potential – with practical systems, not empty motivation.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#reels"><svg aria-hidden="true"><use href="#i-ig"/></svg> Watch the reels</a>
+        <a class="btn btn-glass" href="#about">What is YGJ? <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="hero-meta">
+        <span class="pill"><span class="dot"></span> The YGJ App is coming soon</span>
+        <span class="pill">Monk Mode November · daily on TikTok &amp; Instagram</span>
+      </div>
     </div>
-    <div class="sidebar-content">
-      <button onclick="window.location.href='profile.html'">
-        <i class="fa-solid fa-user"></i> Profile
-      </button>
-      <button onclick="window.location.href='about-us.html'">
-        <i class="fa-solid fa-info-circle"></i> About Us
-      </button>
-      <button onclick="window.location.href='contact.html'">
-        <i class="fa-solid fa-envelope"></i> Contact Us
-      </button>
-      <button id="logout-btn">
-        <i class="fa-solid fa-right-from-bracket"></i> Log Out
-      </button>
+
+    <svg class="hero-ridge" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="m1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1915"/><stop offset="1" stop-color="#09090b"/></linearGradient>
+        <linearGradient id="m2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14130f"/><stop offset="1" stop-color="#09090b"/></linearGradient>
+        <linearGradient id="gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e0c280" stop-opacity="0"/><stop offset=".5" stop-color="#e0c280" stop-opacity=".9"/><stop offset="1" stop-color="#e0c280" stop-opacity="0"/></linearGradient>
+      </defs>
+      <path d="M0 230 L180 140 L300 200 L470 80 L620 190 L760 120 L900 210 L1080 100 L1240 190 L1440 120 L1440 320 L0 320Z" fill="url(#m1)" opacity=".9"/>
+      <path d="M0 230 L180 140 L300 200 L470 80 L620 190 L760 120 L900 210 L1080 100 L1240 190 L1440 120" fill="none" stroke="url(#gl)" stroke-width="1.5"/>
+      <path d="M0 280 L140 220 L280 260 L420 190 L560 250 L720 170 L880 250 L1020 200 L1180 260 L1320 210 L1440 240 L1440 320 L0 320Z" fill="url(#m2)"/>
+    </svg>
+    <a class="scroll-cue" href="#about" aria-label="Scroll down"></a>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Discipline</span><span>High Standards</span><span>Growth</span><span>Fitness</span><span>Mindset</span><span>Character</span><span>Practical Systems</span>
+      <span>Discipline</span><span>High Standards</span><span>Growth</span><span>Fitness</span><span>Mindset</span><span>Character</span><span>Practical Systems</span>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <main class="home-container">
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <h2>Grow Strong. Think Big. Never Stop.</h2>
-      <p>Motivation, discipline, and success – everything at one spot. <br>
-      Start your journey and become the best version of yourself.</p>
-
-      <div class="hero-buttons">
-        <button onclick="window.location.href='optimization-hub.html'" class="btn">
-          <i class="fa-solid fa-layer-group"></i> Optimization Hub
-        </button>
-        <button onclick="window.location.href='free-plan.html'" class="btn">
-          <i class="fa-solid fa-rocket"></i> Start Free
-        </button>
-        <button class="btn disabled">
-          <i class="fa-solid fa-gem"></i> Premium Coming Soon
-        </button>
+  <!-- ============ WHAT IS YGJ ============ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">What is YGJ</span>
+        <h2 class="split-words">Not just a brand. <em>A movement.</em></h2>
       </div>
-    </section>
 
-    <!-- VALUES SECTION -->
-    <section class="values">
-      <h3>Our Core Values</h3>
-      <div class="values-grid">
-        <div class="value-card">
-          <i class="fa-solid fa-fire"></i>
-          <h4>Ambition</h4>
-          <p>Every day is a new chance to grow. Keep the fire burning and move forward no matter what.</p>
+      <div class="bento">
+        <article class="glass spot mission-card b-a reveal">
+          <span class="eyebrow">Our mission</span>
+          <blockquote>We help young men reach their potential through <strong>discipline</strong>, <strong>high standards</strong> and <strong>practical systems</strong> – by breaking bad habits step by step and building the ones that actually change your life.</blockquote>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn-glass btn-sm" href="about-us.html">Read our story <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <svg class="ridge-bg" viewBox="0 0 250 120" fill="none" aria-hidden="true"><g stroke="#e0c280" stroke-width="6"><path d="M8 104 L104 14 L200 104"/><path d="M68 104 L110 66 L150 104"/><path d="M123 79 L168 34 L240 104"/></g></svg>
+        </article>
+
+        <article class="glass spot stat b-b reveal" style="--delay:.08s">
+          <div class="icon"><svg><use href="#i-users"/></svg></div>
+          <div><div class="big">13–23</div><div class="label">The age we build for. From a young person, for young people.</div></div>
+        </article>
+
+        <article class="glass spot stat b-c reveal" style="--delay:.16s">
+          <div class="icon"><svg><use href="#i-flame"/></svg></div>
+          <div><div class="big gold" data-count="30">30</div><div class="label">Days of Monk Mode November – one new reel every day.</div></div>
+        </article>
+
+        <article class="glass spot card b-d reveal">
+          <div class="icon"><svg><use href="#i-layers"/></svg></div>
+          <h3>Everything in one place</h3>
+          <p>Training, routines, meditation, journaling, sleep, knowledge – all self-improvement habits connected in one system instead of ten different apps.</p>
+        </article>
+
+        <article class="glass spot card b-e reveal" style="--delay:.08s">
+          <div class="icon"><svg><use href="#i-chat"/></svg></div>
+          <h3>Like a big brother</h3>
+          <p>Honest, no bullshit, motivating – and direct when it has to be. Brotherly competition where we push each other forward.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEFORE / AFTER ============ -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow reveal">The shift</span>
+        <h2 class="split-words">From drifting to <em>directing.</em></h2>
+        <p class="lead reveal">Phone, gaming, junk food, no energy. Most young men don't lack potential – they lack a system. This is the change YGJ is built for.</p>
+      </div>
+      <div class="shift">
+        <div class="glass col before reveal">
+          <span class="eyebrow">Before</span>
+          <h3>Running on autopilot</h3>
+          <ul>
+            <li><svg><use href="#i-x"/></svg>Hours of scrolling and gaming every day</li>
+            <li><svg><use href="#i-x"/></svg>Unhappy with your body and energy</li>
+            <li><svg><use href="#i-x"/></svg>Bad grades, no motivation</li>
+            <li><svg><use href="#i-x"/></svg>Lonely or in the wrong circle</li>
+            <li><svg><use href="#i-x"/></svg>Low confidence, no clear goals</li>
+          </ul>
         </div>
-        <div class="value-card">
-          <i class="fa-solid fa-chart-line"></i>
-          <h4>Growth</h4>
-          <p>We believe in structured improvement. Step by step, improve your life massively.</p>
-        </div>
-        <div class="value-card">
-          <i class="fa-solid fa-dumbbell"></i>
-          <h4>Discipline</h4>
-          <p>Discipline beats motivation. Do it anyway, keep showing up.</p>
+        <div class="arrow reveal" style="--delay:.15s"><div><svg><use href="#i-arrow"/></svg></div></div>
+        <div class="glass spot col after reveal" style="--delay:.25s">
+          <span class="eyebrow">With YGJ</span>
+          <h3>In control of your life</h3>
+          <ul>
+            <li><svg><use href="#i-check"/></svg>Training regularly, feeling strong</li>
+            <li><svg><use href="#i-check"/></svg>Fixed routines and real discipline</li>
+            <li><svg><use href="#i-check"/></svg>Focused, better results in school</li>
+            <li><svg><use href="#i-check"/></svg>A community that pushes you</li>
+            <li><svg><use href="#i-check"/></svg>Confident, with clear goals</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- PREMIUM PREVIEW -->
-    <section class="premium-preview">
-      <h3>Premium – Coming Soon</h3>
-      <p>We’re building something extraordinary for those who want more. <br>
-         Exclusive content, advanced plans, and global community features await you.</p>
-      <div class="premium-card">
-        <i class="fa-solid fa-crown"></i>
-        <h4>YGJ Premium</h4>
-        <p>Unlock the full potential of your growth journey. Stay tuned for updates.</p>
+  <!-- ============ INSTAGRAM ============ -->
+  <section class="section" id="reels">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">On Instagram</span>
+        <h2 class="split-words">Straight from <em>the feed.</em></h2>
+        <p class="lead reveal">Monk Mode November, daily reels and carousels that hit different. Tap any post to watch it right here.</p>
       </div>
-    </section>
 
-    <!-- COMMUNITY CTA -->
-    <section class="cta">
-      <h3>Join the Movement</h3>
-      <p>Start for free, learn, grow, and connect with others who chase greatness.</p>
-      <button class="btn" onclick="window.location.href='register.html'">
-        <i class="fa-solid fa-arrow-right"></i> Join YGJ Now
-      </button>
-    </section>
+      <div class="ig-feature">
+        <div class="glass ig-stage reveal" id="ig-stage">
+          <button class="ig-tile reel ig-main" data-ig="reel/DfVLyXHCSHJ" data-inline data-title="Day 4 of 30 – Monk Mode November">
+            <img src="assets/ig/DfVLyXHCSHJ.jpg" alt="Reel: Day 4 of 30, Monk Mode November" loading="lazy" />
+            <span class="play"><svg><use href="#i-play"/></svg></span>
+            <span class="ig-badge"><svg><use href="#i-ig"/></svg> Latest reel</span>
+          </button>
+        </div>
+        <div class="ig-side">
+          <div class="glass ig-intro reveal">
+            <span class="pill"><span class="dot"></span> Running now</span>
+            <h3 style="font-size:clamp(34px,4vw,52px);margin-top:16px">Monk Mode November</h3>
+            <p class="muted" style="margin:12px 0 0">30 days. 10 rules. No distractions. One reel every day – with an honest scoreboard of how the day before really went.</p>
+          </div>
+          <div class="ig-reels reveal" style="--delay:.08s">
+            <button class="ig-tile reel" data-ig="reel/DfSeeV7h8CA" data-title="Day 3 of 30"><img src="assets/ig/DfSeeV7h8CA.jpg" alt="Reel: Day 3 of 30" loading="lazy" /><span class="play"><svg><use href="#i-play"/></svg></span></button>
+            <button class="ig-tile reel" data-ig="reel/DfP9Timic7D" data-title="Day 2 of 30"><img src="assets/ig/DfP9Timic7D.jpg" alt="Reel: Day 2 of 30" loading="lazy" /><span class="play"><svg><use href="#i-play"/></svg></span></button>
+            <button class="ig-tile reel" data-ig="reel/DfNa7YtikPl" data-title="Day 1 of 30"><img src="assets/ig/DfNa7YtikPl.jpg" alt="Reel: Day 1 of 30" loading="lazy" /><span class="play"><svg><use href="#i-play"/></svg></span></button>
+          </div>
+        </div>
+      </div>
 
-  </main>
+      <div class="shorts-head">
+        <div>
+          <span class="eyebrow">Posts</span>
+          <h3 style="font-size:clamp(34px,4vw,52px);margin-top:10px">Swipe-worthy carousels</h3>
+        </div>
+        <a class="btn btn-glass btn-sm" href="https://www.instagram.com/youthgrowingjourney/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg> @youthgrowingjourney</a>
+      </div>
+      <div class="ig-grid">
+        <button class="ig-tile post reveal" data-ig="p/DfRTUAtiEP5" data-title="The 10 rules I'm living by for 30 days"><img src="assets/ig/DfRTUAtiEP5.jpg" alt="Post: The 10 rules I'm living by for 30 days" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" style="--delay:.05s" data-ig="p/DfKwb_iCExp" data-title="Nov 1. Day 1."><img src="assets/ig/DfKwb_iCExp.jpg" alt="Post: Nov 1. Day 1." loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" style="--delay:.1s" data-ig="p/DfILkL8jaIM" data-title="Confidence isn't loud"><img src="assets/ig/DfILkL8jaIM.jpg" alt="Post: Confidence isn't loud" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" style="--delay:.15s" data-ig="p/DfFmuvTiiAD" data-title="You don't need to become someone else"><img src="assets/ig/DfFmuvTiiAD.jpg" alt="Post: You don't need to become someone else" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" data-ig="p/DfDB-_SiD90" data-title="Sleep is the cheat code"><img src="assets/ig/DfDB-_SiD90.jpg" alt="Post: Sleep is the cheat code" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" style="--delay:.05s" data-ig="p/De94fVsjYYk" data-title="Clean &amp; Confident"><img src="assets/ig/De94fVsjYYk.jpg" alt="Post: Clean and Confident" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" style="--delay:.1s" data-ig="p/De7TqdBCMJw" data-title="Monk Mode November"><img src="assets/ig/De7TqdBCMJw.jpg" alt="Post: Monk Mode November" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+        <button class="ig-tile post reveal" style="--delay:.15s" data-ig="p/De4oCcSDTDX" data-title="Remove to improve"><img src="assets/ig/De4oCcSDTDX.jpg" alt="Post: Remove to improve" loading="lazy" /><span class="ig-hover"><svg><use href="#i-ig"/></svg> View post</span></button>
+      </div>
+      <p class="privacy-note"><svg><use href="#i-shield"/></svg> Instagram content only loads after you tap a post. Until then, nothing is sent to Instagram.</p>
+    </div>
+  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2025 Youth Growing Journey – built for a strong generation.
-  </footer>
+  <!-- ============ TWO DIRECTIONS ============ -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow reveal">How it works</span>
+        <h2 class="split-words">Two directions. <em>One journey.</em></h2>
+      </div>
+      <div class="split">
+        <div class="glass spot remove reveal">
+          <div class="icon"><svg><use href="#i-x"/></svg></div>
+          <h3 style="margin-top:18px">Remove to improve</h3>
+          <p class="muted" style="margin-top:10px">Systematically break the habits that steal your time, energy and focus.</p>
+          <div class="tag-cloud"><span>Endless short-form scrolling</span><span>Gaming marathons</span><span>Junk food</span><span>Cheap dopamine</span><span>Late nights</span><span>Excuses</span></div>
+        </div>
+        <div class="glass spot build reveal" style="--delay:.1s">
+          <div class="icon"><svg><use href="#i-plus"/></svg></div>
+          <h3 style="margin-top:18px">Build what lasts</h3>
+          <p class="muted" style="margin-top:10px">Replace them with habits that compound – every day a little stronger.</p>
+          <div class="tag-cloud"><span>Training</span><span>Morning routine</span><span>Meditation</span><span>Journaling</span><span>Deep sleep</span><span>Study system</span><span>Confidence</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- SCRIPTS -->
-  <script src="script.js"></script>
-  <script>
-  // Global Logout Handling
-  document.body.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "logout-btn") {
-      localStorage.removeItem("currentUser");
-      updateNav && updateNav();
-      alert("You have been logged out.");
-      window.location.href = "index.html";
-    }
-  });
-  </script>
+  <!-- ============ APP ============ -->
+  <section class="section" id="app">
+    <div class="wrap">
+      <div class="glass app-promo" data-inview>
+        <div class="halo"></div>
+        <div>
+          <span class="pill"><span class="dot"></span> Coming soon to iOS, Android &amp; Web</span>
+          <h2 style="margin-top:22px">The YGJ App.<br /><span class="text-gold">Growth, gamified.</span></h2>
+          <p class="lead" style="margin-top:18px">Every self-improvement habit in one app – with XP, levels, streaks and a weekly leaderboard with your friends. Built to make discipline addictive.</p>
+          <ul class="feature-list">
+            <li><span class="mini"><svg><use href="#i-target"/></svg></span><span><b>Daily goals</b>Tasks with bonus XP</span></li>
+            <li><span class="mini"><svg><use href="#i-flame"/></svg></span><span><b>Streaks</b>Habits with calendar &amp; stats</span></li>
+            <li><span class="mini"><svg><use href="#i-pen"/></svg></span><span><b>Journal</b>Gratitude &amp; question of the day</span></li>
+            <li><span class="mini"><svg><use href="#i-book"/></svg></span><span><b>Lessons &amp; courses</b>Learn, pass the quiz, level up</span></li>
+            <li><span class="mini"><svg><use href="#i-dumbbell"/></svg></span><span><b>Workouts &amp; meditation</b>Plans with timer, guided audio</span></li>
+            <li><span class="mini"><svg><use href="#i-trophy"/></svg></span><span><b>Friends</b>Weekly leaderboard &amp; chat</span></li>
+          </ul>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px">
+            <a class="btn btn-gold" href="contact.html?topic=app"><svg><use href="#i-sparkle"/></svg> Get notified at launch</a>
+            <a class="btn btn-glass" href="https://www.instagram.com/youthgrowingjourney/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg> Follow the build</a>
+          </div>
+          <div class="store-badges" aria-label="App stores – coming soon">
+            <span class="store-badge"><svg><use href="#i-apple"/></svg><span><small>Soon on the</small>App Store</span><em class="soon">SOON</em></span>
+            <span class="store-badge"><svg><use href="#i-gplay"/></svg><span><small>Soon on</small>Google Play</span><em class="soon">SOON</em></span>
+          </div>
+        </div>
+
+        <div class="phone-stage">
+          <div class="glass float-chip c1"><span class="em">🔥</span><span><b>12 day streak</b><small>Don't break the chain</small></span></div>
+          <div class="glass float-chip c2"><span class="em">⛰️</span><span><b>Level 7 · Ridge</b><small>+20 XP perfect day</small></span></div>
+          <div class="glass float-chip c3"><span class="em">🏆</span><span><b>#2 this week</b><small>Friends leaderboard</small></span></div>
+          <div class="phone">
+            <div class="screen">
+              <div class="notch"></div>
+              <div class="ui-top">
+                <div><div class="hi">Good evening</div><div class="name">Keep climbing</div></div>
+                <div class="ui-streak">🔥 12</div>
+              </div>
+              <div class="ui-card">
+                <div class="ui-level"><span><b>Level 7</b> · Ridge</span><span>680 / 1000 XP</span></div>
+                <div class="ui-bar"><i style="--w:68%"></i></div>
+              </div>
+              <div class="ui-card">
+                <div class="ui-level"><b>Today</b><span>3 / 4 done</span></div>
+                <div class="ui-task done"><span class="chk"><svg width="12" height="12"><use href="#i-check"/></svg></span><span>Morning routine</span><span class="xp">+10</span></div>
+                <div class="ui-task done"><span class="chk"><svg width="12" height="12"><use href="#i-check"/></svg></span><span>Workout · 30 min</span><span class="xp">+30</span></div>
+                <div class="ui-task done"><span class="chk"><svg width="12" height="12"><use href="#i-check"/></svg></span><span>Daily journal</span><span class="xp">+30</span></div>
+                <div class="ui-task"><span class="chk"></span><span>Phone away at 22:00</span><span class="xp">+10</span></div>
+              </div>
+              <div class="ui-card">
+                <div class="ui-level"><b>This week</b><span>6 / 7</span></div>
+                <div class="ui-week"><div class="on">M</div><div class="on">T</div><div class="on">W</div><div class="on">T</div><div class="on">F</div><div class="on">S</div><div>S</div></div>
+              </div>
+              <div class="ui-tabbar"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="glare"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="privacy-note" style="justify-content:center;margin-top:16px">Preview of the app in development. Features may change before launch.</p>
+    </div>
+  </section>
+
+  <!-- ============ KNOWLEDGE ============ -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">Free guides</span>
+        <h2 class="split-words">Knowledge you can <em>use today.</em></h2>
+        <p class="lead reveal">Practical systems for the areas that change everything. Free, no sign-up – read them right here.</p>
+      </div>
+      <div class="grid grid-4">
+        <a class="glass res reveal" href="sleep-optimization.html">
+          <div class="top"><div class="icon"><svg><use href="#i-moon"/></svg></div><span class="status live">Sleep</span></div>
+          <h3>Sleep</h3>
+          <p>The foundation for energy, focus and discipline. Fall asleep faster, wake up stronger.</p>
+          <span class="link">Read the guide <svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="glass res reveal" href="gym-optimization.html" style="--delay:.06s">
+          <div class="top"><div class="icon"><svg><use href="#i-dumbbell"/></svg></div><span class="status live">Gym</span></div>
+          <h3>Gym</h3>
+          <p>Start right, progress every week and avoid the mistakes that keep most people stuck.</p>
+          <span class="link">Read the guide <svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="glass res reveal" href="nutrition-optimization.html" style="--delay:.12s">
+          <div class="top"><div class="icon"><svg><use href="#i-heart"/></svg></div><span class="status live">Nutrition</span></div>
+          <h3>Nutrition</h3>
+          <p>Food is fuel. Simple rules for more energy, focus and strength – no crazy diets.</p>
+          <span class="link">Read the guide <svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="glass res reveal" href="socializing.html" style="--delay:.18s">
+          <div class="top"><div class="icon"><svg><use href="#i-users"/></svg></div><span class="status live">Social</span></div>
+          <h3>Socializing</h3>
+          <p>Hold a conversation, kill the confidence killers and build a circle that pushes you.</p>
+          <span class="link">Read the guide <svg><use href="#i-arrow"/></svg></span>
+        </a>
+      </div>
+      <div style="text-align:center;margin-top:34px" class="reveal">
+        <a class="btn btn-glass" href="optimization-hub.html">Open the Knowledge Hub <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section class="section tight">
+    <div class="wrap quote-band reveal">
+      <div class="qmark" aria-hidden="true">“</div>
+      <blockquote>Discipline is freedom. It is the ability to choose long-term results over short-term pleasure.</blockquote>
+      <cite>— YGJ</cite>
+    </div>
+  </section>
+
+  <!-- ============ SOCIALS ============ -->
+  <section class="section tight" id="follow">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow reveal">Join the movement</span>
+        <h2 class="split-words">Follow the <em>journey.</em></h2>
+        <p class="lead reveal">Daily reels, carousels and the Monk Mode series. Pick your platform.</p>
+      </div>
+      <div class="social-grid">
+        <a class="glass spot social-card ig reveal" href="https://www.instagram.com/youthgrowingjourney/" target="_blank" rel="noopener">
+          <span class="logo"><svg><use href="#i-ig"/></svg></span>
+          <div><h3>Instagram</h3><div class="handle">@youthgrowingjourney</div></div>
+          <span class="go">Reels, carousels &amp; stories <svg><use href="#i-out"/></svg></span>
+          <svg class="wm"><use href="#i-ig"/></svg>
+        </a>
+        <a class="glass spot social-card tt reveal" href="https://www.tiktok.com/@youthgrowingjourney" target="_blank" rel="noopener" style="--delay:.08s">
+          <span class="logo"><svg><use href="#i-tt"/></svg></span>
+          <div><h3>TikTok</h3><div class="handle">@youthgrowingjourney</div></div>
+          <span class="go">Daily "Day X / 30" series <svg><use href="#i-out"/></svg></span>
+          <svg class="wm"><use href="#i-tt"/></svg>
+        </a>
+        <a class="glass spot social-card yt reveal" href="https://www.youtube.com/@YouthGrowingJourney" target="_blank" rel="noopener" style="--delay:.16s">
+          <span class="logo"><svg><use href="#i-yt"/></svg></span>
+          <div><h3>YouTube</h3><div class="handle">@YouthGrowingJourney</div></div>
+          <span class="go">Shorts, videos &amp; meditations <svg><use href="#i-out"/></svg></span>
+          <svg class="wm"><use href="#i-yt"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section tight">
+    <div class="wrap">
+      <div class="glass cta-band reveal">
+        <span data-mark style="width:110px;display:block"></span>
+        <h2>Your journey starts <span class="text-gold">today.</span></h2>
+        <p class="lead">Not tomorrow. Not on Monday. The perfect time is now – and the responsibility is yours.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+          <a class="btn btn-gold" href="optimization-hub.html#guides"><svg><use href="#i-book"/></svg> Explore the guides</a>
+          <a class="btn btn-glass" href="contact.html">Talk to us <svg><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="script.js"></script>
 </body>
 </html>

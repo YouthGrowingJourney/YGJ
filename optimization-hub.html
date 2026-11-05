@@ -1,72 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YGJ - Optimization Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge Hub – YGJ</title>
+  <meta name="description" content="Every YGJ guide, tool, course and channel in one place – free resources, the guide library and what's coming next." />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="icon" href="assets/ygj-logo-white-blanc.png" />
+  <link rel="preload" href="assets/fonts/bebas.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    .hub-container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
-    .hub-title { text-align: center; margin-bottom: 28px; }
-    .hub-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
-    .hub-title p { color: #8f7f57; max-width: 760px; margin: 0 auto; }
-    .hub-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 18px; }
-    .hub-card { background: #fff; border: 1px solid #e0c280; border-radius: 14px; padding: 20px; box-shadow: 0 10px 24px rgba(0,0,0,.12); transition: transform .25s, box-shadow .25s; }
-    .hub-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(224,194,128,.28); }
-    .hub-card h3 { margin-top: 6px; margin-bottom: 8px; }
-    .hub-card p { color: #7b6d4b; min-height: 48px; }
-    .hub-card .open-link { display: inline-block; margin-top: 10px; color: #e0c280; text-decoration: none; font-weight: 700; }
-    .coming { opacity: .8; }
-    body.dark .hub-card { background: #2f2f2f; border-color: #e0c280; }
-    body.dark .hub-title p, body.dark .hub-card p { color: #e9e9e9; }
-    body.dark .hub-card .open-link { color: #f0d7a0; }
+    .board { display: grid; gap: 0; padding: 8px; }
+    .board-row { display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; padding: 16px 16px; border-radius: 16px; transition: background .3s; }
+    .board-row + .board-row { border-top: 1px solid var(--line); }
+    a.board-row:hover { background: rgba(255,255,255,.04); }
+    .board-row .icon { width: 44px; height: 44px; border-radius: 13px; }
+    .board-row .icon svg { width: 20px; height: 20px; }
+    .board-row b { display: block; font-family: var(--sans); font-size: 15.5px; }
+    .board-row small { font-family: var(--sans); font-size: 13px; color: var(--muted); }
+    .hub-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+    .course-days { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; counter-reset: d; }
+    .course-days li { counter-increment: d; display: flex; gap: 14px; align-items: center; font-family: var(--sans); font-size: 15px; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.035); border: 1px solid var(--line); }
+    .course-days li::before { content: "Day " counter(d); font-family: var(--display); font-size: 18px; letter-spacing: .06em; color: var(--gold); min-width: 54px; }
+    .topic { padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .topic h3 { font-size: 28px; }
+    .topic p { margin: 0; color: var(--ink-2); font-size: 15px; }
   </style>
 </head>
-<body>
-  <header>
-    <a href="index.html" class="home-btn"><img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home"></a>
-    <h1>Youth Growing Journey</h1>
-    <button id="login-btn" class="btn login-header-btn" onclick="window.location.href='login.html'"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
-    <button id="signup-btn" class="btn" onclick="window.location.href='register.html'"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
-    <button id="theme-toggle" class="theme-btn" aria-label="Switch theme">🌙</button>
-    <button id="menu-toggle" class="menu-btn">&#9776;</button>
-  </header>
+<body data-page="hub">
+<main>
 
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header"><button id="close-sidebar" class="close-btn">&times;</button></div>
-    <div class="sidebar-content">
-      <button onclick="window.location.href='profile.html'"><i class="fa-solid fa-user"></i> Profile</button>
-      <button onclick="window.location.href='about-us.html'"><i class="fa-solid fa-info-circle"></i> About Us</button>
-      <button onclick="window.location.href='contact.html'"><i class="fa-solid fa-envelope"></i> Contact Us</button>
-      <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+  <section class="page-hero">
+    <div class="ghost-word" aria-hidden="true">HUB</div>
+    <div class="wrap">
+      <span class="eyebrow reveal">Knowledge Hub</span>
+      <h1 class="split-words" style="margin-top:18px">Everything YGJ.<br /><span class="text-gold">One place.</span></h1>
+      <p class="lead reveal">All guides, tools, courses and channels – what's live today, what's waiting in the app and what's coming next. No account needed.</p>
+      <div class="hub-nav reveal">
+        <a class="pill" href="#status">Status board</a>
+        <a class="pill" href="#guides">Free guides</a>
+        <a class="pill" href="#library">Guide library</a>
+        <a class="pill" href="#course">Free course</a>
+        <a class="pill" href="#next">Coming next</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <main class="hub-container">
-    <div class="hub-title">
-      <h2>Optimization Hub</h2>
-      <p>Central overview for all YGJ optimization systems. Choose one area and go deep with a structured, practical page.</p>
+  <!-- Status board -->
+  <section class="section tight" id="status">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:start">
+        <div class="section-head" style="margin:0">
+          <span class="eyebrow reveal">Status board</span>
+          <h2 class="split-words">Where YGJ <em>stands.</em></h2>
+          <p class="lead reveal">A live overview of every YGJ project and channel. Updated whenever something new launches.</p>
+          <p class="privacy-note reveal"><svg><use href="#i-clock"/></svg> Last update: November 2026</p>
+        </div>
+        <div class="glass board reveal">
+          <a class="board-row" href="#guides"><span class="icon"><svg><use href="#i-book"/></svg></span><span><b>Free guides</b><small>Sleep · Gym · Nutrition · Socializing</small></span><span class="status live">Live</span></a>
+          <a class="board-row" href="https://youthgrowingjourney.github.io/daily-tracker/" target="_blank" rel="noopener"><span class="icon"><svg><use href="#i-calendar"/></svg></span><span><b>Daily Tracker</b><small>Evening reflection · no account</small></span><span class="status live">Live</span></a>
+          <a class="board-row" href="index.html#app"><span class="icon"><svg><use href="#i-phone"/></svg></span><span><b>YGJ App</b><small>iOS · Android · Web</small></span><span class="status soon">In development</span></a>
+          <a class="board-row" href="https://www.tiktok.com/@youthgrowingjourney" target="_blank" rel="noopener"><span class="icon"><svg><use href="#i-flame"/></svg></span><span><b>Monk Mode November</b><small>Daily "Day X / 30" series</small></span><span class="status live">Running</span></a>
+          <a class="board-row" href="index.html#follow"><span class="icon"><svg><use href="#i-users"/></svg></span><span><b>Instagram · TikTok · YouTube</b><small>@youthgrowingjourney</small></span><span class="status live">Active</span></a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <section class="hub-grid">
-      <article class="hub-card">
-        <i class="fa-solid fa-moon"></i>
-        <h3>Sleep Optimization</h3>
-        <p>Improve sleep quality, recovery, focus, and morning energy with clear routines.</p>
-        <a class="open-link" href="sleep-optimization.html">Open Page →</a>
-      </article>
+  <!-- Free guides -->
+  <section class="section tight" id="guides">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">Free guides</span>
+        <h2 class="split-words">Start <em>right now.</em></h2>
+        <p class="lead reveal">Practical, no-nonsense guides – free to read, no sign-up.</p>
+      </div>
+      <div class="grid grid-2">
+        <a class="glass res reveal" href="sleep-optimization.html">
+          <div class="top"><div class="icon"><svg><use href="#i-moon"/></svg></div><span class="status live">Guide</span></div>
+          <h3>Sleep Optimization</h3>
+          <p>Why sleep matters, how to fall asleep faster, the biggest sleep killers and how to wake up with energy.</p>
+          <span class="link">Open <svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="glass res reveal" href="gym-optimization.html" style="--delay:.06s">
+          <div class="top"><div class="icon"><svg><use href="#i-dumbbell"/></svg></div><span class="status live">Guide</span></div>
+          <h3>Gym Optimization</h3>
+          <p>Start right, progressive overload, the most common mistakes and how to recover like an athlete.</p>
+          <span class="link">Open <svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="glass res reveal" href="nutrition-optimization.html" style="--delay:.12s">
+          <div class="top"><div class="icon"><svg><use href="#i-heart"/></svg></div><span class="status live">Guide</span></div>
+          <h3>Nutrition Optimization</h3>
+          <p>The YGJ plate, energy killers, building a food system and staying hydrated – no crazy diets.</p>
+          <span class="link">Open <svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <a class="glass res reveal" href="socializing.html" style="--delay:.18s">
+          <div class="top"><div class="icon"><svg><use href="#i-users"/></svg></div><span class="status live">Guide</span></div>
+          <h3>Socializing &amp; Confidence</h3>
+          <p>Conversation basics, confidence killers, building your circle and a daily practice that works.</p>
+          <span class="link">Open <svg><use href="#i-arrow"/></svg></span>
+        </a>
+      </div>
+      <a class="glass contact-tile reveal" href="https://youthgrowingjourney.github.io/daily-tracker/" target="_blank" rel="noopener" style="margin-top:22px">
+        <span class="icon"><svg><use href="#i-calendar"/></svg></span>
+        <span><b>Daily Tracker</b><small>Reflect on your day and export it as a story image. Runs fully in your browser.</small></span>
+        <svg class="arrow"><use href="#i-out"/></svg>
+      </a>
+    </div>
+  </section>
 
-      <article class="hub-card coming"><i class="fa-solid fa-dumbbell"></i><h3>Fitness Optimization</h3><p>Training systems for strength, physique and consistency.</p></article>
-      <article class="hub-card coming"><i class="fa-solid fa-utensils"></i><h3>Nutrition Optimization</h3><p>Food frameworks for energy, health and performance.</p></article>
-      <article class="hub-card coming"><i class="fa-solid fa-brain"></i><h3>Focus Optimization</h3><p>Attention and deep-work systems for high output.</p></article>
-      <article class="hub-card coming"><i class="fa-solid fa-bolt"></i><h3>Discipline Optimization</h3><p>Habit and execution systems that remove excuses.</p></article>
-      <article class="hub-card coming"><i class="fa-solid fa-mountain"></i><h3>Mindset Optimization</h3><p>Mental strength, resilience and identity-based growth.</p></article>
-    </section>
-  </main>
+  <!-- Guide library -->
+  <section class="section" id="library">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">Guide library</span>
+        <h2 class="split-words">Eight guides. <em>Waiting in the app.</em></h2>
+        <p class="lead reveal">In-depth YGJ guides for every area of your life. They'll be available inside the YGJ App at launch.</p>
+      </div>
+      <div class="guides-row">
+        <div class="guide-item reveal"><div class="guide-cover"><span data-mark></span><small>7-day workbook</small><b>Change. Your. Life!</b></div><p>A 7-day kickstart to reset your habits and direction.</p></div>
+        <div class="guide-item reveal" style="--delay:.05s"><div class="guide-cover"><span data-mark></span><small>Nutrition</small><b>Natural Nutrition</b></div><p>Eat for energy, health and performance.</p></div>
+        <div class="guide-item reveal" style="--delay:.1s"><div class="guide-cover"><span data-mark></span><small>Fitness</small><b>Fit and Fearless</b></div><p>Start training and build a strong body.</p></div>
+        <div class="guide-item reveal" style="--delay:.15s"><div class="guide-cover"><span data-mark></span><small>Habits</small><b>Remove to Improve</b></div><p>Break the habits that hold you back.</p></div>
+        <div class="guide-item reveal"><div class="guide-cover"><span data-mark></span><small>Appearance</small><b>Clean and Confident</b></div><p>Grooming, style and self-care basics.</p></div>
+        <div class="guide-item reveal" style="--delay:.05s"><div class="guide-cover"><span data-mark></span><small>Sleep</small><b>Quiet Quality</b></div><p>Better sleep, deeper recovery and calmer nights.</p></div>
+        <div class="guide-item reveal" style="--delay:.1s"><div class="guide-cover"><span data-mark></span><small>Action steps</small><b>Practical Performance</b></div><p>Practical action steps you can apply immediately.</p></div>
+        <div class="guide-item reveal" style="--delay:.15s"><div class="guide-cover"><span data-mark></span><small>Quotes</small><b>Wise Words</b></div><p>A collection of quotes that keep you going.</p></div>
+      </div>
+      <style>.guide-cover [data-mark] svg { position: absolute; top: 22px; left: 50%; width: 64px; transform: translateX(-50%); }</style>
+    </div>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Free course -->
+  <section class="section tight" id="course">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:center">
+        <div class="section-head" style="margin:0">
+          <span class="eyebrow reveal">Free course · in the app</span>
+          <h2 class="split-words">Discipline <em>Foundation.</em></h2>
+          <p class="lead reveal">Seven days, seven lessons. Each day unlocks after the last – with a daily task and a short quiz that earns you XP.</p>
+          <div class="reveal" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+            <a class="btn btn-gold" href="contact.html?topic=app"><svg><use href="#i-sparkle"/></svg> Notify me at launch</a>
+          </div>
+        </div>
+        <div class="glass card reveal" style="--delay:.1s">
+          <div class="top" style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow">7-day course</span><span class="status app">Free</span></div>
+          <ol class="course-days">
+            <li>Your Standard</li><li>Win the Morning</li><li>Start Small</li><li>Your Environment</li><li>Focus Like a Pro</li><li>When It Gets Hard</li><li>Your System</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming next -->
+  <section class="section tight" id="next">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow reveal">Coming next</span>
+        <h2 class="split-words">The optimization <em>series.</em></h2>
+        <p class="lead reveal">Sleep, Gym, Nutrition and Socializing are live. These are the next guides on the roadmap.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="glass spot topic reveal" style="--delay:.1s"><div class="icon"><svg><use href="#i-target"/></svg></div><h3>Focus</h3><p>Attention and deep-work systems for high output.</p><span class="status soon" style="justify-self:start">Soon</span></div>
+        <div class="glass spot topic reveal"><div class="icon"><svg><use href="#i-flame"/></svg></div><h3>Discipline</h3><p>Habit and execution systems that remove excuses.</p><span class="status soon" style="justify-self:start">Soon</span></div>
+        <div class="glass spot topic reveal" style="--delay:.05s"><div class="icon"><svg><use href="#i-brain"/></svg></div><h3>Mindset</h3><p>Mental strength, resilience and identity-based growth.</p><span class="status soon" style="justify-self:start">Soon</span></div>
+        <div class="glass topic reveal" style="--delay:.1s;background:linear-gradient(145deg,rgba(224,194,128,.16),rgba(224,194,128,.03))"><div class="icon"><svg><use href="#i-chat"/></svg></div><h3>Your idea?</h3><p>Missing a topic? Tell us what you want to learn next.</p><a class="link gold" style="font-family:var(--sans);font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center" href="contact.html?topic=feedback">Suggest a topic <svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="script.js"></script>
 </body>
 </html>
